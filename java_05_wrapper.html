@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Wrapper Classes — Java</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f9f7f4;color:#2d2d2d;padding:32px 16px;}
+.container{max-width:860px;margin:0 auto;}
+.badge{display:inline-block;background:#e8e0f7;color:#6b48c8;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:10px;}
+h1{font-size:28px;font-weight:700;color:#1a1a1a;}h1 span{color:#6b48c8;}
+.subtitle{margin-top:8px;font-size:14px;color:#6b6b6b;max-width:580px;line-height:1.65;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:24px 0;}
+.card{background:#fff;border:1px solid #ede8f5;border-radius:12px;padding:16px;}
+.card-icon{font-size:20px;margin-bottom:7px;}.card h3{font-size:12.5px;font-weight:700;color:#1a1a1a;margin-bottom:3px;}.card p{font-size:12px;color:#6b6b6b;line-height:1.55;}
+.panel{background:#fff;border:1px solid #ede8f5;border-radius:14px;overflow:hidden;margin-bottom:22px;box-shadow:0 2px 10px rgba(107,72,200,.05);}
+.panel-head{background:#f3effe;border-bottom:1px solid #ede8f5;padding:9px 16px;display:flex;align-items:center;gap:7px;}
+.dot{width:9px;height:9px;border-radius:50%;}.dot.r{background:#ff6058;}.dot.y{background:#ffbd2e;}.dot.g{background:#27c93f;}
+.panel-title{margin-left:8px;font-size:11.5px;font-weight:600;color:#6b48c8;}
+.tabs{display:flex;background:#faf8ff;border-bottom:1px solid #ede8f5;}
+.tab{padding:8px 16px;font-size:12px;font-weight:500;color:#888;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;}
+.tab.active{color:#6b48c8;border-bottom-color:#6b48c8;background:#fff;}
+.tc{display:none;padding:20px;background:#fdfcff;}.tc.active{display:block;}
+pre{font-family:"Fira Code","Cascadia Code","Courier New",monospace;font-size:12.5px;line-height:1.8;overflow-x:auto;}
+.kw{color:#6b48c8;font-weight:600;}.cls{color:#c2410c;}.fn{color:#1d6f42;}.str{color:#b45309;}.cmt{color:#9ca3af;font-style:italic;}.num{color:#0369a1;}
+.out{background:#1e1a2e;color:#c4b5fd;font-family:"Fira Code",monospace;font-size:12px;padding:14px 18px;line-height:1.8;}
+.out .ok{color:#4ade80;}.out .muted{color:#7c6fa0;}
+.callout{display:flex;gap:9px;background:#f3effe;border-left:3px solid #6b48c8;border-radius:0 8px 8px 0;padding:11px 14px;margin-bottom:22px;font-size:12.5px;color:#4a3880;line-height:1.6;}
+table{width:100%;border-collapse:collapse;font-size:12.5px;}
+th{background:#f3effe;color:#6b48c8;font-weight:700;padding:9px 12px;text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;}
+td{padding:8px 12px;border-top:1px solid #f0ebfc;color:#3a3a3a;}tr:hover td{background:#faf8ff;}
+</style>
+</head>
+<body>
+<div class="container">
+<div style="margin-bottom:28px;">
+  <div class="badge">Topic 05 · Core Java</div>
+  <h1>Wrapper <span>Classes</span></h1>
+  <p class="subtitle">Wrapper classes convert primitive data types into objects. Collections in Java can only store objects — not primitives — so wrapper classes bridge this gap. JDK 5.0 introduced Auto-Boxing and Auto-Unboxing to automate these conversions.</p>
+</div>
+
+<div class="cards">
+  <div class="card"><div class="card-icon">📦</div><h3>Why Wrappers?</h3><p>Collections only store objects. Wrapper classes convert primitives like int, float to Integer, Float objects.</p></div>
+  <div class="card"><div class="card-icon">🔁</div><h3>Auto-Boxing</h3><p>JDK 5.0 — automatic primitive → object conversion. No need for manual constructors.</p></div>
+  <div class="card"><div class="card-icon">📤</div><h3>Auto-Unboxing</h3><p>JDK 5.0 — automatic object → primitive conversion. Assign wrapper ref to primitive var.</p></div>
+  <div class="card"><div class="card-icon">🔒</div><h3>Immutable</h3><p>All wrapper class objects are immutable — once created, their value cannot change.</p></div>
+</div>
+
+<div class="panel">
+  <div class="panel-head"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="panel-title">Primitive ↔ Wrapper Mapping</span></div>
+  <div class="tc active" style="display:block;padding:0;">
+    <table>
+      <tr><th>Primitive Type</th><th>Wrapper Class</th><th>Package</th><th>Example</th></tr>
+      <tr><td>byte</td><td>Byte</td><td>java.lang</td><td><code>Byte b = 10;</code></td></tr>
+      <tr><td>short</td><td>Short</td><td>java.lang</td><td><code>Short s = 100;</code></td></tr>
+      <tr><td>int</td><td>Integer</td><td>java.lang</td><td><code>Integer i = 50;</code></td></tr>
+      <tr><td>long</td><td>Long</td><td>java.lang</td><td><code>Long l = 999L;</code></td></tr>
+      <tr><td>float</td><td>Float</td><td>java.lang</td><td><code>Float f = 3.14f;</code></td></tr>
+      <tr><td>double</td><td>Double</td><td>java.lang</td><td><code>Double d = 9.99;</code></td></tr>
+      <tr><td>char</td><td>Character</td><td>java.lang</td><td><code>Character c = 'A';</code></td></tr>
+      <tr><td>boolean</td><td>Boolean</td><td>java.lang</td><td><code>Boolean b = true;</code></td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-head"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="panel-title">WrapperDemo.java</span></div>
+  <div class="tabs">
+    <div class="tab active" onclick="sw(this,'t1')">Primitive → Object</div>
+    <div class="tab" onclick="sw(this,'t2')">Object → Primitive</div>
+    <div class="tab" onclick="sw(this,'t3')">String Conversions</div>
+    <div class="tab" onclick="sw(this,'t4')">Utility Methods</div>
+  </div>
+  <div class="tc active" id="t1">
+<pre><span class="kw">int</span> i = <span class="num">10</span>;
+
+<span class="cmt">// Method A: Constructor (deprecated in Java 9+)</span>
+<span class="cls">Integer</span> obj1 = <span class="kw">new</span> <span class="cls">Integer</span>(i);
+<span class="cls">System</span>.out.<span class="fn">println</span>(obj1);     <span class="cmt">// 10</span>
+
+<span class="cmt">// Method B: valueOf() — recommended</span>
+<span class="cls">Integer</span> obj2 = <span class="cls">Integer</span>.<span class="fn">valueOf</span>(i);
+<span class="cls">System</span>.out.<span class="fn">println</span>(obj2);     <span class="cmt">// 10</span>
+
+<span class="cmt">// Method C: Auto-Boxing (JDK 5.0) — simplest</span>
+<span class="cls">Integer</span> obj3 = i;              <span class="cmt">// compiler handles conversion</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(obj3);     <span class="cmt">// 10</span></pre>
+    <div class="out"><div class="ok">10</div><div class="ok">10</div><div class="ok">10</div></div>
+  </div>
+  <div class="tc" id="t2">
+<pre><span class="cls">Integer</span> in = <span class="kw">new</span> <span class="cls">Integer</span>(<span class="num">10</span>);
+
+<span class="cmt">// Method A: xxxValue() — intValue(), doubleValue()...</span>
+<span class="kw">int</span>    i = in.<span class="fn">intValue</span>();      <span class="cmt">// 10</span>
+<span class="kw">double</span> d = in.<span class="fn">doubleValue</span>();   <span class="cmt">// 10.0</span>
+<span class="kw">float</span>  f = in.<span class="fn">floatValue</span>();    <span class="cmt">// 10.0</span>
+
+<span class="cmt">// Method B: Auto-Unboxing (JDK 5.0)</span>
+<span class="kw">int</span> x = in;    <span class="cmt">// compiler calls intValue() automatically</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(x);        <span class="cmt">// 10</span></pre>
+    <div class="out"><div class="ok">10</div></div>
+  </div>
+  <div class="tc" id="t3">
+<pre><span class="cmt">// String → Wrapper Object</span>
+<span class="cls">String</span> s = <span class="str">"10"</span>;
+<span class="cls">Integer</span> obj = <span class="kw">new</span> <span class="cls">Integer</span>(s);    <span class="cmt">// String constructor</span>
+<span class="cls">Integer</span> obj2 = <span class="cls">Integer</span>.<span class="fn">valueOf</span>(s); <span class="cmt">// valueOf(String)</span>
+
+<span class="cmt">// String → Primitive (most common)</span>
+<span class="kw">int</span>     n = <span class="cls">Integer</span>.<span class="fn">parseInt</span>(<span class="str">"42"</span>);
+<span class="kw">double</span>  d = <span class="cls">Double</span>.<span class="fn">parseDouble</span>(<span class="str">"3.14"</span>);
+<span class="kw">boolean</span> b = <span class="cls">Boolean</span>.<span class="fn">parseBoolean</span>(<span class="str">"true"</span>);
+
+<span class="cmt">// Primitive → String</span>
+<span class="cls">String</span> str = <span class="cls">String</span>.<span class="fn">valueOf</span>(<span class="num">42</span>);
+<span class="cls">String</span> str2 = <span class="cls">Integer</span>.<span class="fn">toString</span>(<span class="num">42</span>);</pre>
+  </div>
+  <div class="tc" id="t4">
+<pre><span class="cmt">// Integer utility methods</span>
+<span class="cls">Integer</span>.<span class="fn">MAX_VALUE</span>     <span class="cmt">// 2147483647</span>
+<span class="cls">Integer</span>.<span class="fn">MIN_VALUE</span>     <span class="cmt">// -2147483648</span>
+<span class="cls">Integer</span>.<span class="fn">toBinaryString</span>(<span class="num">10</span>)  <span class="cmt">// "1010"</span>
+<span class="cls">Integer</span>.<span class="fn">toHexString</span>(<span class="num">255</span>)    <span class="cmt">// "ff"</span>
+<span class="cls">Integer</span>.<span class="fn">toOctalString</span>(<span class="num">8</span>)    <span class="cmt">// "10"</span>
+<span class="cls">Integer</span>.<span class="fn">compare</span>(<span class="num">10</span>, <span class="num">20</span>)     <span class="cmt">// -1 (10 < 20)</span>
+<span class="cls">Integer</span>.<span class="fn">max</span>(<span class="num">10</span>, <span class="num">20</span>)         <span class="cmt">// 20</span>
+<span class="cls">Integer</span>.<span class="fn">min</span>(<span class="num">10</span>, <span class="num">20</span>)         <span class="cmt">// 10</span>
+<span class="cls">Integer</span>.<span class="fn">sum</span>(<span class="num">10</span>, <span class="num">20</span>)         <span class="cmt">// 30</span>
+<span class="cls">Integer</span>.<span class="fn">reverse</span>(<span class="num">10</span>)         <span class="cmt">// bit reverse</span></pre>
+  </div>
+</div>
+
+<div class="callout"><span style="font-size:15px;flex-shrink:0">💡</span><span><strong>Immutability:</strong> All wrapper objects are immutable. Operations on them don't modify the original — they create a new object. This is the same behavior as <code>String</code>.</span></div>
+
+</div>
+<script>
+function sw(tab,id){
+  tab.closest('.panel').querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  tab.closest('.panel').querySelectorAll('.tc').forEach(c=>c.classList.remove('active'));
+  tab.classList.add('active');document.getElementById(id).classList.add('active');
+}
+</script>
+</body></html>

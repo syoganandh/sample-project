@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>IO Streams — Java</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f9f7f4;color:#2d2d2d;padding:32px 16px;}
+.container{max-width:860px;margin:0 auto;}
+.badge{display:inline-block;background:#e8e0f7;color:#6b48c8;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:10px;}
+h1{font-size:28px;font-weight:700;color:#1a1a1a;}h1 span{color:#6b48c8;}
+.subtitle{margin-top:8px;font-size:14px;color:#6b6b6b;max-width:580px;line-height:1.65;}
+.stream-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:24px 0;}
+.sg{background:#fff;border:1px solid #ede8f5;border-radius:12px;padding:16px;border-top:3px solid #6b48c8;}
+.sg-icon{font-size:20px;margin-bottom:7px;}
+.sg h3{font-size:12.5px;font-weight:700;color:#6b48c8;margin-bottom:3px;}
+.sg p{font-size:12px;color:#6b6b6b;line-height:1.55;}
+.sg code{font-size:11px;color:#c2410c;}
+.panel{background:#fff;border:1px solid #ede8f5;border-radius:14px;overflow:hidden;margin-bottom:22px;box-shadow:0 2px 10px rgba(107,72,200,.05);}
+.panel-head{background:#f3effe;border-bottom:1px solid #ede8f5;padding:9px 16px;display:flex;align-items:center;gap:7px;}
+.dot{width:9px;height:9px;border-radius:50%;}.dot.r{background:#ff6058;}.dot.y{background:#ffbd2e;}.dot.g{background:#27c93f;}
+.panel-title{margin-left:8px;font-size:11.5px;font-weight:600;color:#6b48c8;}
+.tabs{display:flex;background:#faf8ff;border-bottom:1px solid #ede8f5;flex-wrap:wrap;}
+.tab{padding:8px 14px;font-size:12px;font-weight:500;color:#888;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;}
+.tab.active{color:#6b48c8;border-bottom-color:#6b48c8;background:#fff;}
+.tc{display:none;padding:20px;background:#fdfcff;}.tc.active{display:block;}
+pre{font-family:"Fira Code","Cascadia Code","Courier New",monospace;font-size:12.5px;line-height:1.8;overflow-x:auto;}
+.kw{color:#6b48c8;font-weight:600;}.cls{color:#c2410c;}.fn{color:#1d6f42;}.str{color:#b45309;}.cmt{color:#9ca3af;font-style:italic;}.num{color:#0369a1;}
+.out{background:#1e1a2e;color:#c4b5fd;font-family:"Fira Code",monospace;font-size:12px;padding:14px 18px;line-height:1.8;}
+.out .ok{color:#4ade80;}.out .muted{color:#7c6fa0;}
+.callout{display:flex;gap:9px;background:#f3effe;border-left:3px solid #6b48c8;border-radius:0 8px 8px 0;padding:11px 14px;margin-bottom:22px;font-size:12.5px;color:#4a3880;line-height:1.6;}
+table{width:100%;border-collapse:collapse;font-size:12.5px;}
+th{background:#f3effe;color:#6b48c8;font-weight:700;padding:9px 12px;text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;}
+td{padding:8px 12px;border-top:1px solid #f0ebfc;color:#3a3a3a;font-family:"Fira Code",monospace;font-size:12px;}
+.td-plain{font-family:inherit;font-size:12.5px;}
+tr:hover td{background:#faf8ff;}
+</style>
+</head>
+<body>
+<div class="container">
+<div style="margin-bottom:28px;">
+  <div class="badge">Topic 10 · Core Java</div>
+  <h1>IO <span>Streams</span></h1>
+  <p class="subtitle">A Stream is a channel that allows continuous data flow from input devices to a Java program and from a Java program to output devices. Java's <code>java.io</code> package provides all stream classes for file, console, and network I/O.</p>
+</div>
+
+<div class="stream-grid">
+  <div class="sg"><div class="sg-icon">📥</div><h3>InputStream</h3><p>Byte-oriented. Reads data as bytes from source. Ends with <code>InputStream</code>.</p></div>
+  <div class="sg"><div class="sg-icon">📤</div><h3>OutputStream</h3><p>Byte-oriented. Writes data as bytes to destination. Ends with <code>OutputStream</code>.</p></div>
+  <div class="sg"><div class="sg-icon">📖</div><h3>Reader</h3><p>Character-oriented. Reads 2-byte Unicode chars. Ends with <code>Reader</code>.</p></div>
+  <div class="sg"><div class="sg-icon">✍️</div><h3>Writer</h3><p>Character-oriented. Writes Unicode chars to output. Ends with <code>Writer</code>.</p></div>
+</div>
+
+<div class="panel">
+  <div class="panel-head"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="panel-title">Stream Types Overview</span></div>
+  <div class="tc active" style="display:block;padding:0;">
+    <table>
+      <tr><th class="td-plain">Category</th><th class="td-plain">Data Unit</th><th class="td-plain">Input Classes</th><th class="td-plain">Output Classes</th></tr>
+      <tr><td class="td-plain">Byte Streams</td><td class="td-plain">1 byte (8-bit)</td><td>FileInputStream, BufferedInputStream, DataInputStream</td><td>FileOutputStream, BufferedOutputStream, DataOutputStream</td></tr>
+      <tr><td class="td-plain">Char Streams</td><td class="td-plain">2 bytes (Unicode)</td><td>FileReader, BufferedReader, InputStreamReader</td><td>FileWriter, BufferedWriter, PrintWriter</td></tr>
+      <tr><td class="td-plain">Object Streams</td><td class="td-plain">Object</td><td>ObjectInputStream</td><td>ObjectOutputStream</td></tr>
+      <tr><td class="td-plain">Console</td><td class="td-plain">—</td><td>System.in, Scanner</td><td>System.out, PrintStream</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-head"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="panel-title">IODemo.java</span></div>
+  <div class="tabs">
+    <div class="tab active" onclick="sw(this,'t1')">File Write</div>
+    <div class="tab" onclick="sw(this,'t2')">File Read</div>
+    <div class="tab" onclick="sw(this,'t3')">Byte Streams</div>
+    <div class="tab" onclick="sw(this,'t4')">Console Input</div>
+    <div class="tab" onclick="sw(this,'t5')">Serialization</div>
+  </div>
+  <div class="tc active" id="t1">
+<pre><span class="kw">import</span> java.io.*;
+
+<span class="cmt">// Method 1: FileWriter (character stream)</span>
+<span class="cls">FileWriter</span> fw = <span class="kw">new</span> <span class="cls">FileWriter</span>(<span class="str">"output.txt"</span>);
+fw.<span class="fn">write</span>(<span class="str">"Hello Java IO!"</span>);
+fw.<span class="fn">close</span>();
+
+<span class="cmt">// Method 2: BufferedWriter (faster — buffered)</span>
+<span class="cls">FileWriter</span>   fw2 = <span class="kw">new</span> <span class="cls">FileWriter</span>(<span class="str">"output.txt"</span>, <span class="kw">true</span>); <span class="cmt">// append</span>
+<span class="cls">BufferedWriter</span> bw = <span class="kw">new</span> <span class="cls">BufferedWriter</span>(fw2);
+bw.<span class="fn">write</span>(<span class="str">"Line 1"</span>);
+bw.<span class="fn">newLine</span>();
+bw.<span class="fn">write</span>(<span class="str">"Line 2"</span>);
+bw.<span class="fn">flush</span>();  <span class="cmt">// push buffer to file</span>
+bw.<span class="fn">close</span>();
+
+<span class="cmt">// Method 3: PrintWriter (convenient)</span>
+<span class="cls">PrintWriter</span> pw = <span class="kw">new</span> <span class="cls">PrintWriter</span>(<span class="str">"output.txt"</span>);
+pw.<span class="fn">println</span>(<span class="str">"Java PrintWriter"</span>);
+pw.<span class="fn">printf</span>(<span class="str">"Value: %d%n"</span>, <span class="num">42</span>);
+pw.<span class="fn">close</span>();</pre>
+  </div>
+  <div class="tc" id="t2">
+<pre><span class="kw">import</span> java.io.*;
+
+<span class="cmt">// Method 1: FileReader + BufferedReader (line by line)</span>
+<span class="cls">FileReader</span>    fr = <span class="kw">new</span> <span class="cls">FileReader</span>(<span class="str">"output.txt"</span>);
+<span class="cls">BufferedReader</span> br = <span class="kw">new</span> <span class="cls">BufferedReader</span>(fr);
+
+<span class="cls">String</span> line;
+<span class="kw">while</span>((line = br.<span class="fn">readLine</span>()) != <span class="kw">null</span>) {
+    <span class="cls">System</span>.out.<span class="fn">println</span>(line);
+}
+br.<span class="fn">close</span>();
+
+<span class="cmt">// Method 2: try-with-resources (Java 7+ — auto close)</span>
+<span class="kw">try</span> (<span class="cls">BufferedReader</span> br2 = <span class="kw">new</span> <span class="cls">BufferedReader</span>(
+        <span class="kw">new</span> <span class="cls">FileReader</span>(<span class="str">"output.txt"</span>))) {
+    <span class="cls">String</span> l;
+    <span class="kw">while</span>((l = br2.<span class="fn">readLine</span>()) != <span class="kw">null</span>)
+        <span class="cls">System</span>.out.<span class="fn">println</span>(l);
+} <span class="kw">catch</span> (<span class="cls">IOException</span> e) {
+    e.<span class="fn">printStackTrace</span>();
+}  <span class="cmt">// br2 auto-closed here</span></pre>
+    <div class="out"><div class="ok">Hello Java IO!</div><div class="ok">Line 1</div><div class="ok">Line 2</div></div>
+  </div>
+  <div class="tc" id="t3">
+<pre><span class="kw">import</span> java.io.*;
+
+<span class="cmt">// Byte Streams — for binary data (images, audio, etc.)</span>
+
+<span class="cmt">// Write bytes to file</span>
+<span class="cls">FileOutputStream</span> fos = <span class="kw">new</span> <span class="cls">FileOutputStream</span>(<span class="str">"data.bin"</span>);
+<span class="cls">BufferedOutputStream</span> bos = <span class="kw">new</span> <span class="cls">BufferedOutputStream</span>(fos);
+<span class="kw">byte</span>[] data = {<span class="num">65</span>, <span class="num">66</span>, <span class="num">67</span>};    <span class="cmt">// A, B, C in ASCII</span>
+bos.<span class="fn">write</span>(data);
+bos.<span class="fn">close</span>();
+
+<span class="cmt">// Read bytes from file</span>
+<span class="cls">FileInputStream</span>  fis = <span class="kw">new</span> <span class="cls">FileInputStream</span>(<span class="str">"data.bin"</span>);
+<span class="cls">BufferedInputStream</span> bis = <span class="kw">new</span> <span class="cls">BufferedInputStream</span>(fis);
+<span class="kw">int</span> b;
+<span class="kw">while</span>((b = bis.<span class="fn">read</span>()) != -<span class="num">1</span>) {
+    <span class="cls">System</span>.out.<span class="fn">print</span>((<span class="kw">char</span>) b);   <span class="cmt">// A B C</span>
+}
+bis.<span class="fn">close</span>();</pre>
+    <div class="out"><div class="ok">ABC</div></div>
+  </div>
+  <div class="tc" id="t4">
+<pre><span class="cmt">// Method 1: Scanner (easiest)</span>
+<span class="kw">import</span> java.util.Scanner;
+<span class="cls">Scanner</span> sc = <span class="kw">new</span> <span class="cls">Scanner</span>(<span class="cls">System</span>.in);
+<span class="cls">System</span>.out.<span class="fn">print</span>(<span class="str">"Enter name: "</span>);
+<span class="cls">String</span> name = sc.<span class="fn">nextLine</span>();
+<span class="cls">System</span>.out.<span class="fn">print</span>(<span class="str">"Enter age: "</span>);
+<span class="kw">int</span> age = sc.<span class="fn">nextInt</span>();
+sc.<span class="fn">close</span>();
+
+<span class="cmt">// Method 2: BufferedReader (faster for large input)</span>
+<span class="cls">BufferedReader</span> br = <span class="kw">new</span> <span class="cls">BufferedReader</span>(
+    <span class="kw">new</span> <span class="cls">InputStreamReader</span>(<span class="cls">System</span>.in));
+<span class="cls">System</span>.out.<span class="fn">print</span>(<span class="str">"Enter: "</span>);
+<span class="cls">String</span> input = br.<span class="fn">readLine</span>();
+
+<span class="cmt">// Method 3: Console (Java 6+ — password masking)</span>
+<span class="cls">Console</span> con = <span class="cls">System</span>.<span class="fn">console</span>();
+<span class="kw">char</span>[] pwd = con.<span class="fn">readPassword</span>(<span class="str">"Password: "</span>); <span class="cmt">// masked</span></pre>
+  </div>
+  <div class="tc" id="t5">
+<pre><span class="cmt">// Serialization — save object state to file</span>
+<span class="kw">import</span> java.io.*;
+
+<span class="kw">class</span> <span class="cls">Student</span> <span class="kw">implements</span> <span class="cls">Serializable</span> {
+    <span class="kw">int</span>    sid   = <span class="num">101</span>;
+    <span class="cls">String</span> sname = <span class="str">"Durga"</span>;
+}
+
+<span class="cmt">// Serialize (Object → File)</span>
+<span class="cls">Student</span> s = <span class="kw">new</span> <span class="cls">Student</span>();
+<span class="cls">ObjectOutputStream</span> oos = <span class="kw">new</span> <span class="cls">ObjectOutputStream</span>(
+    <span class="kw">new</span> <span class="cls">FileOutputStream</span>(<span class="str">"student.ser"</span>));
+oos.<span class="fn">writeObject</span>(s);
+oos.<span class="fn">close</span>();
+
+<span class="cmt">// Deserialize (File → Object)</span>
+<span class="cls">ObjectInputStream</span> ois = <span class="kw">new</span> <span class="cls">ObjectInputStream</span>(
+    <span class="kw">new</span> <span class="cls">FileInputStream</span>(<span class="str">"student.ser"</span>));
+<span class="cls">Student</span> s2 = (<span class="cls">Student</span>) ois.<span class="fn">readObject</span>();
+<span class="cls">System</span>.out.<span class="fn">println</span>(s2.sid + <span class="str">" "</span> + s2.sname); <span class="cmt">// 101 Durga</span>
+ois.<span class="fn">close</span>();</pre>
+    <div class="out"><div class="ok">101 Durga</div></div>
+  </div>
+</div>
+
+<div class="callout"><span style="font-size:15px;flex-shrink:0">💡</span><span><strong>Always close streams!</strong> Use <code>try-with-resources</code> (Java 7+) for automatic closing. Unclosed streams cause resource leaks and data corruption. Buffered streams improve performance by reducing disk access.</span></div>
+
+</div>
+<script>
+function sw(tab,id){
+  tab.closest('.panel').querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  tab.closest('.panel').querySelectorAll('.tc').forEach(c=>c.classList.remove('active'));
+  tab.classList.add('active');document.getElementById(id).classList.add('active');
+}
+</script>
+</body></html>

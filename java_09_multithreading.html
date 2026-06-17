@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Multi Threading — Java</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f9f7f4;color:#2d2d2d;padding:32px 16px;}
+.container{max-width:860px;margin:0 auto;}
+.badge{display:inline-block;background:#e8e0f7;color:#6b48c8;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:10px;}
+h1{font-size:28px;font-weight:700;color:#1a1a1a;}h1 span{color:#6b48c8;}
+.subtitle{margin-top:8px;font-size:14px;color:#6b6b6b;max-width:580px;line-height:1.65;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:24px 0;}
+.card{background:#fff;border:1px solid #ede8f5;border-radius:12px;padding:16px;}
+.card-icon{font-size:20px;margin-bottom:7px;}.card h3{font-size:12.5px;font-weight:700;color:#1a1a1a;margin-bottom:3px;}.card p{font-size:12px;color:#6b6b6b;line-height:1.55;}
+.panel{background:#fff;border:1px solid #ede8f5;border-radius:14px;overflow:hidden;margin-bottom:22px;box-shadow:0 2px 10px rgba(107,72,200,.05);}
+.panel-head{background:#f3effe;border-bottom:1px solid #ede8f5;padding:9px 16px;display:flex;align-items:center;gap:7px;}
+.dot{width:9px;height:9px;border-radius:50%;}.dot.r{background:#ff6058;}.dot.y{background:#ffbd2e;}.dot.g{background:#27c93f;}
+.panel-title{margin-left:8px;font-size:11.5px;font-weight:600;color:#6b48c8;}
+.tabs{display:flex;background:#faf8ff;border-bottom:1px solid #ede8f5;flex-wrap:wrap;}
+.tab{padding:8px 14px;font-size:12px;font-weight:500;color:#888;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;}
+.tab.active{color:#6b48c8;border-bottom-color:#6b48c8;background:#fff;}
+.tc{display:none;padding:20px;background:#fdfcff;}.tc.active{display:block;}
+pre{font-family:"Fira Code","Cascadia Code","Courier New",monospace;font-size:12.5px;line-height:1.8;overflow-x:auto;}
+.kw{color:#6b48c8;font-weight:600;}.cls{color:#c2410c;}.fn{color:#1d6f42;}.str{color:#b45309;}.cmt{color:#9ca3af;font-style:italic;}.num{color:#0369a1;}.ann{color:#be185d;}
+.out{background:#1e1a2e;color:#c4b5fd;font-family:"Fira Code",monospace;font-size:12px;padding:14px 18px;line-height:1.8;}
+.out .ok{color:#4ade80;}.out .muted{color:#7c6fa0;}
+.callout{display:flex;gap:9px;background:#f3effe;border-left:3px solid #6b48c8;border-radius:0 8px 8px 0;padding:11px 14px;margin-bottom:22px;font-size:12.5px;color:#4a3880;line-height:1.6;}
+.lifecycle{display:flex;align-items:center;gap:0;margin:16px 0;flex-wrap:wrap;}
+.state{background:#f3effe;color:#6b48c8;font-size:11.5px;font-weight:700;padding:8px 14px;border-radius:8px;border:1px solid #ddd6f7;}
+.arrow{color:#6b48c8;font-size:16px;margin:0 6px;}
+table{width:100%;border-collapse:collapse;font-size:12.5px;}
+th{background:#f3effe;color:#6b48c8;font-weight:700;padding:9px 12px;text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;}
+td{padding:8px 12px;border-top:1px solid #f0ebfc;color:#3a3a3a;}tr:hover td{background:#faf8ff;}
+</style>
+</head>
+<body>
+<div class="container">
+<div style="margin-bottom:28px;">
+  <div class="badge">Topic 09 · Core Java</div>
+  <h1>Multi <span>Threading</span></h1>
+  <p class="subtitle">A thread is a lightweight sub-process — the smallest unit of execution. Multi-threading allows multiple threads to run in parallel within a single program, reducing execution time and improving performance.</p>
+</div>
+
+<div class="cards">
+  <div class="card"><div class="card-icon">🏋️</div><h3>Process</h3><p>Heavyweight — has its own memory space. Context switching is slow and costly.</p></div>
+  <div class="card"><div class="card-icon">🪶</div><h3>Thread</h3><p>Lightweight — shares process memory. Context switching is fast, improves performance.</p></div>
+  <div class="card"><div class="card-icon">🔄</div><h3>Multi-tasking</h3><p>Multiple tasks load into memory at once. Multiple processes/threads execute in parallel.</p></div>
+  <div class="card"><div class="card-icon">🔐</div><h3>Synchronization</h3><p>Ensures only one thread accesses a resource at a time — prevents race conditions.</p></div>
+</div>
+
+<div class="panel">
+  <div class="panel-head"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="panel-title">Thread Lifecycle</span></div>
+  <div class="tc active" style="display:block;">
+    <div class="lifecycle">
+      <div class="state">New</div><div class="arrow">→</div>
+      <div class="state">Runnable</div><div class="arrow">→</div>
+      <div class="state">Running</div><div class="arrow">→</div>
+      <div class="state">Blocked / Waiting</div><div class="arrow">→</div>
+      <div class="state">Dead</div>
+    </div>
+    <div style="font-size:12px;color:#6b6b6b;margin-top:10px;line-height:1.8;">
+      <strong style="color:#6b48c8;">New</strong> — Thread object created, not started yet.<br>
+      <strong style="color:#6b48c8;">Runnable</strong> — start() called, waiting for CPU time.<br>
+      <strong style="color:#6b48c8;">Running</strong> — Thread Scheduler assigns CPU, run() executes.<br>
+      <strong style="color:#6b48c8;">Blocked/Waiting</strong> — waiting for I/O, lock, or sleep().<br>
+      <strong style="color:#6b48c8;">Dead</strong> — run() completes or stop() is called.
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-head"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="panel-title">ThreadDemo.java</span></div>
+  <div class="tabs">
+    <div class="tab active" onclick="sw(this,'t1')">Extend Thread</div>
+    <div class="tab" onclick="sw(this,'t2')">Implement Runnable</div>
+    <div class="tab" onclick="sw(this,'t3')">Lambda Thread</div>
+    <div class="tab" onclick="sw(this,'t4')">Synchronization</div>
+    <div class="tab" onclick="sw(this,'t5')">Thread Methods</div>
+  </div>
+  <div class="tc active" id="t1">
+<pre><span class="cmt">// Method 1: Extend Thread class</span>
+<span class="kw">class</span> <span class="cls">MyThread</span> <span class="kw">extends</span> <span class="cls">Thread</span> {
+    <span class="ann">@Override</span>
+    <span class="kw">public void</span> <span class="fn">run</span>() {
+        <span class="kw">for</span>(<span class="kw">int</span> i = <span class="num">1</span>; i &lt;= <span class="num">3</span>; i++) {
+            <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="fn">getName</span>() + <span class="str">" → "</span> + i);
+        }
+    }
+}
+
+<span class="kw">class</span> <span class="cls">Test</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="cls">String</span>[] args) {
+        <span class="cls">MyThread</span> t1 = <span class="kw">new</span> <span class="cls">MyThread</span>();
+        <span class="cls">MyThread</span> t2 = <span class="kw">new</span> <span class="cls">MyThread</span>();
+        t1.<span class="fn">start</span>();  <span class="cmt">// ✅ start() — creates new thread</span>
+        t2.<span class="fn">start</span>();  <span class="cmt">// ❌ Not run() — run() uses current thread</span>
+    }
+}</pre>
+    <div class="out"><div class="ok">Thread-0 → 1</div><div class="ok">Thread-1 → 1</div><div class="ok">Thread-0 → 2</div><div class="muted">(order may vary — parallel execution)</div></div>
+  </div>
+  <div class="tc" id="t2">
+<pre><span class="cmt">// Method 2: Implement Runnable (preferred)</span>
+<span class="cmt">// Advantage: class can still extend another class</span>
+<span class="kw">class</span> <span class="cls">MyTask</span> <span class="kw">implements</span> <span class="cls">Runnable</span> {
+    <span class="ann">@Override</span>
+    <span class="kw">public void</span> <span class="fn">run</span>() {
+        <span class="kw">for</span>(<span class="kw">int</span> i = <span class="num">1</span>; i &lt;= <span class="num">3</span>; i++) {
+            <span class="cls">System</span>.out.<span class="fn">println</span>(
+                <span class="cls">Thread</span>.<span class="fn">currentThread</span>().<span class="fn">getName</span>() + <span class="str">" → "</span> + i
+            );
+        }
+    }
+}
+
+<span class="kw">class</span> <span class="cls">Test</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="cls">String</span>[] args) {
+        <span class="cls">MyTask</span> task = <span class="kw">new</span> <span class="cls">MyTask</span>();
+        <span class="cls">Thread</span> t1 = <span class="kw">new</span> <span class="cls">Thread</span>(task, <span class="str">"Worker-1"</span>);
+        <span class="cls">Thread</span> t2 = <span class="kw">new</span> <span class="cls">Thread</span>(task, <span class="str">"Worker-2"</span>);
+        t1.<span class="fn">start</span>();
+        t2.<span class="fn">start</span>();
+    }
+}</pre>
+  </div>
+  <div class="tc" id="t3">
+<pre><span class="cmt">// Method 3: Lambda Expression (Java 8+) — shortest</span>
+<span class="cls">Thread</span> t1 = <span class="kw">new</span> <span class="cls">Thread</span>(() -> {
+    <span class="kw">for</span>(<span class="kw">int</span> i = <span class="num">1</span>; i &lt;= <span class="num">3</span>; i++)
+        <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"T1 → "</span> + i);
+});
+
+<span class="cls">Thread</span> t2 = <span class="kw">new</span> <span class="cls">Thread</span>(() ->
+    <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"T2 running"</span>)
+);
+
+t1.<span class="fn">start</span>();
+t2.<span class="fn">start</span>();
+
+<span class="cmt">// Daemon thread — background service thread</span>
+<span class="cls">Thread</span> daemon = <span class="kw">new</span> <span class="cls">Thread</span>(() -> { <span class="cmt">/* task */</span> });
+daemon.<span class="fn">setDaemon</span>(<span class="kw">true</span>);  <span class="cmt">// dies when main thread ends</span>
+daemon.<span class="fn">start</span>();</pre>
+  </div>
+  <div class="tc" id="t4">
+<pre><span class="cmt">// Problem: Race condition without synchronization</span>
+<span class="kw">class</span> <span class="cls">Counter</span> {
+    <span class="kw">private int</span> count = <span class="num">0</span>;
+
+    <span class="cmt">// synchronized — only one thread at a time</span>
+    <span class="kw">public synchronized void</span> <span class="fn">increment</span>() {
+        count++;
+    }
+
+    <span class="kw">public int</span> <span class="fn">getCount</span>() { <span class="kw">return</span> count; }
+}
+
+<span class="cmt">// Synchronized block — finer control</span>
+<span class="kw">public void</span> <span class="fn">transfer</span>(<span class="kw">double</span> amt) {
+    <span class="kw">synchronized</span>(<span class="kw">this</span>) {    <span class="cmt">// lock on this object</span>
+        balance -= amt;
+    }
+}
+
+<span class="cmt">// Context switching types:</span>
+<span class="cmt">// Heavy Weight → between Processes (slow)</span>
+<span class="cmt">// Light Weight → between Threads (fast)</span></pre>
+  </div>
+  <div class="tc" id="t5">
+<pre><span class="cls">Thread</span> t = <span class="kw">new</span> <span class="cls">Thread</span>(task);
+
+t.<span class="fn">start</span>()                <span class="cmt">// start thread execution</span>
+t.<span class="fn">getName</span>()              <span class="cmt">// get thread name</span>
+t.<span class="fn">setName</span>(<span class="str">"MyThread"</span>)   <span class="cmt">// set thread name</span>
+t.<span class="fn">getPriority</span>()          <span class="cmt">// 1(MIN) to 10(MAX), default 5</span>
+t.<span class="fn">setPriority</span>(<span class="num">8</span>)         <span class="cmt">// set priority</span>
+t.<span class="fn">isAlive</span>()              <span class="cmt">// true if running</span>
+t.<span class="fn">isDaemon</span>()             <span class="cmt">// true if daemon thread</span>
+t.<span class="fn">join</span>()                 <span class="cmt">// wait for t to finish</span>
+t.<span class="fn">interrupt</span>()            <span class="cmt">// interrupt sleeping thread</span>
+
+<span class="cls">Thread</span>.<span class="fn">sleep</span>(<span class="num">1000</span>)       <span class="cmt">// sleep 1 second (static)</span>
+<span class="cls">Thread</span>.<span class="fn">currentThread</span>()   <span class="cmt">// reference to running thread</span>
+<span class="cls">Thread</span>.<span class="fn">yield</span>()           <span class="cmt">// hint to scheduler to pause</span></pre>
+  </div>
+</div>
+
+<div class="callout"><span style="font-size:15px;flex-shrink:0">💡</span><span>Always call <strong>start()</strong> — not <code>run()</code>. Calling <code>run()</code> directly executes in the current thread as a normal method call, not in a new thread.</span></div>
+
+</div>
+<script>
+function sw(tab,id){
+  tab.closest('.panel').querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  tab.closest('.panel').querySelectorAll('.tc').forEach(c=>c.classList.remove('active'));
+  tab.classList.add('active');document.getElementById(id).classList.add('active');
+}
+</script>
+</body></html>

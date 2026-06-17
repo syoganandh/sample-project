@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>OOPs — Java</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f9f7f4;color:#2d2d2d;padding:32px 16px;}
+.container{max-width:900px;margin:0 auto;}
+.badge{display:inline-block;background:#e8e0f7;color:#6b48c8;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:10px;}
+h1{font-size:28px;font-weight:700;color:#1a1a1a;}
+h1 span{color:#6b48c8;}
+.subtitle{margin-top:8px;font-size:14px;color:#6b6b6b;max-width:600px;line-height:1.65;}
+.oop-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:24px 0;}
+.oop-card{background:#fff;border:1px solid #ede8f5;border-radius:12px;padding:16px;border-top:3px solid #6b48c8;}
+.oop-card-icon{font-size:22px;margin-bottom:8px;}
+.oop-card h3{font-size:13px;font-weight:700;color:#6b48c8;margin-bottom:4px;}
+.oop-card p{font-size:12px;color:#555;line-height:1.6;}
+.panel{background:#fff;border:1px solid #ede8f5;border-radius:14px;overflow:hidden;margin-bottom:22px;box-shadow:0 2px 10px rgba(107,72,200,.05);}
+.panel-head{background:#f3effe;border-bottom:1px solid #ede8f5;padding:9px 16px;display:flex;align-items:center;gap:7px;}
+.dot{width:9px;height:9px;border-radius:50%;}
+.dot.r{background:#ff6058;}.dot.y{background:#ffbd2e;}.dot.g{background:#27c93f;}
+.panel-title{margin-left:8px;font-size:11.5px;font-weight:600;color:#6b48c8;}
+.tabs{display:flex;background:#faf8ff;border-bottom:1px solid #ede8f5;flex-wrap:wrap;}
+.tab{padding:8px 14px;font-size:12px;font-weight:500;color:#888;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;}
+.tab.active{color:#6b48c8;border-bottom-color:#6b48c8;background:#fff;}
+.tc{display:none;padding:20px;background:#fdfcff;}
+.tc.active{display:block;}
+pre{font-family:"Fira Code","Cascadia Code","Courier New",monospace;font-size:12.5px;line-height:1.8;overflow-x:auto;}
+.kw{color:#6b48c8;font-weight:600;}.cls{color:#c2410c;}.fn{color:#1d6f42;}.str{color:#b45309;}.cmt{color:#9ca3af;font-style:italic;}.num{color:#0369a1;}.ann{color:#be185d;}
+.out{background:#1e1a2e;color:#c4b5fd;font-family:"Fira Code",monospace;font-size:12px;padding:14px 18px;line-height:1.8;}
+.out .ok{color:#4ade80;}.out .muted{color:#7c6fa0;}
+.callout{display:flex;gap:9px;background:#f3effe;border-left:3px solid #6b48c8;border-radius:0 8px 8px 0;padding:11px 14px;margin-bottom:22px;font-size:12.5px;color:#4a3880;line-height:1.6;}
+.rules{padding:16px 20px;display:grid;gap:10px;}
+.rule{display:flex;gap:10px;align-items:flex-start;}
+.rnum{background:#6b48c8;color:#fff;font-size:10px;font-weight:700;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.rtxt{font-size:12.5px;color:#3a3a3a;line-height:1.5;}.rtxt strong{color:#6b48c8;}
+table{width:100%;border-collapse:collapse;font-size:12.5px;}
+th{background:#f3effe;color:#6b48c8;font-weight:700;padding:9px 12px;text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;}
+td{padding:8px 12px;border-top:1px solid #f0ebfc;color:#3a3a3a;}
+tr:hover td{background:#faf8ff;}
+</style>
+</head>
+<body>
+<div class="container">
+<div style="margin-bottom:28px;">
+  <div class="badge">Topic 04 · Core Java</div>
+  <h1>Object Oriented <span>Programming (OOPs)</span></h1>
+  <p class="subtitle">OOP models real-world entities as objects with data (variables) and behavior (methods). Java supports all OOP pillars: Class, Object, Encapsulation, Abstraction, Inheritance, Polymorphism, and Message Passing.</p>
+</div>
+
+<div class="oop-grid">
+  <div class="oop-card"><div class="oop-card-icon">🏛️</div><h3>Class</h3><p>Blueprint/model. Virtual encapsulation of properties and behaviors. Generalization.</p></div>
+  <div class="oop-card"><div class="oop-card-icon">🎯</div><h3>Object</h3><p>Physical instance of a class. Real entity with actual state. Specialization.</p></div>
+  <div class="oop-card"><div class="oop-card-icon">🔒</div><h3>Encapsulation</h3><p>Binding data + code together. Use private fields with public getters/setters.</p></div>
+  <div class="oop-card"><div class="oop-card-icon">🎭</div><h3>Abstraction</h3><p>Show necessary details, hide implementation. Abstract classes & interfaces.</p></div>
+  <div class="oop-card"><div class="oop-card-icon">🧬</div><h3>Inheritance</h3><p>Getting variables/methods from parent class via <code>extends</code>. Code Reusability.</p></div>
+  <div class="oop-card"><div class="oop-card-icon">🔀</div><h3>Polymorphism</h3><p>"Many forms" — overloading (compile-time) & overriding (runtime). Flexibility.</p></div>
+  <div class="oop-card"><div class="oop-card-icon">📨</div><h3>Message Passing</h3><p>Transferring data between objects/instructions. Improves communication.</p></div>
+</div>
+
+<div class="panel">
+  <div class="panel-head"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="panel-title">OOPs Code Examples</span></div>
+  <div class="tabs">
+    <div class="tab active" onclick="sw(this,'t1')">Class &amp; Object</div>
+    <div class="tab" onclick="sw(this,'t2')">Encapsulation</div>
+    <div class="tab" onclick="sw(this,'t3')">Inheritance</div>
+    <div class="tab" onclick="sw(this,'t4')">Polymorphism</div>
+    <div class="tab" onclick="sw(this,'t5')">Abstraction</div>
+  </div>
+
+  <div class="tc active" id="t1">
+<pre><span class="cmt">// CLASS — blueprint for Employee objects</span>
+<span class="kw">class</span> <span class="cls">Employee</span> {
+    <span class="cmt">// Instance Variables (data/properties)</span>
+    <span class="cls">String</span> eid   = <span class="str">"E-111"</span>;
+    <span class="cls">String</span> ename = <span class="str">"Durga"</span>;
+    <span class="kw">float</span>  esal  = <span class="num">25000.0f</span>;
+
+    <span class="cmt">// Method (behavior)</span>
+    <span class="kw">public void</span> <span class="fn">display</span>() {
+        <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"ID: "</span>   + eid);
+        <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"Name: "</span> + ename);
+        <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"Sal: "</span>  + esal);
+    }
+}
+
+<span class="kw">class</span> <span class="cls">Test</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="cls">String</span>[] args) {
+        <span class="cmt">// OBJECT — real instance of Employee</span>
+        <span class="cls">Employee</span> emp = <span class="kw">new</span> <span class="cls">Employee</span>();
+        emp.<span class="fn">display</span>();
+    }
+}</pre>
+    <div class="out"><div class="muted">Output:</div><div class="ok">ID: E-111</div><div class="ok">Name: Durga</div><div class="ok">Sal: 25000.0</div></div>
+  </div>
+
+  <div class="tc" id="t2">
+<pre><span class="cmt">// ENCAPSULATION — binding data + code; hiding internal state</span>
+<span class="kw">class</span> <span class="cls">BankAccount</span> {
+    <span class="cmt">// 🔒 Private fields — not directly accessible</span>
+    <span class="kw">private</span> <span class="cls">String</span> owner;
+    <span class="kw">private double</span> balance;
+
+    <span class="kw">public</span> <span class="cls">BankAccount</span>(<span class="cls">String</span> owner, <span class="kw">double</span> bal) {
+        <span class="kw">this</span>.owner   = owner;
+        <span class="kw">this</span>.balance = bal;
+    }
+
+    <span class="cmt">// 🔓 Getter — controlled read</span>
+    <span class="kw">public double</span> <span class="fn">getBalance</span>() { <span class="kw">return</span> balance; }
+
+    <span class="cmt">// ✏️ Setter — with validation</span>
+    <span class="kw">public void</span> <span class="fn">deposit</span>(<span class="kw">double</span> amt) {
+        <span class="kw">if</span>(amt &gt; <span class="num">0</span>) balance += amt;
+    }
+}
+
+<span class="cmt">// acc.balance = -9999;  ❌ Compile Error — private!</span>
+<span class="cls">BankAccount</span> acc = <span class="kw">new</span> <span class="cls">BankAccount</span>(<span class="str">"Alice"</span>, <span class="num">500.0</span>);
+acc.<span class="fn">deposit</span>(<span class="num">200.0</span>);
+<span class="cls">System</span>.out.<span class="fn">println</span>(acc.<span class="fn">getBalance</span>()); <span class="cmt">// 700.0</span></pre>
+  </div>
+
+  <div class="tc" id="t3">
+<pre><span class="cmt">// INHERITANCE — getting variables/methods from parent</span>
+<span class="cmt">// Goal: CODE REUSABILITY</span>
+<span class="kw">class</span> <span class="cls">Employee</span> {               <span class="cmt">// Parent / Super class</span>
+    <span class="cls">String</span> eid, ename, eaddr;
+    <span class="kw">void</span> <span class="fn">getEmpDetails</span>() {
+        <span class="cls">System</span>.out.<span class="fn">println</span>(ename);
+    }
+}
+
+<span class="kw">class</span> <span class="cls">Manager</span> <span class="kw">extends</span> <span class="cls">Employee</span> {   <span class="cmt">// Child class</span>
+    <span class="cls">String</span> department;
+    <span class="cmt">// Reuses eid, ename, eaddr, getEmpDetails()</span>
+}
+
+<span class="kw">class</span> <span class="cls">Engineer</span> <span class="kw">extends</span> <span class="cls">Employee</span> {  <span class="cmt">// Another child</span>
+    <span class="cls">String</span> techStack;
+}
+
+<span class="cmt">// Types of Inheritance in Java:</span>
+<span class="cmt">// ✓ Single    → A extends B</span>
+<span class="cmt">// ✓ Multilevel → A extends B extends C</span>
+<span class="cmt">// ✓ Hierarchical → B extends A, C extends A</span>
+<span class="cmt">// ❌ Multiple → NOT supported (use interfaces)</span></pre>
+  </div>
+
+  <div class="tc" id="t4">
+<pre><span class="cmt">// POLYMORPHISM — "many forms"</span>
+
+<span class="cmt">// 1. Method Overloading (Compile-time Polymorphism)</span>
+<span class="kw">class</span> <span class="cls">Calculator</span> {
+    <span class="kw">int</span>    <span class="fn">add</span>(<span class="kw">int</span> a, <span class="kw">int</span> b)       { <span class="kw">return</span> a + b; }
+    <span class="kw">double</span> <span class="fn">add</span>(<span class="kw">double</span> a, <span class="kw">double</span> b) { <span class="kw">return</span> a + b; }
+    <span class="kw">int</span>    <span class="fn">add</span>(<span class="kw">int</span> a, <span class="kw">int</span> b, <span class="kw">int</span> c){ <span class="kw">return</span> a+b+c; }
+}
+
+<span class="cmt">// 2. Method Overriding (Runtime Polymorphism)</span>
+<span class="kw">class</span> <span class="cls">Animal</span> {
+    <span class="kw">void</span> <span class="fn">sound</span>() { <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"Generic sound"</span>); }
+}
+<span class="kw">class</span> <span class="cls">Dog</span> <span class="kw">extends</span> <span class="cls">Animal</span> {
+    <span class="ann">@Override</span>
+    <span class="kw">void</span> <span class="fn">sound</span>() { <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"Woof!"</span>); }
+}
+<span class="kw">class</span> <span class="cls">Cat</span> <span class="kw">extends</span> <span class="cls">Animal</span> {
+    <span class="ann">@Override</span>
+    <span class="kw">void</span> <span class="fn">sound</span>() { <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"Meow!"</span>); }
+}
+
+<span class="cmt">// Dynamic dispatch</span>
+<span class="cls">Animal</span> a = <span class="kw">new</span> <span class="cls">Dog</span>();
+a.<span class="fn">sound</span>(); <span class="cmt">// → Woof! (decided at runtime)</span></pre>
+    <div class="out"><div class="ok">Woof!</div></div>
+  </div>
+
+  <div class="tc" id="t5">
+<pre><span class="cmt">// ABSTRACTION — hide implementation, show interface</span>
+
+<span class="cmt">// 1. Abstract Class</span>
+<span class="kw">abstract class</span> <span class="cls">Shape</span> {
+    <span class="kw">abstract double</span> <span class="fn">area</span>();     <span class="cmt">// no body — must override</span>
+    <span class="kw">void</span> <span class="fn">describe</span>() {           <span class="cmt">// concrete method</span>
+        <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"I am a shape"</span>);
+    }
+}
+<span class="kw">class</span> <span class="cls">Circle</span> <span class="kw">extends</span> <span class="cls">Shape</span> {
+    <span class="kw">double</span> r;
+    <span class="cls">Circle</span>(<span class="kw">double</span> r) { <span class="kw">this</span>.r = r; }
+    <span class="kw">double</span> <span class="fn">area</span>() { <span class="kw">return</span> <span class="num">3.14</span> * r * r; }
+}
+
+<span class="cmt">// 2. Interface (100% abstraction)</span>
+<span class="kw">interface</span> <span class="cls">Printable</span> {
+    <span class="kw">void</span> <span class="fn">print</span>();   <span class="cmt">// implicitly public abstract</span>
+}
+<span class="kw">class</span> <span class="cls">Doc</span> <span class="kw">implements</span> <span class="cls">Printable</span> {
+    <span class="kw">public void</span> <span class="fn">print</span>() {
+        <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"Printing document"</span>);
+    }
+}</pre>
+  </div>
+</div>
+
+<div class="callout"><span style="font-size:15px;flex-shrink:0">💡</span><span><strong>OOP vs OB Languages:</strong> OOP languages (Java) support ALL features including Inheritance. Object-Based languages (JavaScript) support all features <em>except</em> Inheritance.</span></div>
+
+<div class="panel">
+  <div class="panel-head"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="panel-title">Access Modifiers</span></div>
+  <div class="tc active" style="display:block;padding:0;">
+    <table>
+      <tr><th>Modifier</th><th>Same Class</th><th>Same Package</th><th>Subclass</th><th>Anywhere</th></tr>
+      <tr><td><strong>private</strong></td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+      <tr><td><strong>default</strong></td><td>✅</td><td>✅</td><td>❌</td><td>❌</td></tr>
+      <tr><td><strong>protected</strong></td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
+      <tr><td><strong>public</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    </table>
+  </div>
+</div>
+
+</div>
+<script>
+function sw(tab,id){
+  tab.closest('.panel').querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  tab.closest('.panel').querySelectorAll('.tc').forEach(c=>c.classList.remove('active'));
+  tab.classList.add('active');document.getElementById(id).classList.add('active');
+}
+</script>
+</body></html>

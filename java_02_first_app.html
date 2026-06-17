@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>First Java Application</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f9f7f4;color:#2d2d2d;padding:32px 16px;}
+.container{max-width:860px;margin:0 auto;}
+.badge{display:inline-block;background:#e8e0f7;color:#6b48c8;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:10px;}
+h1{font-size:28px;font-weight:700;color:#1a1a1a;}
+h1 span{color:#6b48c8;}
+.subtitle{margin-top:8px;font-size:14px;color:#6b6b6b;max-width:580px;line-height:1.65;}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:24px 0;}
+.step{background:#fff;border:1px solid #ede8f5;border-radius:12px;padding:16px;position:relative;}
+.step-num{background:#6b48c8;color:#fff;font-size:11px;font-weight:700;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:9px;}
+.step h3{font-size:12.5px;font-weight:700;color:#1a1a1a;margin-bottom:3px;}
+.step p{font-size:12px;color:#6b6b6b;line-height:1.55;}
+.panel{background:#fff;border:1px solid #ede8f5;border-radius:14px;overflow:hidden;margin-bottom:22px;box-shadow:0 2px 10px rgba(107,72,200,.05);}
+.panel-head{background:#f3effe;border-bottom:1px solid #ede8f5;padding:9px 16px;display:flex;align-items:center;gap:7px;}
+.dot{width:9px;height:9px;border-radius:50%;}
+.dot.r{background:#ff6058;}.dot.y{background:#ffbd2e;}.dot.g{background:#27c93f;}
+.panel-title{margin-left:8px;font-size:11.5px;font-weight:600;color:#6b48c8;}
+.tabs{display:flex;background:#faf8ff;border-bottom:1px solid #ede8f5;}
+.tab{padding:8px 18px;font-size:12px;font-weight:500;color:#888;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;}
+.tab.active{color:#6b48c8;border-bottom-color:#6b48c8;background:#fff;}
+.tc{display:none;padding:20px;background:#fdfcff;}
+.tc.active{display:block;}
+pre{font-family:"Fira Code","Cascadia Code","Courier New",monospace;font-size:12.5px;line-height:1.8;overflow-x:auto;}
+.kw{color:#6b48c8;font-weight:600;}.cls{color:#c2410c;}.fn{color:#1d6f42;}.str{color:#b45309;}.cmt{color:#9ca3af;font-style:italic;}.num{color:#0369a1;}
+.out{background:#1e1a2e;color:#c4b5fd;font-family:"Fira Code",monospace;font-size:12px;padding:14px 18px;line-height:1.8;}
+.out .ok{color:#4ade80;}.out .muted{color:#7c6fa0;}
+.callout{display:flex;gap:9px;background:#f3effe;border-left:3px solid #6b48c8;border-radius:0 8px 8px 0;padding:11px 14px;margin-bottom:22px;font-size:12.5px;color:#4a3880;line-height:1.6;}
+.rules{padding:16px 20px;display:grid;gap:10px;}
+.rule{display:flex;gap:10px;align-items:flex-start;}
+.rnum{background:#6b48c8;color:#fff;font-size:10px;font-weight:700;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.rtxt{font-size:12.5px;color:#3a3a3a;line-height:1.5;}
+.rtxt strong{color:#6b48c8;}
+.def-list{background:#fff;border:1px solid #ede8f5;border-radius:12px;overflow:hidden;margin-bottom:22px;}
+.def-item{display:flex;border-bottom:1px solid #f0ebfc;}
+.def-item:last-child{border-bottom:none;}
+.def-term{background:#faf8ff;color:#6b48c8;font-weight:700;font-size:12px;padding:11px 14px;min-width:160px;border-right:1px solid #f0ebfc;}
+.def-val{padding:11px 14px;font-size:12.5px;color:#3a3a3a;line-height:1.55;}
+</style>
+</head>
+<body>
+<div class="container">
+<div style="margin-bottom:28px;">
+  <div class="badge">Topic 02 · Core Java</div>
+  <h1>Steps to Write First Java <span>Application</span></h1>
+  <p class="subtitle">Writing your first Java program requires installing the JDK, selecting an editor, writing the code, saving, compiling with <code>javac</code>, and running with <code>java</code>.</p>
+</div>
+
+<div class="steps">
+  <div class="step"><div class="step-num">1</div><h3>Install JDK</h3><p>Download JDK from Oracle. Set <code>PATH</code> env variable to <code>JDK/bin</code> folder.</p></div>
+  <div class="step"><div class="step-num">2</div><h3>Select Editor</h3><p>Use Notepad, Notepad++, EditPlus for learning. Use Eclipse/NetBeans in real-time.</p></div>
+  <div class="step"><div class="step-num">3</div><h3>Write Program</h3><p>Write Java code using predefined API (Application Programming Interface).</p></div>
+  <div class="step"><div class="step-num">4</div><h3>Save File</h3><p>Save as <code>ClassName.java</code>. If class is public, filename must match class name.</p></div>
+  <div class="step"><div class="step-num">5</div><h3>Compile</h3><p>Run <code>javac Test.java</code> → generates <code>Test.class</code> (bytecode).</p></div>
+  <div class="step"><div class="step-num">6</div><h3>Run</h3><p>Run <code>java Test</code> (no .class). JVM loads and executes the bytecode.</p></div>
+</div>
+
+<div class="panel">
+  <div class="panel-head"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="panel-title">Test.java</span></div>
+  <div class="tabs">
+    <div class="tab active" onclick="sw(this,'t1')">Program</div>
+    <div class="tab" onclick="sw(this,'t2')">Explanation</div>
+    <div class="tab" onclick="sw(this,'t3')">Output</div>
+  </div>
+  <div class="tc active" id="t1">
+<pre><span class="cmt">// D:\javaapps\Test.java</span>
+<span class="kw">class</span> <span class="cls">Test</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="cls">String</span>[] args) {
+        <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"First Java Application"</span>);
+    }
+}</pre>
+  </div>
+  <div class="tc" id="t2">
+    <div class="rules">
+      <div class="rule"><div class="rnum">1</div><div class="rtxt"><strong>class Test</strong> — declares a class named Test. Every Java program must be inside a class.</div></div>
+      <div class="rule"><div class="rnum">2</div><div class="rtxt"><strong>public</strong> — JVM must access main() from outside, so it must be public.</div></div>
+      <div class="rule"><div class="rnum">3</div><div class="rtxt"><strong>static</strong> — JVM calls main() without creating an object, so it must be static.</div></div>
+      <div class="rule"><div class="rnum">4</div><div class="rtxt"><strong>void</strong> — main() doesn't return anything to JVM.</div></div>
+      <div class="rule"><div class="rnum">5</div><div class="rtxt"><strong>String[] args</strong> — command-line arguments passed at runtime (mandatory parameter).</div></div>
+      <div class="rule"><div class="rnum">6</div><div class="rtxt"><strong>System.out.println()</strong> — System is a class, out is a static PrintStream object, println() is a method.</div></div>
+    </div>
+  </div>
+  <div class="tc" id="t3">
+    <div style="padding:10px 20px 4px;background:#fdfcff;font-size:12px;color:#888;">Command Prompt:</div>
+    <div class="out">
+      <div class="muted">D:\javaapps&gt; javac Test.java</div>
+      <div class="muted">D:\javaapps&gt; java Test</div>
+      <div class="ok">First Java Application</div>
+    </div>
+  </div>
+</div>
+
+<div class="callout"><span style="font-size:15px;flex-shrink:0">📁</span><span><strong>File Saving Rule:</strong> If the Java file contains a <code>public class</code>, the filename must exactly match the class name (case-sensitive). If no public class exists, any name is acceptable but matching the class name is recommended.</span></div>
+
+<div class="def-list">
+  <div class="def-item"><div class="def-term">.java file</div><div class="def-val">Source code file — written by the programmer, readable by humans</div></div>
+  <div class="def-item"><div class="def-term">.class file</div><div class="def-val">Bytecode file — generated by <code>javac</code> compiler, platform independent</div></div>
+  <div class="def-item"><div class="def-term">JVM</div><div class="def-val">Java Virtual Machine — executes bytecode on any OS (Windows, Linux, Mac)</div></div>
+  <div class="def-item"><div class="def-term">javac</div><div class="def-val">Java Compiler — converts .java → .class</div></div>
+  <div class="def-item"><div class="def-term">java</div><div class="def-val">Java Launcher — starts JVM and runs the .class bytecode</div></div>
+  <div class="def-item"><div class="def-term">IDE</div><div class="def-val">Eclipse, MyEclipse, NetBeans — preferred for real-time development</div></div>
+</div>
+
+<div class="panel">
+  <div class="panel-head"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="panel-title">PATH Environment Variable Setup (Windows)</span></div>
+  <div class="tc active" style="display:block;">
+<pre><span class="cmt">// Set PATH to JDK bin folder</span>
+<span class="cmt">// My Computer → Properties → Advanced → Environment Variables</span>
+<span class="cmt">// Add to PATH: C:\Java\jdk1.8.0\bin</span>
+
+<span class="cmt">// Verify installation on Command Prompt:</span>
+<span class="cmt">// D:\&gt; javac -version</span>
+<span class="cmt">// javac 1.8.0_202</span>
+
+<span class="cmt">// D:\&gt; java -version</span>
+<span class="cmt">// java version "1.8.0_202"</span>
+
+<span class="cmt">// Switch versions using batch files:</span>
+<span class="cmt">// java8.bat → set path=C:\Java\jdk1.8.0\bin;</span>
+<span class="cmt">// java11.bat → set path=C:\Java\jdk-11\bin;</span></pre>
+  </div>
+</div>
+
+</div>
+<script>
+function sw(tab,id){
+  tab.closest('.panel').querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  tab.closest('.panel').querySelectorAll('.tc').forEach(c=>c.classList.remove('active'));
+  tab.classList.add('active');document.getElementById(id).classList.add('active');
+}
+</script>
+</body></html>

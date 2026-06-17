@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>String Manipulations — Java</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f9f7f4;color:#2d2d2d;padding:32px 16px;}
+.container{max-width:860px;margin:0 auto;}
+.badge{display:inline-block;background:#e8e0f7;color:#6b48c8;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:10px;}
+h1{font-size:28px;font-weight:700;color:#1a1a1a;}h1 span{color:#6b48c8;}
+.subtitle{margin-top:8px;font-size:14px;color:#6b6b6b;max-width:580px;line-height:1.65;}
+.panel{background:#fff;border:1px solid #ede8f5;border-radius:14px;overflow:hidden;margin-bottom:22px;box-shadow:0 2px 10px rgba(107,72,200,.05);}
+.panel-head{background:#f3effe;border-bottom:1px solid #ede8f5;padding:9px 16px;display:flex;align-items:center;gap:7px;}
+.dot{width:9px;height:9px;border-radius:50%;}.dot.r{background:#ff6058;}.dot.y{background:#ffbd2e;}.dot.g{background:#27c93f;}
+.panel-title{margin-left:8px;font-size:11.5px;font-weight:600;color:#6b48c8;}
+.tabs{display:flex;background:#faf8ff;border-bottom:1px solid #ede8f5;flex-wrap:wrap;}
+.tab{padding:8px 16px;font-size:12px;font-weight:500;color:#888;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;}
+.tab.active{color:#6b48c8;border-bottom-color:#6b48c8;background:#fff;}
+.tc{display:none;padding:20px;background:#fdfcff;}.tc.active{display:block;}
+pre{font-family:"Fira Code","Cascadia Code","Courier New",monospace;font-size:12.5px;line-height:1.8;overflow-x:auto;}
+.kw{color:#6b48c8;font-weight:600;}.cls{color:#c2410c;}.fn{color:#1d6f42;}.str{color:#b45309;}.cmt{color:#9ca3af;font-style:italic;}.num{color:#0369a1;}
+.out{background:#1e1a2e;color:#c4b5fd;font-family:"Fira Code",monospace;font-size:12px;padding:14px 18px;line-height:1.8;}
+.out .ok{color:#4ade80;}.out .muted{color:#7c6fa0;}
+.callout{display:flex;gap:9px;background:#f3effe;border-left:3px solid #6b48c8;border-radius:0 8px 8px 0;padding:11px 14px;margin-bottom:22px;font-size:12.5px;color:#4a3880;line-height:1.6;}
+table{width:100%;border-collapse:collapse;font-size:12.5px;}
+th{background:#f3effe;color:#6b48c8;font-weight:700;padding:9px 12px;text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;}
+td{padding:8px 12px;border-top:1px solid #f0ebfc;color:#3a3a3a;}tr:hover td{background:#faf8ff;}
+.yes{color:#16a34a;font-weight:600;}.no{color:#dc2626;font-weight:600;}
+</style>
+</head>
+<body>
+<div class="container">
+<div style="margin-bottom:28px;">
+  <div class="badge">Topic 07 · Core Java</div>
+  <h1>String <span>Manipulations</span></h1>
+  <p class="subtitle">Java provides four classes for string operations — <code>String</code> (immutable), <code>StringBuffer</code> (mutable, thread-safe), <code>StringBuilder</code> (mutable, fast), and <code>StringTokenizer</code> (tokenization).</p>
+</div>
+
+<div class="panel">
+  <div class="panel-head"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="panel-title">String Classes Comparison</span></div>
+  <div class="tc active" style="display:block;padding:0;">
+    <table>
+      <tr><th>Feature</th><th>String</th><th>StringBuffer</th><th>StringBuilder</th></tr>
+      <tr><td>Mutable</td><td class="no">❌ No</td><td class="yes">✅ Yes</td><td class="yes">✅ Yes</td></tr>
+      <tr><td>Thread-Safe</td><td class="yes">✅ Yes</td><td class="yes">✅ Yes</td><td class="no">❌ No</td></tr>
+      <tr><td>Synchronized Methods</td><td>N/A</td><td class="yes">All methods</td><td class="no">None</td></tr>
+      <tr><td>Performance</td><td>Slow (new obj each time)</td><td>Moderate</td><td>Fast</td></tr>
+      <tr><td>Execution</td><td>—</td><td>Sequential</td><td>Parallel</td></tr>
+      <tr><td>Data Consistency</td><td>N/A</td><td class="yes">Guaranteed</td><td class="no">Not guaranteed</td></tr>
+      <tr><td>Introduced in</td><td>JDK 1.0</td><td>JDK 1.0</td><td>JDK 5.0</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-head"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="panel-title">StringDemo.java</span></div>
+  <div class="tabs">
+    <div class="tab active" onclick="sw(this,'t1')">String</div>
+    <div class="tab" onclick="sw(this,'t2')">StringBuffer</div>
+    <div class="tab" onclick="sw(this,'t3')">StringBuilder</div>
+    <div class="tab" onclick="sw(this,'t4')">StringTokenizer</div>
+    <div class="tab" onclick="sw(this,'t5')">String Methods</div>
+  </div>
+  <div class="tc active" id="t1">
+<pre><span class="cmt">// String is IMMUTABLE — operations create new objects</span>
+<span class="cls">String</span> str1 = <span class="kw">new</span> <span class="cls">String</span>(<span class="str">"Durga "</span>);
+<span class="cls">String</span> str2 = str1.<span class="fn">concat</span>(<span class="str">"Software "</span>);
+<span class="cls">String</span> str3 = str2.<span class="fn">concat</span>(<span class="str">"Solutions"</span>);
+
+<span class="cls">System</span>.out.<span class="fn">println</span>(str1);  <span class="cmt">// Durga          (unchanged!)</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(str2);  <span class="cmt">// Durga Software</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(str3);  <span class="cmt">// Durga Software Solutions</span>
+
+<span class="cmt">// String pool — literal strings are shared</span>
+<span class="cls">String</span> a = <span class="str">"Hello"</span>;
+<span class="cls">String</span> b = <span class="str">"Hello"</span>;
+<span class="cls">String</span> c = <span class="kw">new</span> <span class="cls">String</span>(<span class="str">"Hello"</span>);
+
+<span class="cls">System</span>.out.<span class="fn">println</span>(a == b);       <span class="cmt">// true  (same pool ref)</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(a == c);       <span class="cmt">// false (different object)</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(a.<span class="fn">equals</span>(c));  <span class="cmt">// true  (same content)</span></pre>
+    <div class="out"><div class="ok">Durga </div><div class="ok">Durga Software </div><div class="ok">Durga Software Solutions</div><div class="ok">true</div><div class="ok">false</div><div class="ok">true</div></div>
+  </div>
+  <div class="tc" id="t2">
+<pre><span class="cmt">// StringBuffer is MUTABLE + THREAD-SAFE</span>
+<span class="cls">StringBuffer</span> sb1 = <span class="kw">new</span> <span class="cls">StringBuffer</span>(<span class="str">"Durga "</span>);
+<span class="cls">StringBuffer</span> sb2 = sb1.<span class="fn">append</span>(<span class="str">"Software "</span>);  <span class="cmt">// modifies sb1!</span>
+<span class="cls">StringBuffer</span> sb3 = sb2.<span class="fn">append</span>(<span class="str">"Solutions"</span>);
+
+<span class="cls">System</span>.out.<span class="fn">println</span>(sb1); <span class="cmt">// Durga Software Solutions</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(sb2); <span class="cmt">// Durga Software Solutions</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(sb3); <span class="cmt">// Durga Software Solutions</span>
+<span class="cmt">// Note: sb1, sb2, sb3 all point to same object!</span>
+
+<span class="cmt">// Other StringBuffer methods</span>
+<span class="cls">StringBuffer</span> sb = <span class="kw">new</span> <span class="cls">StringBuffer</span>(<span class="str">"Hello"</span>);
+sb.<span class="fn">insert</span>(<span class="num">5</span>, <span class="str">" World"</span>);   <span class="cmt">// "Hello World"</span>
+sb.<span class="fn">delete</span>(<span class="num">5</span>, <span class="num">11</span>);          <span class="cmt">// "Hello"</span>
+sb.<span class="fn">reverse</span>();              <span class="cmt">// "olleH"</span>
+sb.<span class="fn">replace</span>(<span class="num">0</span>, <span class="num">5</span>, <span class="str">"Java"</span>); <span class="cmt">// "Java"</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(sb.<span class="fn">length</span>()); <span class="cmt">// 4</span></pre>
+    <div class="out"><div class="ok">Durga Software Solutions</div><div class="ok">Durga Software Solutions</div><div class="ok">Durga Software Solutions</div></div>
+  </div>
+  <div class="tc" id="t3">
+<pre><span class="cmt">// StringBuilder is MUTABLE + FAST (not thread-safe)</span>
+<span class="cmt">// Same API as StringBuffer — use in single-threaded apps</span>
+<span class="cls">StringBuilder</span> sb = <span class="kw">new</span> <span class="cls">StringBuilder</span>(<span class="str">"Hello"</span>);
+
+sb.<span class="fn">append</span>(<span class="str">" Java"</span>);        <span class="cmt">// "Hello Java"</span>
+sb.<span class="fn">insert</span>(<span class="num">5</span>, <span class="str">","</span>);          <span class="cmt">// "Hello, Java"</span>
+sb.<span class="fn">replace</span>(<span class="num">7</span>, <span class="num">11</span>, <span class="str">"World"</span>); <span class="cmt">// "Hello, World"</span>
+sb.<span class="fn">delete</span>(<span class="num">5</span>, <span class="num">7</span>);           <span class="cmt">// "HelloWorld"</span>
+sb.<span class="fn">reverse</span>();               <span class="cmt">// "dlroWolleH"</span>
+
+<span class="cls">System</span>.out.<span class="fn">println</span>(sb);    <span class="cmt">// dlroWolleH</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(sb.<span class="fn">charAt</span>(<span class="num">0</span>));  <span class="cmt">// d</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(sb.<span class="fn">capacity</span>()); <span class="cmt">// 21 (default 16 + len)</span></pre>
+    <div class="out"><div class="ok">dlroWolleH</div></div>
+  </div>
+  <div class="tc" id="t4">
+<pre><span class="cmt">// StringTokenizer — divide string into tokens</span>
+<span class="kw">import</span> java.util.StringTokenizer;
+
+<span class="cmt">// Default delimiter: space, tab, newline</span>
+<span class="cls">StringTokenizer</span> st = <span class="kw">new</span> <span class="cls">StringTokenizer</span>(<span class="str">"one two three"</span>);
+<span class="kw">while</span>(st.<span class="fn">hasMoreTokens</span>()) {
+    <span class="cls">System</span>.out.<span class="fn">println</span>(st.<span class="fn">nextToken</span>());
+}
+
+<span class="cmt">// Custom delimiter</span>
+<span class="cls">StringTokenizer</span> st2 = <span class="kw">new</span> <span class="cls">StringTokenizer</span>(<span class="str">"a,b,c"</span>, <span class="str">","</span>);
+<span class="cls">System</span>.out.<span class="fn">println</span>(st2.<span class="fn">countTokens</span>()); <span class="cmt">// 3</span>
+
+<span class="cmt">// Modern alternative: split()</span>
+<span class="cls">String</span>[] parts = <span class="str">"a,b,c"</span>.<span class="fn">split</span>(<span class="str">","</span>);
+<span class="kw">for</span>(<span class="cls">String</span> p : parts)
+    <span class="cls">System</span>.out.<span class="fn">println</span>(p);</pre>
+    <div class="out"><div class="ok">one</div><div class="ok">two</div><div class="ok">three</div></div>
+  </div>
+  <div class="tc" id="t5">
+<pre><span class="cls">String</span> s = <span class="str">"Hello Java World"</span>;
+
+s.<span class="fn">length</span>()              <span class="cmt">// 16</span>
+s.<span class="fn">charAt</span>(<span class="num">0</span>)             <span class="cmt">// 'H'</span>
+s.<span class="fn">indexOf</span>(<span class="str">"Java"</span>)       <span class="cmt">// 6</span>
+s.<span class="fn">substring</span>(<span class="num">6</span>)          <span class="cmt">// "Java World"</span>
+s.<span class="fn">substring</span>(<span class="num">6</span>, <span class="num">10</span>)      <span class="cmt">// "Java"</span>
+s.<span class="fn">toUpperCase</span>()         <span class="cmt">// "HELLO JAVA WORLD"</span>
+s.<span class="fn">toLowerCase</span>()         <span class="cmt">// "hello java world"</span>
+s.<span class="fn">trim</span>()                <span class="cmt">// removes leading/trailing spaces</span>
+s.<span class="fn">replace</span>(<span class="str">"Java"</span>, <span class="str">"C"</span>) <span class="cmt">// "Hello C World"</span>
+s.<span class="fn">contains</span>(<span class="str">"Java"</span>)      <span class="cmt">// true</span>
+s.<span class="fn">startsWith</span>(<span class="str">"Hello"</span>)   <span class="cmt">// true</span>
+s.<span class="fn">endsWith</span>(<span class="str">"World"</span>)     <span class="cmt">// true</span>
+s.<span class="fn">split</span>(<span class="str">" "</span>)            <span class="cmt">// ["Hello","Java","World"]</span>
+s.<span class="fn">isEmpty</span>()             <span class="cmt">// false</span>
+s.<span class="fn">equals</span>(<span class="str">"Hello"</span>)       <span class="cmt">// false</span>
+s.<span class="fn">equalsIgnoreCase</span>(<span class="str">"hello java world"</span>) <span class="cmt">// true</span></pre>
+  </div>
+</div>
+
+<div class="callout"><span style="font-size:15px;flex-shrink:0">💡</span><span><strong>When to use what:</strong> Use <code>String</code> for fixed text. Use <code>StringBuilder</code> for string building in single-threaded code (loops). Use <code>StringBuffer</code> only when thread safety is required.</span></div>
+
+</div>
+<script>
+function sw(tab,id){
+  tab.closest('.panel').querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  tab.closest('.panel').querySelectorAll('.tc').forEach(c=>c.classList.remove('active'));
+  tab.classList.add('active');document.getElementById(id).classList.add('active');
+}
+</script>
+</body></html>

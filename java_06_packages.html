@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Packages — Java</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f9f7f4;color:#2d2d2d;padding:32px 16px;}
+.container{max-width:860px;margin:0 auto;}
+.badge{display:inline-block;background:#e8e0f7;color:#6b48c8;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:10px;}
+h1{font-size:28px;font-weight:700;color:#1a1a1a;}h1 span{color:#6b48c8;}
+.subtitle{margin-top:8px;font-size:14px;color:#6b6b6b;max-width:580px;line-height:1.65;}
+.adv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin:24px 0;}
+.adv{background:#fff;border:1px solid #ede8f5;border-radius:12px;padding:14px;text-align:center;}
+.adv-icon{font-size:22px;margin-bottom:6px;}
+.adv h3{font-size:12.5px;font-weight:700;color:#6b48c8;margin-bottom:3px;}
+.adv p{font-size:11.5px;color:#6b6b6b;line-height:1.5;}
+.panel{background:#fff;border:1px solid #ede8f5;border-radius:14px;overflow:hidden;margin-bottom:22px;box-shadow:0 2px 10px rgba(107,72,200,.05);}
+.panel-head{background:#f3effe;border-bottom:1px solid #ede8f5;padding:9px 16px;display:flex;align-items:center;gap:7px;}
+.dot{width:9px;height:9px;border-radius:50%;}.dot.r{background:#ff6058;}.dot.y{background:#ffbd2e;}.dot.g{background:#27c93f;}
+.panel-title{margin-left:8px;font-size:11.5px;font-weight:600;color:#6b48c8;}
+.tabs{display:flex;background:#faf8ff;border-bottom:1px solid #ede8f5;flex-wrap:wrap;}
+.tab{padding:8px 16px;font-size:12px;font-weight:500;color:#888;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;}
+.tab.active{color:#6b48c8;border-bottom-color:#6b48c8;background:#fff;}
+.tc{display:none;padding:20px;background:#fdfcff;}.tc.active{display:block;}
+pre{font-family:"Fira Code","Cascadia Code","Courier New",monospace;font-size:12.5px;line-height:1.8;overflow-x:auto;}
+.kw{color:#6b48c8;font-weight:600;}.cls{color:#c2410c;}.fn{color:#1d6f42;}.str{color:#b45309;}.cmt{color:#9ca3af;font-style:italic;}.num{color:#0369a1;}
+.out{background:#1e1a2e;color:#c4b5fd;font-family:"Fira Code",monospace;font-size:12px;padding:14px 18px;line-height:1.8;}
+.out .ok{color:#4ade80;}.out .muted{color:#7c6fa0;}
+.callout{display:flex;gap:9px;background:#f3effe;border-left:3px solid #6b48c8;border-radius:0 8px 8px 0;padding:11px 14px;margin-bottom:22px;font-size:12.5px;color:#4a3880;line-height:1.6;}
+.def-list{background:#fff;border:1px solid #ede8f5;border-radius:12px;overflow:hidden;margin-bottom:22px;}
+.def-item{display:flex;border-bottom:1px solid #f0ebfc;}.def-item:last-child{border-bottom:none;}
+.def-term{background:#faf8ff;color:#6b48c8;font-weight:700;font-size:12px;padding:11px 14px;min-width:180px;border-right:1px solid #f0ebfc;font-family:"Fira Code",monospace;}
+.def-val{padding:11px 14px;font-size:12.5px;color:#3a3a3a;line-height:1.55;}
+</style>
+</head>
+<body>
+<div class="container">
+<div style="margin-bottom:28px;">
+  <div class="badge">Topic 06 · Core Java</div>
+  <h1>Java <span>Packages</span></h1>
+  <p class="subtitle">A package is a folder containing related .class files representing related classes and interfaces as a single unit. Packages provide Modularity, Abstraction, Security, Sharability, and Reusability.</p>
+</div>
+
+<div class="adv-grid">
+  <div class="adv"><div class="adv-icon">🧩</div><h3>Modularity</h3><p>Divide large code into smaller, manageable units</p></div>
+  <div class="adv"><div class="adv-icon">🎭</div><h3>Abstraction</h3><p>Classes hidden from outside by default</p></div>
+  <div class="adv"><div class="adv-icon">🔐</div><h3>Security</h3><p>Encapsulation + Abstraction = better security</p></div>
+  <div class="adv"><div class="adv-icon">🔗</div><h3>Sharability</h3><p>Declare once, share across multiple apps</p></div>
+  <div class="adv"><div class="adv-icon">♻️</div><h3>Reusability</h3><p>Import and reuse in any number of projects</p></div>
+</div>
+
+<div class="panel">
+  <div class="panel-head"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="panel-title">Packages — Code Examples</span></div>
+  <div class="tabs">
+    <div class="tab active" onclick="sw(this,'t1')">Predefined Packages</div>
+    <div class="tab" onclick="sw(this,'t2')">User-Defined Packages</div>
+    <div class="tab" onclick="sw(this,'t3')">Import Statements</div>
+    <div class="tab" onclick="sw(this,'t4')">Compile &amp; Run</div>
+  </div>
+  <div class="tc active" id="t1">
+<pre><span class="cmt">// java.lang — default package (auto-imported)</span>
+<span class="cmt">// Contains: String, System, Object, Thread, Math...</span>
+<span class="cls">String</span>  s = <span class="str">"Hello"</span>;      <span class="cmt">// java.lang.String</span>
+<span class="cls">Math</span>.<span class="fn">sqrt</span>(<span class="num">16</span>);            <span class="cmt">// java.lang.Math</span>
+
+<span class="cmt">// java.io — Input/Output operations</span>
+<span class="kw">import</span> java.io.*;
+<span class="cls">FileReader</span> fr = <span class="kw">new</span> <span class="cls">FileReader</span>(<span class="str">"file.txt"</span>);
+
+<span class="cmt">// java.util — Collections, Date, Scanner</span>
+<span class="kw">import</span> java.util.*;
+<span class="cls">ArrayList</span>&lt;<span class="cls">String</span>&gt; list = <span class="kw">new</span> <span class="cls">ArrayList</span>&lt;&gt;();
+<span class="cls">Scanner</span> sc = <span class="kw">new</span> <span class="cls">Scanner</span>(<span class="cls">System</span>.in);
+
+<span class="cmt">// java.sql — JDBC database connectivity</span>
+<span class="kw">import</span> java.sql.*;
+<span class="cls">Connection</span> con = <span class="cls">DriverManager</span>.<span class="fn">getConnection</span>(url, u, p);</pre>
+  </div>
+  <div class="tc" id="t2">
+<pre><span class="cmt">// Step 1: Declare the package at top of file</span>
+<span class="cmt">// File: D:\javaapps\com\myapp\models\Student.java</span>
+
+<span class="kw">package</span> com.myapp.models;    <span class="cmt">// must be first statement</span>
+
+<span class="kw">public class</span> <span class="cls">Student</span> {
+    <span class="kw">private</span> <span class="kw">int</span>    sid;
+    <span class="kw">private</span> <span class="cls">String</span> sname;
+
+    <span class="kw">public</span> <span class="cls">Student</span>(<span class="kw">int</span> id, <span class="cls">String</span> name) {
+        <span class="kw">this</span>.sid   = id;
+        <span class="kw">this</span>.sname = name;
+    }
+
+    <span class="kw">public void</span> <span class="fn">display</span>() {
+        <span class="cls">System</span>.out.<span class="fn">println</span>(sid + <span class="str">" - "</span> + sname);
+    }
+}
+
+<span class="cmt">// Step 2: Use in another class</span>
+<span class="kw">package</span> com.myapp;
+<span class="kw">import</span> com.myapp.models.Student;
+
+<span class="kw">public class</span> <span class="cls">Main</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="cls">String</span>[] args) {
+        <span class="cls">Student</span> s = <span class="kw">new</span> <span class="cls">Student</span>(<span class="num">101</span>, <span class="str">"Durga"</span>);
+        s.<span class="fn">display</span>();
+    }
+}</pre>
+  </div>
+  <div class="tc" id="t3">
+<pre><span class="cmt">// 1. Import specific class (recommended)</span>
+<span class="kw">import</span> java.util.ArrayList;
+<span class="kw">import</span> java.util.HashMap;
+
+<span class="cmt">// 2. Import entire package using wildcard *</span>
+<span class="kw">import</span> java.util.*;   <span class="cmt">// all classes in java.util</span>
+
+<span class="cmt">// 3. Static import (Java 5+) — for static members</span>
+<span class="kw">import static</span> java.lang.Math.PI;
+<span class="kw">import static</span> java.lang.Math.*;
+<span class="cls">System</span>.out.<span class="fn">println</span>(PI);         <span class="cmt">// no Math. prefix needed</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(<span class="fn">sqrt</span>(<span class="num">16</span>));    <span class="cmt">// 4.0</span>
+
+<span class="cmt">// 4. Fully Qualified Name (no import needed)</span>
+java.util.ArrayList&lt;<span class="cls">String</span>&gt; list = <span class="kw">new</span> java.util.<span class="cls">ArrayList</span>&lt;&gt;();</pre>
+  </div>
+  <div class="tc" id="t4">
+<pre><span class="cmt">// Compile with -d flag to create package directories</span>
+<span class="cmt">// D:\javaapps&gt; javac -d . Student.java</span>
+<span class="cmt">// Creates: D:\javaapps\com\myapp\models\Student.class</span>
+
+<span class="cmt">// Run using fully qualified class name</span>
+<span class="cmt">// D:\javaapps&gt; java com.myapp.models.Student</span>
+
+<span class="cmt">// Add to classpath if in another location</span>
+<span class="cmt">// D:\&gt; java -cp D:\javaapps com.myapp.models.Student</span>
+
+<span class="cmt">// #include (C++) vs import (Java)</span>
+<span class="cmt">// #include → Static Loading (at compile time)</span>
+<span class="cmt">// import   → Dynamic Loading (at runtime via JVM)</span></pre>
+    <div class="out">
+      <div class="muted">$ javac -d . Student.java &amp;&amp; java com.myapp.Main</div>
+      <div class="ok">101 - Durga</div>
+    </div>
+  </div>
+</div>
+
+<div class="callout"><span style="font-size:15px;flex-shrink:0">💡</span><span><strong>java.lang is auto-imported</strong> — no import needed for String, System, Math, Thread, Object, etc. All other packages require explicit import statements.</span></div>
+
+<div class="def-list">
+  <div class="def-item"><div class="def-term">java.lang</div><div class="def-val">Default, auto-imported — String, System, Math, Object, Thread, Exception</div></div>
+  <div class="def-item"><div class="def-term">java.io</div><div class="def-val">File I/O — FileReader, FileWriter, BufferedReader, InputStream, OutputStream</div></div>
+  <div class="def-item"><div class="def-term">java.util</div><div class="def-val">Collections, Scanner, Date, Arrays, Random, HashMap, ArrayList</div></div>
+  <div class="def-item"><div class="def-term">java.sql</div><div class="def-val">JDBC — Connection, Statement, ResultSet, DriverManager</div></div>
+  <div class="def-item"><div class="def-term">java.net</div><div class="def-val">Networking — Socket, ServerSocket, URL, URLConnection</div></div>
+  <div class="def-item"><div class="def-term">java.awt / javax.swing</div><div class="def-val">GUI components — JFrame, JButton, JLabel, JTextField</div></div>
+</div>
+
+</div>
+<script>
+function sw(tab,id){
+  tab.closest('.panel').querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  tab.closest('.panel').querySelectorAll('.tc').forEach(c=>c.classList.remove('active'));
+  tab.classList.add('active');document.getElementById(id).classList.add('active');
+}
+</script>
+</body></html>

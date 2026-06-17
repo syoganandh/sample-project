@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Java History & Introduction</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f9f7f4;color:#2d2d2d;padding:32px 16px;}
+.container{max-width:860px;margin:0 auto;}
+.badge{display:inline-block;background:#e8e0f7;color:#6b48c8;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:10px;}
+h1{font-size:28px;font-weight:700;color:#1a1a1a;line-height:1.3;}
+h1 span{color:#6b48c8;}
+.subtitle{margin-top:8px;font-size:14px;color:#6b6b6b;max-width:580px;line-height:1.65;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:24px 0;}
+.card{background:#fff;border:1px solid #ede8f5;border-radius:12px;padding:16px;}
+.card-icon{font-size:20px;margin-bottom:7px;}
+.card h3{font-size:12.5px;font-weight:700;color:#1a1a1a;margin-bottom:3px;}
+.card p{font-size:12px;color:#6b6b6b;line-height:1.55;}
+.panel{background:#fff;border:1px solid #ede8f5;border-radius:14px;overflow:hidden;margin-bottom:22px;box-shadow:0 2px 10px rgba(107,72,200,.05);}
+.panel-head{background:#f3effe;border-bottom:1px solid #ede8f5;padding:11px 16px;display:flex;align-items:center;gap:7px;}
+.dot{width:9px;height:9px;border-radius:50%;}
+.dot.r{background:#ff6058;}.dot.y{background:#ffbd2e;}.dot.g{background:#27c93f;}
+.panel-title{margin-left:8px;font-size:12px;font-weight:700;color:#6b48c8;text-transform:uppercase;letter-spacing:.05em;}
+.tabs{display:flex;background:#faf8ff;border-bottom:1px solid #ede8f5;}
+.tab{padding:8px 18px;font-size:12px;font-weight:500;color:#888;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;}
+.tab.active{color:#6b48c8;border-bottom-color:#6b48c8;background:#fff;}
+.tc{display:none;padding:20px;background:#fdfcff;}
+.tc.active{display:block;}
+.tl-row{display:flex;gap:12px;margin-bottom:10px;font-size:12.5px;line-height:1.55;}
+.tl-ver{background:#f3effe;color:#6b48c8;font-weight:700;padding:3px 9px;border-radius:6px;font-size:11px;white-space:nowrap;height:fit-content;margin-top:1px;min-width:80px;text-align:center;}
+.tl-name{color:#c2410c;font-weight:600;margin-right:4px;}
+.tl-desc{color:#444;}
+table{width:100%;border-collapse:collapse;font-size:12.5px;}
+th{background:#f3effe;color:#6b48c8;font-weight:700;padding:9px 12px;text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;}
+td{padding:8px 12px;border-top:1px solid #f0ebfc;color:#3a3a3a;}
+tr:hover td{background:#faf8ff;}
+.callout{display:flex;gap:9px;background:#f3effe;border-left:3px solid #6b48c8;border-radius:0 8px 8px 0;padding:11px 14px;margin:0 0 22px;font-size:12.5px;color:#4a3880;line-height:1.6;}
+.ci{font-size:15px;flex-shrink:0;margin-top:1px;}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;}
+.feat{background:#f3effe;border-radius:10px;padding:10px 12px;font-size:12px;color:#6b48c8;font-weight:600;text-align:center;}
+.feat span{display:block;font-size:11px;color:#888;font-weight:400;margin-top:2px;}
+</style>
+</head>
+<body>
+<div class="container">
+<div style="margin-bottom:28px;">
+  <div class="badge">Topic 01 · Core Java</div>
+  <h1>Introduction &amp; Java <span>History</span></h1>
+  <p class="subtitle">Java was created by James Gosling at Sun Microsystems. Originally developed for simple electronic consumer goods (Project Green), it evolved into the world's most popular programming language — platform independent, object-oriented, and secure.</p>
+</div>
+
+<div class="cards">
+  <div class="card"><div class="card-icon">👨‍💻</div><h3>Author</h3><p>James Gosling at Sun Microsystems (now Oracle Corporation)</p></div>
+  <div class="card"><div class="card-icon">🎯</div><h3>Original Goal</h3><p>Project Green — build software for simple electronic consumer devices</p></div>
+  <div class="card"><div class="card-icon">📅</div><h3>First Release</h3><p>JDK 1.0 · January 23, 1996 · Original name: <strong>OAK</strong></p></div>
+  <div class="card"><div class="card-icon">🔓</div><h3>License</h3><p>Open Source Software — freely available and distributable</p></div>
+</div>
+
+<div class="panel">
+  <div class="panel-head"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="panel-title">Version Timeline</span></div>
+  <div class="tabs">
+    <div class="tab active" onclick="sw(this,'v1')">JDK 1.x</div>
+    <div class="tab" onclick="sw(this,'v2')">Java 5–8</div>
+    <div class="tab" onclick="sw(this,'v3')">Java 9–14</div>
+    <div class="tab" onclick="sw(this,'v4')">Key Features</div>
+  </div>
+  <div class="tc active" id="v1">
+    <div class="tl-row"><div class="tl-ver">JDK 1.0</div><div class="tl-desc"><span class="tl-name">Jan 23, 1996 · OAK</span>Language Introduction — the very first Java release</div></div>
+    <div class="tl-row"><div class="tl-ver">JDK 1.1</div><div class="tl-desc"><span class="tl-name">Feb 1997</span>RMI, JDBC, Reflection API, Java Beans, Inner Classes</div></div>
+    <div class="tl-row"><div class="tl-ver">JDK 1.2</div><div class="tl-desc"><span class="tl-name">Dec 1998 · Playground</span>Strictfp, Swing GUI, CORBA, Collections Framework</div></div>
+    <div class="tl-row"><div class="tl-ver">JDK 1.3</div><div class="tl-desc"><span class="tl-name">May 2000 · Kestrel</span>Updations on RMI, JNDI support</div></div>
+    <div class="tl-row"><div class="tl-ver">JDK 1.4</div><div class="tl-desc"><span class="tl-name">Feb 2002 · Merlin</span>Regular Expressions, NIO, assert keyword, JAXP</div></div>
+  </div>
+  <div class="tc" id="v2">
+    <div class="tl-row"><div class="tl-ver">JDK 5.0</div><div class="tl-desc"><span class="tl-name">Sep 2004 · Tiger</span>Autoboxing, Generics, var-args, static import, Annotations, Enums</div></div>
+    <div class="tl-row"><div class="tl-ver">Java SE 6</div><div class="tl-desc"><span class="tl-name">Dec 2006 · Mustang</span>JDBC 4.0, GUI updations, Console class</div></div>
+    <div class="tl-row"><div class="tl-ver">Java SE 7</div><div class="tl-desc"><span class="tl-name">Jul 2011 · Dolphin</span>Strings in switch, '_' in literals, try-with-resources, diamond operator</div></div>
+    <div class="tl-row"><div class="tl-ver">Java SE 8</div><div class="tl-desc"><span class="tl-name">Mar 2014 · Spider</span>Lambda Expressions, Stream API, Date-Time API, Interface improvements</div></div>
+  </div>
+  <div class="tc" id="v3">
+    <div class="tl-row"><div class="tl-ver">Java SE 9</div><div class="tl-desc"><span class="tl-name">Sep 2017</span>JShell (REPL), JPMS (Modules), Private Methods in Interfaces</div></div>
+    <div class="tl-row"><div class="tl-ver">Java SE 10</div><div class="tl-desc"><span class="tl-name">Mar 2018</span>Local Variable Type Inference (var), GC Interface, Application CDS</div></div>
+    <div class="tl-row"><div class="tl-ver">Java SE 11</div><div class="tl-desc"><span class="tl-name">Sep 2018 · LTS</span>HttpClient, var in Lambda, new String methods</div></div>
+    <div class="tl-row"><div class="tl-ver">Java SE 12</div><div class="tl-desc"><span class="tl-name">Mar 2019</span>Switch Expressions (preview), JVM Constants API</div></div>
+    <div class="tl-row"><div class="tl-ver">Java SE 13</div><div class="tl-desc"><span class="tl-name">Sep 2019</span>Text Blocks (preview), Switch Expressions updations</div></div>
+    <div class="tl-row"><div class="tl-ver">Java SE 14</div><div class="tl-desc"><span class="tl-name">Mar 2020</span>Pattern Matching for instanceof, Records, Text Blocks stable</div></div>
+  </div>
+  <div class="tc" id="v4">
+    <div class="feat-grid">
+      <div class="feat">Object-Oriented<span>Classes & Objects</span></div>
+      <div class="feat">Platform Independent<span>Write once, run anywhere</span></div>
+      <div class="feat">Robust<span>Exception Handling</span></div>
+      <div class="feat">Portable<span>.class bytecode</span></div>
+      <div class="feat">Dynamic<span>Runtime loading</span></div>
+      <div class="feat">Secure<span>No pointers</span></div>
+      <div class="feat">Multi-threaded<span>Concurrent execution</span></div>
+      <div class="feat">Open Source<span>Free to use</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="callout"><span class="ci">💡</span><span><strong>Java vs C/C++:</strong> C/C++ are <em>platform dependent</em> (compile to .exe) and <em>statically</em> allocated. Java is <em>platform independent</em> (compiles to .class bytecode) and memory is allocated <em>dynamically at runtime</em> when objects are created.</span></div>
+
+<div class="panel">
+  <div class="panel-head"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="panel-title">Java vs C/C++ Comparison</span></div>
+  <div class="tc active" style="display:block;padding:0;">
+    <table>
+      <tr><th>Feature</th><th>C / C++</th><th>Java</th></tr>
+      <tr><td>Memory Allocation</td><td>Static (compile time)</td><td>Dynamic (runtime)</td></tr>
+      <tr><td>Platform</td><td>Dependent (.exe)</td><td>Independent (.class)</td></tr>
+      <tr><td>Pointers</td><td>Yes</td><td>No</td></tr>
+      <tr><td>Pre-Processor</td><td>Required (#include)</td><td>Not required (import)</td></tr>
+      <tr><td>Library Loading</td><td>Static Loading</td><td>Dynamic Loading (JVM)</td></tr>
+      <tr><td>Memory Mgmt</td><td>Manual (malloc/free)</td><td>Automatic (Garbage Collector)</td></tr>
+      <tr><td>Multiple Inheritance</td><td>Yes (C++)</td><td>No (interfaces instead)</td></tr>
+    </table>
+  </div>
+</div>
+
+</div>
+<script>
+function sw(tab, id){
+  tab.closest('.panel').querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  tab.closest('.panel').querySelectorAll('.tc').forEach(c=>c.classList.remove('active'));
+  tab.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body></html>

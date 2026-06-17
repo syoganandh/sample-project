@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Collections — Java</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f9f7f4;color:#2d2d2d;padding:32px 16px;}
+.container{max-width:920px;margin:0 auto;}
+.badge{display:inline-block;background:#e8e0f7;color:#6b48c8;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:10px;}
+h1{font-size:28px;font-weight:700;color:#1a1a1a;}h1 span{color:#6b48c8;}
+.subtitle{margin-top:8px;font-size:14px;color:#6b6b6b;max-width:620px;line-height:1.65;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:24px 0;}
+.card{background:#fff;border:1px solid #ede8f5;border-radius:12px;padding:16px;}
+.card-icon{font-size:20px;margin-bottom:7px;}.card h3{font-size:12.5px;font-weight:700;color:#1a1a1a;margin-bottom:3px;}.card p{font-size:12px;color:#6b6b6b;line-height:1.55;}
+.panel{background:#fff;border:1px solid #ede8f5;border-radius:14px;overflow:hidden;margin-bottom:22px;box-shadow:0 2px 10px rgba(107,72,200,.05);}
+.panel-head{background:#f3effe;border-bottom:1px solid #ede8f5;padding:9px 16px;display:flex;align-items:center;gap:7px;}
+.dot{width:9px;height:9px;border-radius:50%;}.dot.r{background:#ff6058;}.dot.y{background:#ffbd2e;}.dot.g{background:#27c93f;}
+.panel-title{margin-left:8px;font-size:11.5px;font-weight:600;color:#6b48c8;}
+.tabs{display:flex;background:#faf8ff;border-bottom:1px solid #ede8f5;flex-wrap:wrap;}
+.tab{padding:8px 14px;font-size:12px;font-weight:500;color:#888;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap;}
+.tab.active{color:#6b48c8;border-bottom-color:#6b48c8;background:#fff;}
+.tc{display:none;padding:20px;background:#fdfcff;}.tc.active{display:block;}
+pre{font-family:"Fira Code","Cascadia Code","Courier New",monospace;font-size:12.5px;line-height:1.8;overflow-x:auto;}
+.kw{color:#6b48c8;font-weight:600;}.cls{color:#c2410c;}.fn{color:#1d6f42;}.str{color:#b45309;}.cmt{color:#9ca3af;font-style:italic;}.num{color:#0369a1;}.ann{color:#be185d;}
+.out{background:#1e1a2e;color:#c4b5fd;font-family:"Fira Code",monospace;font-size:12px;padding:14px 18px;line-height:1.8;}
+.out .ok{color:#4ade80;}.out .muted{color:#7c6fa0;}
+.callout{display:flex;gap:9px;background:#f3effe;border-left:3px solid #6b48c8;border-radius:0 8px 8px 0;padding:11px 14px;margin-bottom:22px;font-size:12.5px;color:#4a3880;line-height:1.6;}
+table{width:100%;border-collapse:collapse;font-size:12.5px;}
+th{background:#f3effe;color:#6b48c8;font-weight:700;padding:9px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;}
+td{padding:8px 12px;border-top:1px solid #f0ebfc;color:#3a3a3a;font-size:12px;}
+tr:hover td{background:#faf8ff;}
+.yes{color:#16a34a;font-weight:600;}.no{color:#dc2626;font-weight:600;}
+/* Hierarchy diagram */
+.hier{padding:20px;font-size:12px;}
+.hier-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;align-items:flex-start;}
+.hier-title{font-size:11px;font-weight:700;color:#9070d0;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;}
+.iface{display:inline-flex;align-items:center;gap:5px;background:#f3effe;color:#6b48c8;font-weight:700;font-size:11.5px;padding:5px 12px;border-radius:8px;border:1px solid #ddd6f7;font-family:"Fira Code",monospace;}
+.impl{display:inline-flex;align-items:center;gap:5px;background:#fff;color:#c2410c;font-weight:600;font-size:11.5px;padding:5px 12px;border-radius:8px;border:1px solid #f0ebfc;font-family:"Fira Code",monospace;}
+.leg{display:inline-block;background:#ffe4e6;color:#be185d;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;margin-left:4px;}
+.arrow-down{color:#6b48c8;font-size:12px;margin:2px 0 4px 16px;}
+.sec-sub{font-size:13px;font-weight:700;color:#6b48c8;margin-bottom:10px;border-bottom:1px solid #ede8f5;padding-bottom:6px;}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div style="margin-bottom:28px;">
+  <div class="badge">Topic 11 · Core Java</div>
+  <h1>Java <span>Collections Framework</span></h1>
+  <p class="subtitle">Collection is an object that represents a group of other objects. The Collections Framework (java.util) provides predefined classes and interfaces to store, retrieve, manipulate, and communicate aggregate data efficiently.</p>
+</div>
+
+<div class="cards">
+  <div class="card"><div class="card-icon">📋</div><h3>List</h3><p>Index-based, allows duplicates & null. Maintains insertion order. ArrayList, LinkedList, Vector, Stack.</p></div>
+  <div class="card"><div class="card-icon">🔵</div><h3>Set</h3><p>No duplicates, at most one null. HashSet, LinkedHashSet, TreeSet (sorted).</p></div>
+  <div class="card"><div class="card-icon">📬</div><h3>Queue</h3><p>FIFO ordering. PriorityQueue for priority-based processing. Deque for double-ended.</p></div>
+  <div class="card"><div class="card-icon">🗺️</div><h3>Map</h3><p>Key-value pairs. No duplicate keys. HashMap, LinkedHashMap, TreeMap, Hashtable.</p></div>
+</div>
+
+<!-- Hierarchy -->
+<div class="panel">
+  <div class="panel-head"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="panel-title">Collection Framework Hierarchy</span></div>
+  <div class="hier">
+    <div class="hier-title">Interfaces → Implementation Classes</div>
+
+    <div style="margin-bottom:14px;">
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <span class="iface">Collection</span>
+        <span style="color:#aaa;font-size:11px;">extends →</span>
+        <span class="iface">List</span>
+        <span style="color:#aaa;font-size:11px;">→ impl →</span>
+        <span class="impl">ArrayList</span>
+        <span class="impl">LinkedList</span>
+        <span class="impl">Vector <span class="leg">Legacy</span></span>
+        <span class="impl">Stack <span class="leg">Legacy</span></span>
+      </div>
+    </div>
+
+    <div style="margin-bottom:14px;">
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <span class="iface">Collection</span>
+        <span style="color:#aaa;font-size:11px;">extends →</span>
+        <span class="iface">Set</span>
+        <span style="color:#aaa;font-size:11px;">→ impl →</span>
+        <span class="impl">HashSet</span>
+        <span class="impl">LinkedHashSet</span>
+        <span style="color:#aaa;font-size:11px;">| extends →</span>
+        <span class="iface">SortedSet → NavigableSet</span>
+        <span style="color:#aaa;font-size:11px;">→</span>
+        <span class="impl">TreeSet</span>
+      </div>
+    </div>
+
+    <div style="margin-bottom:14px;">
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <span class="iface">Collection</span>
+        <span style="color:#aaa;font-size:11px;">extends →</span>
+        <span class="iface">Queue</span>
+        <span style="color:#aaa;font-size:11px;">→ impl →</span>
+        <span class="impl">PriorityQueue</span>
+        <span style="color:#aaa;font-size:11px;">| extends →</span>
+        <span class="iface">Deque</span>
+        <span style="color:#aaa;font-size:11px;">→</span>
+        <span class="impl">ArrayDeque</span>
+      </div>
+    </div>
+
+    <div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <span class="iface">Map</span>
+        <span style="color:#aaa;font-size:11px;">(separate) → impl →</span>
+        <span class="impl">HashMap</span>
+        <span class="impl">LinkedHashMap</span>
+        <span class="impl">Hashtable <span class="leg">Legacy</span></span>
+        <span style="color:#aaa;font-size:11px;">| extends →</span>
+        <span class="iface">SortedMap → NavigableMap</span>
+        <span style="color:#aaa;font-size:11px;">→</span>
+        <span class="impl">TreeMap</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Array vs Collection -->
+<div class="panel">
+  <div class="panel-head"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="panel-title">Array vs Collection</span></div>
+  <div class="tc active" style="display:block;padding:0;">
+    <table>
+      <tr><th>Feature</th><th>Array</th><th>Collection</th></tr>
+      <tr><td>Size</td><td class="no">Fixed</td><td class="yes">Dynamic (growable)</td></tr>
+      <tr><td>Element Types</td><td>Homogeneous only</td><td>Heterogeneous allowed</td></tr>
+      <tr><td>Performance</td><td class="yes">Better (fixed)</td><td>Less (flexible)</td></tr>
+      <tr><td>Searching/Sorting</td><td>Manual logic needed</td><td class="yes">Built-in methods</td></tr>
+      <tr><td>Type Safety</td><td class="yes">Type safe (strict)</td><td>Less type safe (Object)</td></tr>
+      <tr><td>Memory</td><td>Efficient</td><td>More overhead</td></tr>
+      <tr><td>Null values</td><td>Allowed</td><td>Depends on class</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- Main Code Panel -->
+<div class="panel">
+  <div class="panel-head"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="panel-title">Collections — Code Examples</span></div>
+  <div class="tabs">
+    <div class="tab active" onclick="sw(this,'t1')">ArrayList</div>
+    <div class="tab" onclick="sw(this,'t2')">LinkedList</div>
+    <div class="tab" onclick="sw(this,'t3')">Vector / Stack</div>
+    <div class="tab" onclick="sw(this,'t4')">HashSet / TreeSet</div>
+    <div class="tab" onclick="sw(this,'t5')">HashMap</div>
+    <div class="tab" onclick="sw(this,'t6')">PriorityQueue</div>
+    <div class="tab" onclick="sw(this,'t7')">Iterating</div>
+  </div>
+
+  <div class="tc active" id="t1">
+    <div class="sec-sub">ArrayList — Resizable Array, Fast Retrieval</div>
+<pre><span class="kw">import</span> java.util.*;
+
+<span class="cls">ArrayList</span> al = <span class="kw">new</span> <span class="cls">ArrayList</span>();       <span class="cmt">// default capacity 10</span>
+<span class="cls">ArrayList</span> al2 = <span class="kw">new</span> <span class="cls">ArrayList</span>(<span class="num">20</span>);      <span class="cmt">// specified capacity</span>
+
+al.<span class="fn">add</span>(<span class="str">"A"</span>);
+al.<span class="fn">add</span>(<span class="str">"B"</span>);
+al.<span class="fn">add</span>(<span class="str">"C"</span>);
+al.<span class="fn">add</span>(<span class="str">"B"</span>);         <span class="cmt">// ✅ duplicates allowed</span>
+al.<span class="fn">add</span>(<span class="kw">new</span> <span class="cls">Integer</span>(<span class="num">10</span>)); <span class="cmt">// ✅ heterogeneous allowed</span>
+al.<span class="fn">add</span>(<span class="kw">null</span>);         <span class="cmt">// ✅ null allowed</span>
+
+<span class="cls">System</span>.out.<span class="fn">println</span>(al);          <span class="cmt">// [A, B, C, B, 10, null]</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(al.<span class="fn">size</span>());   <span class="cmt">// 6</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(al.<span class="fn">get</span>(<span class="num">1</span>));   <span class="cmt">// B</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(al.<span class="fn">contains</span>(<span class="str">"C"</span>)); <span class="cmt">// true</span>
+
+al.<span class="fn">remove</span>(<span class="str">"B"</span>);              <span class="cmt">// removes first "B"</span>
+al.<span class="fn">add</span>(<span class="num">1</span>, <span class="str">"X"</span>);              <span class="cmt">// insert at index 1</span>
+al.<span class="fn">set</span>(<span class="num">0</span>, <span class="str">"Z"</span>);              <span class="cmt">// replace at index 0</span>
+<span class="cls">Collections</span>.<span class="fn">sort</span>(al);         <span class="cmt">// sort (homogeneous only)</span></pre>
+    <div class="out"><div class="ok">[A, B, C, B, 10, null]</div><div class="ok">6</div><div class="ok">B</div><div class="ok">true</div></div>
+  </div>
+
+  <div class="tc" id="t2">
+    <div class="sec-sub">LinkedList — Double Linked List, Best for Insert/Delete</div>
+<pre><span class="kw">import</span> java.util.*;
+
+<span class="cls">LinkedList</span> ll = <span class="kw">new</span> <span class="cls">LinkedList</span>();
+ll.<span class="fn">add</span>(<span class="str">"A"</span>);
+ll.<span class="fn">add</span>(<span class="str">"B"</span>);
+ll.<span class="fn">add</span>(<span class="str">"C"</span>);
+ll.<span class="fn">add</span>(<span class="str">"D"</span>);
+ll.<span class="fn">add</span>(<span class="str">"E"</span>);
+<span class="cls">System</span>.out.<span class="fn">println</span>(ll);           <span class="cmt">// [A, B, C, D, E]</span>
+
+<span class="cmt">// LinkedList-specific methods</span>
+ll.<span class="fn">addFirst</span>(<span class="str">"X"</span>);              <span class="cmt">// [X, A, B, C, D, E]</span>
+ll.<span class="fn">addLast</span>(<span class="str">"Y"</span>);               <span class="cmt">// [X, A, B, C, D, E, Y]</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(ll.<span class="fn">getFirst</span>()); <span class="cmt">// X</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(ll.<span class="fn">getLast</span>()); <span class="cmt">// Y</span>
+ll.<span class="fn">removeFirst</span>();               <span class="cmt">// removes X</span>
+ll.<span class="fn">removeLast</span>();                <span class="cmt">// removes Y</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(ll);           <span class="cmt">// [A, B, C, D, E]</span>
+
+<span class="cmt">// Also implements Deque — use as Stack or Queue</span>
+ll.<span class="fn">push</span>(<span class="str">"Z"</span>);  <span class="cmt">// Stack push (addFirst)</span>
+ll.<span class="fn">pop</span>();       <span class="cmt">// Stack pop  (removeFirst)</span>
+ll.<span class="fn">offer</span>(<span class="str">"Z"</span>); <span class="cmt">// Queue offer (addLast)</span>
+ll.<span class="fn">poll</span>();      <span class="cmt">// Queue poll  (removeFirst)</span></pre>
+    <div class="out"><div class="ok">[A, B, C, D, E]</div><div class="ok">X</div><div class="ok">Y</div><div class="ok">[A, B, C, D, E]</div></div>
+  </div>
+
+  <div class="tc" id="t3">
+    <div class="sec-sub">Vector (Legacy, synchronized) &amp; Stack (LIFO)</div>
+<pre><span class="cmt">// VECTOR — like ArrayList but synchronized (thread-safe)</span>
+<span class="cls">Vector</span> v = <span class="kw">new</span> <span class="cls">Vector</span>();           <span class="cmt">// default cap 10</span>
+v.<span class="fn">addElement</span>(<span class="str">"A"</span>);
+v.<span class="fn">addElement</span>(<span class="str">"B"</span>);
+v.<span class="fn">addElement</span>(<span class="str">"C"</span>);
+<span class="cls">System</span>.out.<span class="fn">println</span>(v.<span class="fn">firstElement</span>());  <span class="cmt">// A</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(v.<span class="fn">lastElement</span>());   <span class="cmt">// C</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(v.<span class="fn">elementAt</span>(<span class="num">1</span>));    <span class="cmt">// B</span>
+v.<span class="fn">removeElement</span>(<span class="str">"B"</span>);
+<span class="cls">System</span>.out.<span class="fn">println</span>(v.capacity());      <span class="cmt">// 10 (doubles: 10→20→40)</span>
+
+<span class="cmt">// STACK — extends Vector, LIFO (Last In First Out)</span>
+<span class="cls">Stack</span> s = <span class="kw">new</span> <span class="cls">Stack</span>();
+s.<span class="fn">push</span>(<span class="str">"A"</span>); s.<span class="fn">push</span>(<span class="str">"B"</span>); s.<span class="fn">push</span>(<span class="str">"C"</span>);
+<span class="cls">System</span>.out.<span class="fn">println</span>(s);            <span class="cmt">// [A, B, C]</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(s.<span class="fn">pop</span>());      <span class="cmt">// C (removes top)</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(s.<span class="fn">peek</span>());     <span class="cmt">// B (view top, no remove)</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(s.<span class="fn">search</span>(<span class="str">"A"</span>)); <span class="cmt">// 2 (position from top)</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(s.<span class="fn">search</span>(<span class="str">"X"</span>)); <span class="cmt">// -1 (not found)</span></pre>
+    <div class="out"><div class="ok">[A, B, C]</div><div class="ok">C</div><div class="ok">B</div><div class="ok">2</div><div class="ok">-1</div></div>
+  </div>
+
+  <div class="tc" id="t4">
+    <div class="sec-sub">HashSet, LinkedHashSet, TreeSet</div>
+<pre><span class="cmt">// HASHSET — no duplicates, no order, one null</span>
+<span class="cls">HashSet</span> hs = <span class="kw">new</span> <span class="cls">HashSet</span>();
+hs.<span class="fn">add</span>(<span class="str">"A"</span>); hs.<span class="fn">add</span>(<span class="str">"B"</span>); hs.<span class="fn">add</span>(<span class="str">"C"</span>);
+<span class="cls">System</span>.out.<span class="fn">println</span>(hs.<span class="fn">add</span>(<span class="str">"A"</span>));    <span class="cmt">// false — duplicate!</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(hs);            <span class="cmt">// [A, B, C] (any order)</span>
+
+<span class="cmt">// LINKEDHASHSET — no duplicates, maintains insertion order</span>
+<span class="cls">LinkedHashSet</span> lhs = <span class="kw">new</span> <span class="cls">LinkedHashSet</span>();
+lhs.<span class="fn">add</span>(<span class="str">"B"</span>); lhs.<span class="fn">add</span>(<span class="str">"A"</span>); lhs.<span class="fn">add</span>(<span class="str">"C"</span>);
+<span class="cls">System</span>.out.<span class="fn">println</span>(lhs);           <span class="cmt">// [B, A, C] — insertion order</span>
+
+<span class="cmt">// TREESET — no duplicates, always SORTED, no null</span>
+<span class="cls">TreeSet</span> ts = <span class="kw">new</span> <span class="cls">TreeSet</span>();
+ts.<span class="fn">add</span>(<span class="str">"B"</span>); ts.<span class="fn">add</span>(<span class="str">"E"</span>); ts.<span class="fn">add</span>(<span class="str">"A"</span>);
+ts.<span class="fn">add</span>(<span class="str">"D"</span>); ts.<span class="fn">add</span>(<span class="str">"C"</span>); ts.<span class="fn">add</span>(<span class="str">"F"</span>);
+<span class="cls">System</span>.out.<span class="fn">println</span>(ts);            <span class="cmt">// [A, B, C, D, E, F]</span>
+
+<span class="cmt">// TreeSet navigation methods</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(ts.<span class="fn">ceiling</span>(<span class="str">"D"</span>));  <span class="cmt">// D (≥ D, lowest)</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(ts.<span class="fn">higher</span>(<span class="str">"D"</span>));   <span class="cmt">// E (> D, lowest)</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(ts.<span class="fn">floor</span>(<span class="str">"D"</span>));    <span class="cmt">// D (≤ D, highest)</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(ts.<span class="fn">lower</span>(<span class="str">"D"</span>));    <span class="cmt">// C (< D, highest)</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(ts.<span class="fn">descendingSet</span>()); <span class="cmt">// [F,E,D,C,B,A]</span></pre>
+    <div class="out"><div class="ok">false</div><div class="ok">[A, B, C]</div><div class="ok">[B, A, C]</div><div class="ok">[A, B, C, D, E, F]</div><div class="ok">D → E → D → C → [F, E, D, C, B, A]</div></div>
+  </div>
+
+  <div class="tc" id="t5">
+    <div class="sec-sub">HashMap — Key-Value Pairs, No Duplicate Keys</div>
+<pre><span class="kw">import</span> java.util.*;
+
+<span class="cls">HashMap</span> hm = <span class="kw">new</span> <span class="cls">HashMap</span>();
+hm.<span class="fn">put</span>(<span class="str">"A"</span>, <span class="str">"AAA"</span>);
+hm.<span class="fn">put</span>(<span class="str">"B"</span>, <span class="str">"BBB"</span>);
+hm.<span class="fn">put</span>(<span class="str">"C"</span>, <span class="str">"CCC"</span>);
+hm.<span class="fn">put</span>(<span class="str">"D"</span>, <span class="str">"DDD"</span>);
+
+<span class="cls">System</span>.out.<span class="fn">println</span>(hm.<span class="fn">get</span>(<span class="str">"B"</span>));          <span class="cmt">// BBB</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(hm.<span class="fn">containsKey</span>(<span class="str">"C"</span>));  <span class="cmt">// true</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(hm.<span class="fn">containsValue</span>(<span class="str">"DDD"</span>)); <span class="cmt">// true</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(hm.<span class="fn">size</span>());            <span class="cmt">// 4</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(hm.<span class="fn">keySet</span>());          <span class="cmt">// [A, B, C, D]</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(hm.<span class="fn">values</span>());          <span class="cmt">// [AAA, BBB, CCC, DDD]</span>
+
+<span class="cmt">// Iterate over key-value pairs</span>
+<span class="kw">for</span>(<span class="cls">Map</span>.<span class="cls">Entry</span> e : hm.<span class="fn">entrySet</span>()) {
+    <span class="cls">System</span>.out.<span class="fn">println</span>(e.<span class="fn">getKey</span>() + <span class="str">" → "</span> + e.<span class="fn">getValue</span>());
+}
+
+<span class="cmt">// LinkedHashMap → maintains insertion order</span>
+<span class="cls">LinkedHashMap</span> lhm = <span class="kw">new</span> <span class="cls">LinkedHashMap</span>();
+
+<span class="cmt">// TreeMap → sorted by keys</span>
+<span class="cls">TreeMap</span> tm = <span class="kw">new</span> <span class="cls">TreeMap</span>();
+tm.<span class="fn">put</span>(<span class="str">"C"</span>,<span class="num">3</span>); tm.<span class="fn">put</span>(<span class="str">"A"</span>,<span class="num">1</span>); tm.<span class="fn">put</span>(<span class="str">"B"</span>,<span class="num">2</span>);
+<span class="cls">System</span>.out.<span class="fn">println</span>(tm); <span class="cmt">// {A=1, B=2, C=3} sorted!</span></pre>
+    <div class="out"><div class="ok">BBB</div><div class="ok">true</div><div class="ok">true</div><div class="ok">A → AAA</div><div class="ok">B → BBB ...</div><div class="ok">{A=1, B=2, C=3}</div></div>
+  </div>
+
+  <div class="tc" id="t6">
+    <div class="sec-sub">PriorityQueue — Priority-Based Ordering (FIFO with priority)</div>
+<pre><span class="kw">import</span> java.util.*;
+
+<span class="cls">PriorityQueue</span> q = <span class="kw">new</span> <span class="cls">PriorityQueue</span>(); <span class="cmt">// default cap 11</span>
+q.<span class="fn">offer</span>(<span class="str">"D"</span>); q.<span class="fn">offer</span>(<span class="str">"B"</span>);
+q.<span class="fn">offer</span>(<span class="str">"F"</span>); q.<span class="fn">offer</span>(<span class="str">"A"</span>);
+q.<span class="fn">offer</span>(<span class="str">"C"</span>); q.<span class="fn">offer</span>(<span class="str">"E"</span>);
+<span class="cls">System</span>.out.<span class="fn">println</span>(q);               <span class="cmt">// internal heap structure</span>
+
+<span class="cmt">// peek/element — read head (no remove)</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(q.<span class="fn">peek</span>());        <span class="cmt">// A (null if empty)</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(q.<span class="fn">element</span>());     <span class="cmt">// A (exception if empty)</span>
+
+<span class="cmt">// poll/remove — read and remove head</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(q.<span class="fn">poll</span>());        <span class="cmt">// A (null if empty)</span>
+<span class="cls">System</span>.out.<span class="fn">println</span>(q.<span class="fn">remove</span>());      <span class="cmt">// B (exception if empty)</span>
+
+<span class="cmt">// ❌ null not allowed → NullPointerException</span>
+<span class="cmt">// ❌ heterogeneous not allowed → ClassCastException</span>
+<span class="cmt">// ✅ duplicates allowed</span>
+<span class="cmt">// ✅ follows sorting order (natural/Comparator)</span></pre>
+    <div class="out"><div class="ok">A</div><div class="ok">A</div><div class="ok">A (removed)</div><div class="ok">B (removed)</div></div>
+  </div>
+
+  <div class="tc" id="t7">
+    <div class="sec-sub">Iterating over Collections — 4 Ways</div>
+<pre><span class="cls">ArrayList</span> al = <span class="kw">new</span> <span class="cls">ArrayList</span>();
+al.<span class="fn">add</span>(<span class="str">"A"</span>); al.<span class="fn">add</span>(<span class="str">"B"</span>); al.<span class="fn">add</span>(<span class="str">"C"</span>);
+
+<span class="cmt">// 1. for-each loop (simplest)</span>
+<span class="kw">for</span>(<span class="cls">Object</span> obj : al)
+    <span class="cls">System</span>.out.<span class="fn">println</span>(obj);
+
+<span class="cmt">// 2. Iterator (can remove while iterating)</span>
+<span class="cls">Iterator</span> it = al.<span class="fn">iterator</span>();
+<span class="kw">while</span>(it.<span class="fn">hasNext</span>()) {
+    <span class="cls">System</span>.out.<span class="fn">println</span>(it.<span class="fn">next</span>());
+}
+
+<span class="cmt">// 3. ListIterator (bidirectional, List only)</span>
+<span class="cls">ListIterator</span> lit = al.<span class="fn">listIterator</span>();
+<span class="kw">while</span>(lit.<span class="fn">hasNext</span>())
+    <span class="cls">System</span>.out.<span class="fn">print</span>(lit.<span class="fn">next</span>() + <span class="str">" "</span>);    <span class="cmt">// forward</span>
+<span class="kw">while</span>(lit.<span class="fn">hasPrevious</span>())
+    <span class="cls">System</span>.out.<span class="fn">print</span>(lit.<span class="fn">previous</span>() + <span class="str">" "</span>); <span class="cmt">// backward</span>
+
+<span class="cmt">// 4. Collections utility methods</span>
+<span class="cls">Collections</span>.<span class="fn">sort</span>(al);          <span class="cmt">// sort</span>
+<span class="cls">Collections</span>.<span class="fn">reverse</span>(al);       <span class="cmt">// reverse</span>
+<span class="cls">Collections</span>.<span class="fn">shuffle</span>(al);       <span class="cmt">// random shuffle</span>
+<span class="cls">Collections</span>.<span class="fn">min</span>(al);           <span class="cmt">// minimum element</span>
+<span class="cls">Collections</span>.<span class="fn">max</span>(al);           <span class="cmt">// maximum element</span>
+<span class="cls">Collections</span>.<span class="fn">frequency</span>(al,<span class="str">"A"</span>); <span class="cmt">// count of "A"</span></pre>
+  </div>
+</div>
+
+<!-- Quick comparison table -->
+<div class="panel">
+  <div class="panel-head"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="panel-title">Quick Comparison — List Implementations</span></div>
+  <div class="tc active" style="display:block;padding:0;">
+    <table>
+      <tr><th>Feature</th><th>ArrayList</th><th>LinkedList</th><th>Vector</th></tr>
+      <tr><td>Internal DS</td><td>Resizable Array</td><td>Double Linked List</td><td>Resizable Array</td></tr>
+      <tr><td>Best for</td><td>Retrieval</td><td>Insert/Delete</td><td>Thread-safe retrieval</td></tr>
+      <tr><td>Synchronized</td><td class="no">❌ No</td><td class="no">❌ No</td><td class="yes">✅ Yes</td></tr>
+      <tr><td>Capacity growth</td><td>(cap × 3/2) + 1</td><td>N/A (linked)</td><td>2 × cap</td></tr>
+      <tr><td>Introduced</td><td>JDK 1.2</td><td>JDK 1.2</td><td>JDK 1.0 (Legacy)</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="callout"><span style="font-size:15px;flex-shrink:0">💡</span><span><strong>Collections vs Collection:</strong> <code>Collection</code> (singular) is the interface. <code>Collections</code> (plural) is a utility class with static methods like <code>sort()</code>, <code>reverse()</code>, <code>shuffle()</code>, <code>min()</code>, <code>max()</code>.</span></div>
+
+</div>
+<script>
+function sw(tab,id){
+  tab.closest('.panel').querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  tab.closest('.panel').querySelectorAll('.tc').forEach(c=>c.classList.remove('active'));
+  tab.classList.add('active');document.getElementById(id).classList.add('active');
+}
+</script>
+</body></html>
