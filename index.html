@@ -1,2 +1,198 @@
-<h1> hello </h1>
-<a href="C:\Users\yogan\Downloads" > java encapsulation</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java Encapsulation</title>
+<style>
+  :root {
+    --bg: #faf9f5;
+    --surface: #ffffff;
+    --ink: #1f1e1d;
+    --muted: #6b6864;
+    --line: #ece9e1;
+    --accent: #d97757;
+    --accent-soft: #f7ede8;
+    --code-bg: #2b2a28;
+    --code-key: #d99a76;
+    --code-str: #9ec48a;
+    --code-com: #7d7a74;
+    --code-txt: #e8e6e0;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    padding: 48px 20px;
+  }
+
+  .wrap { max-width: 720px; margin: 0 auto; }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-size: 38px;
+    line-height: 1.15;
+    margin: 0 0 12px;
+    letter-spacing: -0.02em;
+  }
+
+  .lede {
+    font-size: 17px;
+    color: var(--muted);
+    margin: 0 0 40px;
+    max-width: 56ch;
+  }
+
+  h2 {
+    font-size: 20px;
+    margin: 36px 0 12px;
+    letter-spacing: -0.01em;
+  }
+
+  p { margin: 0 0 14px; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .pillars .card { margin-bottom: 0; }
+  .pillars h3 {
+    margin: 0 0 6px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex: none;
+  }
+  .pillars p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  pre {
+    background: var(--code-bg);
+    color: var(--code-txt);
+    border-radius: 14px;
+    padding: 20px 22px;
+    overflow-x: auto;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    line-height: 1.7;
+    margin: 0 0 16px;
+  }
+  .k { color: var(--code-key); }
+  .s { color: var(--code-str); }
+  .c { color: var(--code-com); }
+
+  .note {
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    padding: 14px 18px;
+    border-radius: 0 10px 10px 0;
+    font-size: 14.5px;
+    color: #5a4a40;
+  }
+  .note strong { color: var(--ink); }
+
+  footer {
+    margin-top: 40px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  @media (max-width: 560px) {
+    .pillars { grid-template-columns: 1fr; }
+    h1 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <span class="eyebrow">Java &middot; OOP</span>
+    <h1>Encapsulation</h1>
+    <p class="lede">Bundling data and the methods that act on it inside one class &mdash; and hiding the internal details from the outside world.</p>
+
+    <h2>The idea</h2>
+    <div class="card">
+      <p>Make fields <code>private</code> so they can't be touched directly. Expose controlled access through public <em>getter</em> and <em>setter</em> methods. The class decides what's allowed; the outside only sees a clean interface.</p>
+    </div>
+
+    <h2>Example</h2>
+<pre><span class="k">public class</span> BankAccount {
+    <span class="k">private double</span> balance;   <span class="c">// hidden field</span>
+
+    <span class="k">public double</span> getBalance() {
+        <span class="k">return</span> balance;
+    }
+
+    <span class="k">public void</span> deposit(<span class="k">double</span> amount) {
+        <span class="k">if</span> (amount &gt; <span class="s">0</span>) {     <span class="c">// guard the rules</span>
+            balance += amount;
+        }
+    }
+}</pre>
+
+    <div class="note">
+      <strong>Why the guard matters:</strong> outside code can't set a negative balance &mdash; it must go through <code>deposit()</code>, which enforces the rule.
+    </div>
+
+    <h2>Why use it</h2>
+    <div class="pillars">
+      <div class="card">
+        <h3><span class="dot"></span>Control</h3>
+        <p>Validate every change before it touches the data.</p>
+      </div>
+      <div class="card">
+        <h3><span class="dot"></span>Safety</h3>
+        <p>Internal state can't be set to invalid values.</p>
+      </div>
+      <div class="card">
+        <h3><span class="dot"></span>Flexibility</h3>
+        <p>Change the internals later without breaking callers.</p>
+      </div>
+      <div class="card">
+        <h3><span class="dot"></span>Clarity</h3>
+        <p>Users see a small, clear interface &mdash; not the mess.</p>
+      </div>
+    </div>
+
+    <footer>
+      One line to remember: <em>keep fields private, expose behavior through methods.</em>
+    </footer>
+  </div>
+</body>
+</html>
