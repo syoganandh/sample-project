@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Page</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1A1816;
+      color: #F0EDE8;
+      min-height: 100vh;
+      padding: 48px 60px;
+    }
+
+    h1 {
+      font-size: 2.2em;
+      font-weight: bold;
+      color: #F0EDE8;
+      margin-bottom: 8px;
+    }
+
+    .faculty {
+      color: #9E9A94;
+      font-size: 1em;
+      margin-bottom: 32px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 680px;
+      background-color: #24211E;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      border: 1px solid #3D3835;
+      padding: 11px 20px;
+      text-align: left;
+    }
+
+    th {
+      font-weight: bold;
+      background-color: #2E2A27;
+      color: #E8C9A0;
+      font-size: 0.95em;
+      letter-spacing: 0.04em;
+    }
+
+    tr:hover td {
+      background-color: #2A2725;
+    }
+
+    td {
+      color: #D6D2CC;
+      font-size: 0.95em;
+    }
+
+    a {
+      color: #E8834A;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    a:hover {
+      color: #F5A472;
+    }
+
+    /* ── Modal ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      z-index: 200;
+      overflow-y: auto;
+    }
+
+    .modal {
+      background: #24211E;
+      width: 520px;
+      margin: 60px auto 60px;
+      padding: 30px 34px 28px;
+      border-radius: 10px;
+      border: 1px solid #3D3835;
+      position: relative;
+    }
+
+    .modal h2 {
+      font-size: 1.1em;
+      color: #E8C9A0;
+      margin-bottom: 18px;
+      padding-right: 28px;
+    }
+
+    .modal .question {
+      margin: 16px 0 8px;
+      font-weight: bold;
+      color: #F0EDE8;
+      font-size: 0.93em;
+    }
+
+    .modal label {
+      display: block;
+      margin: 5px 0;
+      cursor: pointer;
+      color: #C8C4BE;
+      font-size: 0.9em;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+
+    .modal label:hover { background: #2E2A27; }
+
+    .modal button.close-btn {
+      position: absolute;
+      top: 14px; right: 16px;
+      background: none;
+      border: none;
+      color: #9E9A94;
+      font-size: 1.3em;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .modal button.close-btn:hover { color: #F0EDE8; }
+
+    .modal button.submit-btn {
+      margin-top: 20px;
+      padding: 9px 24px;
+      background-color: #E8834A;
+      color: #1A1816;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.92em;
+      font-weight: bold;
+    }
+
+    .modal button.submit-btn:hover { background-color: #F5A472; }
+
+    #quiz-result {
+      margin-top: 14px;
+      font-weight: bold;
+      font-size: 0.95em;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Course Page</h1>
+  <p class="faculty">Faculty: sampathirao yoganandh</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Topic</th>
+        <th>Quiz</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="java_01_history.html">1. History of Java</a></td>
+        <td><a href="#" onclick="openQuiz(0);return false;">Quiz</a></td>
+      </tr>
+      <tr>
+        <td><a href="java_02_features.html">2. Features of Java</a></td>
+        <td><a href="#" onclick="openQuiz(1);return false;">Quiz</a></td>
+      </tr>
+      <tr>
+        <td><a href="java_03_datatypes.html">3. Data Types &amp; Variables</a></td>
+        <td><a href="#" onclick="openQuiz(2);return false;">Quiz</a></td>
+      </tr>
+      <tr>
+        <td><a href="java_04_operators.html">4. Operators in Java</a></td>
+        <td><a href="#" onclick="openQuiz(3);return false;">Quiz</a></td>
+      </tr>
+      <tr>
+        <td><a href="java_05_controlflow.html">5. Control Flow Statements</a></td>
+        <td><a href="#" onclick="openQuiz(4);return false;">Quiz</a></td>
+      </tr>
+      <tr>
+        <td><a href="java_06_arrays.html">6. Arrays in Java</a></td>
+        <td><a href="#" onclick="openQuiz(5);return false;">Quiz</a></td>
+      </tr>
+      <tr>
+        <td><a href="java_07_oop.html">7. Object-Oriented Programming</a></td>
+        <td><a href="#" onclick="openQuiz(6);return false;">Quiz</a></td>
+      </tr>
+      <tr>
+        <td><a href="java_08_inheritance.html">8. Inheritance</a></td>
+        <td><a href="#" onclick="openQuiz(7);return false;">Quiz</a></td>
+      </tr>
+      <tr>
+        <td><a href="java_09_polymorphism.html">9. Polymorphism</a></td>
+        <td><a href="#" onclick="openQuiz(8);return false;">Quiz</a></td>
+      </tr>
+      <tr>
+        <td><a href="java_10_exceptions.html">10. Exception Handling</a></td>
+        <td><a href="#" onclick="openQuiz(9);return false;">Quiz</a></td>
+      </tr>
+      <tr>
+        <td><a href="java_11_collections.html">11. Collections Framework</a></td>
+        <td><a href="#" onclick="openQuiz(10);return false;">Quiz</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Quiz Modal -->
+  <div class="modal-overlay" id="quizModal">
+    <div class="modal">
+      <button class="close-btn" onclick="closeQuiz()">&#x2715;</button>
+      <h2 id="quiz-title"></h2>
+      <form id="quizForm"></form>
+      <div id="quiz-result"></div>
+    </div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        title: "Quiz 1: History of Java",
+        questions: [
+          { q: "In which year was Java first publicly released?", options: ["1991","1995","1999","2001"], answer: 1 },
+          { q: "Who is the original creator of Java?", options: ["Bjarne Stroustrup","Guido van Rossum","James Gosling","Dennis Ritchie"], answer: 2 },
+          { q: "Java was originally developed at which company?", options: ["Microsoft","Apple","IBM","Sun Microsystems"], answer: 3 },
+          { q: "What was Java's original project name?", options: ["Oak","Pine","Maple","Cedar"], answer: 0 },
+          { q: "Which company later acquired Sun Microsystems?", options: ["Google","Oracle","IBM","Microsoft"], answer: 1 }
+        ]
+      },
+      {
+        title: "Quiz 2: Features of Java",
+        questions: [
+          { q: "Which feature allows Java to run on any platform?", options: ["Multithreading","Platform Independence","Encapsulation","Garbage Collection"], answer: 1 },
+          { q: "Java's motto is:", options: ["Write Fast, Run Slow","Write Once, Run Anywhere","Code Once, Deploy Nowhere","Build Once, Test Everywhere"], answer: 1 },
+          { q: "Which of the following is NOT a feature of Java?", options: ["Object-Oriented","Compiled to machine code directly","Robust","Secure"], answer: 1 },
+          { q: "Java bytecode is executed by:", options: ["OS directly","CPU directly","JVM","Browser"], answer: 2 },
+          { q: "Which Java feature automatically manages memory?", options: ["Pointer Arithmetic","Garbage Collection","Manual Allocation","Stack Overflow"], answer: 1 }
+        ]
+      },
+      {
+        title: "Quiz 3: Data Types & Variables",
+        questions: [
+          { q: "What is the size of an `int` in Java?", options: ["8 bits","16 bits","32 bits","64 bits"], answer: 2 },
+          { q: "Which data type is used for a single character?", options: ["String","char","byte","short"], answer: 1 },
+          { q: "Which keyword declares a constant in Java?", options: ["const","static","final","fixed"], answer: 2 },
+          { q: "What is the default value of a boolean variable in Java?", options: ["true","false","0","null"], answer: 1 },
+          { q: "Which is the largest integer data type in Java?", options: ["int","long","short","byte"], answer: 1 }
+        ]
+      },
+      {
+        title: "Quiz 4: Operators in Java",
+        questions: [
+          { q: "What does the `%` operator return?", options: ["Division result","Quotient","Remainder","Exponent"], answer: 2 },
+          { q: "What is the result of `5 == 5` in Java?", options: ["5","0","true","false"], answer: 2 },
+          { q: "Which operator is used for logical AND?", options: ["&","||","&&","|"], answer: 2 },
+          { q: "What does `++i` do?", options: ["Returns i then increments","Increments i then returns","Decrements i","Does nothing"], answer: 1 },
+          { q: "Which operator is the ternary operator?", options: ["? :","::","->","??"], answer: 0 }
+        ]
+      },
+      {
+        title: "Quiz 5: Control Flow Statements",
+        questions: [
+          { q: "Which statement skips the current iteration of a loop?", options: ["break","return","continue","exit"], answer: 2 },
+          { q: "Which loop always executes at least once?", options: ["for","while","do-while","enhanced for"], answer: 2 },
+          { q: "What does `break` do in a switch statement?", options: ["Exits the program","Exits the switch block","Skips the next case","Goes to the default case"], answer: 1 },
+          { q: "Which keyword is used for multi-branch selection?", options: ["if","else","switch","select"], answer: 2 },
+          { q: "What is an infinite loop?", options: ["A loop that runs 100 times","A loop that never ends","A loop inside a loop","A loop with no body"], answer: 1 }
+        ]
+      },
+      {
+        title: "Quiz 6: Arrays in Java",
+        questions: [
+          { q: "How do you declare an integer array in Java?", options: ["int arr[]","array int[]","int[] arr","Both A and C"], answer: 3 },
+          { q: "What is the index of the first element in a Java array?", options: ["1","0","-1","Depends on array"], answer: 1 },
+          { q: "Which property gives the length of an array?", options: ["array.size()","array.length","array.count","array.len"], answer: 1 },
+          { q: "What happens when you access an invalid array index?", options: ["Returns null","Returns 0","ArrayIndexOutOfBoundsException","NullPointerException"], answer: 2 },
+          { q: "A 2D array is also called a:", options: ["Linked list","Matrix","Stack","Queue"], answer: 1 }
+        ]
+      },
+      {
+        title: "Quiz 7: Object-Oriented Programming",
+        questions: [
+          { q: "Which OOP concept hides internal details?", options: ["Inheritance","Polymorphism","Encapsulation","Abstraction"], answer: 2 },
+          { q: "What is an instance of a class called?", options: ["Method","Object","Variable","Package"], answer: 1 },
+          { q: "Which keyword creates a new object?", options: ["create","new","object","make"], answer: 1 },
+          { q: "A class that cannot be instantiated is called:", options: ["Final class","Static class","Abstract class","Private class"], answer: 2 },
+          { q: "Which OOP pillar allows one class to use methods of another?", options: ["Encapsulation","Abstraction","Polymorphism","Inheritance"], answer: 3 }
+        ]
+      },
+      {
+        title: "Quiz 8: Inheritance",
+        questions: [
+          { q: "Which keyword is used for inheritance in Java?", options: ["inherits","implements","extends","uses"], answer: 2 },
+          { q: "Which class is the parent of all Java classes?", options: ["Base","Super","Object","Root"], answer: 2 },
+          { q: "Java supports ______ inheritance through classes.", options: ["Multiple","Single","Triple","Hybrid"], answer: 1 },
+          { q: "Which keyword calls the parent class constructor?", options: ["this","super","parent","base"], answer: 1 },
+          { q: "A child class can ______ a method from its parent.", options: ["Delete","Override","Ignore","Rename"], answer: 1 }
+        ]
+      },
+      {
+        title: "Quiz 9: Polymorphism",
+        questions: [
+          { q: "Method overloading is an example of:", options: ["Runtime polymorphism","Compile-time polymorphism","Inheritance","Encapsulation"], answer: 1 },
+          { q: "Method overriding is an example of:", options: ["Compile-time polymorphism","Static binding","Runtime polymorphism","Abstraction"], answer: 2 },
+          { q: "Which annotation should be used when overriding a method?", options: ["@Override","@Overload","@Inherit","@Super"], answer: 0 },
+          { q: "In overloading, methods must differ in:", options: ["Return type only","Method name","Parameter list","Access modifier"], answer: 2 },
+          { q: "Which type of binding happens at runtime?", options: ["Static binding","Early binding","Dynamic binding","Compile-time binding"], answer: 2 }
+        ]
+      },
+      {
+        title: "Quiz 10: Exception Handling",
+        questions: [
+          { q: "Which block always executes regardless of an exception?", options: ["try","catch","finally","throw"], answer: 2 },
+          { q: "Which keyword is used to throw an exception manually?", options: ["throws","catch","throw","raise"], answer: 2 },
+          { q: "What is the parent class of all exceptions?", options: ["Error","RuntimeException","Throwable","Exception"], answer: 2 },
+          { q: "A checked exception must be:", options: ["Ignored","Caught or declared with throws","Only thrown","Only caught"], answer: 1 },
+          { q: "Which exception is thrown for division by zero?", options: ["NullPointerException","ArithmeticException","IOException","ClassCastException"], answer: 1 }
+        ]
+      },
+      {
+        title: "Quiz 11: Collections Framework",
+        questions: [
+          { q: "Which interface is the root of the Collection hierarchy?", options: ["List","Set","Collection","Map"], answer: 2 },
+          { q: "Which class implements a dynamic array?", options: ["LinkedList","HashMap","ArrayList","TreeSet"], answer: 2 },
+          { q: "Which collection does NOT allow duplicate elements?", options: ["ArrayList","LinkedList","Set","Vector"], answer: 2 },
+          { q: "Which collection stores key-value pairs?", options: ["List","Set","Queue","Map"], answer: 3 },
+          { q: "Which is thread-safe by default?", options: ["ArrayList","HashMap","Vector","LinkedList"], answer: 2 }
+        ]
+      }
+    ];
+
+    let currentQuizIndex = 0;
+
+    function openQuiz(index) {
+      currentQuizIndex = index;
+      const data = quizData[index];
+      document.getElementById('quiz-title').textContent = data.title;
+      document.getElementById('quiz-result').textContent = '';
+      document.getElementById('quiz-result').style.color = '';
+
+      let formHtml = '';
+      data.questions.forEach((q, qi) => {
+        formHtml += `<div class="question">${qi + 1}. ${q.q}</div>`;
+        q.options.forEach((opt, oi) => {
+          formHtml += `<label><input type="radio" name="q${qi}" value="${oi}"> ${opt}</label>`;
+        });
+      });
+      formHtml += `<button type="button" class="submit-btn" onclick="submitQuiz()">Submit</button>`;
+      document.getElementById('quizForm').innerHTML = formHtml;
+      document.getElementById('quizModal').style.display = 'block';
+    }
+
+    function closeQuiz() {
+      document.getElementById('quizModal').style.display = 'none';
+    }
+
+    function submitQuiz() {
+      const data = quizData[currentQuizIndex];
+      let score = 0;
+      let allAnswered = true;
+
+      for (let qi = 0; qi < data.questions.length; qi++) {
+        const sel = document.querySelector(`input[name="q${qi}"]:checked`);
+        if (!sel) { allAnswered = false; break; }
+        if (parseInt(sel.value) === data.questions[qi].answer) score++;
+      }
+
+      const result = document.getElementById('quiz-result');
+      if (!allAnswered) {
+        result.style.color = '#E85050';
+        result.textContent = 'Please answer all questions before submitting.';
+      } else {
+        const pct = Math.round((score / data.questions.length) * 100);
+        result.style.color = score >= 3 ? '#6ECA8F' : '#E8834A';
+        result.textContent = `Your score: ${score} / ${data.questions.length}  (${pct}%)`;
+      }
+    }
+
+    document.getElementById('quizModal').addEventListener('click', function(e) {
+      if (e.target === this) closeQuiz();
+    });
+  </script>
+</body>
+</html>
