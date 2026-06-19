@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Java Programming – Sampathirao Yoganandh</title>
+  <title>Courses – Sampathirao Yoganandh</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -94,6 +94,74 @@
       color: #6E6A64;
       margin-top: 12px;
     }
+
+    .courses-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+    }
+
+    .course-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #1E1B18;
+      border: 1px solid #3D3835;
+      border-radius: 10px;
+      padding: 14px 18px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .course-item:hover {
+      border-color: #E8834A;
+      background: #26221F;
+    }
+
+    .course-item-icon {
+      font-size: 1.6em;
+      flex-shrink: 0;
+    }
+
+    .course-item-info {
+      text-align: left;
+      flex: 1;
+    }
+
+    .course-item-name {
+      font-size: 0.92em;
+      font-weight: 700;
+      color: #F0EDE8;
+      margin-bottom: 3px;
+    }
+
+    .course-item-code {
+      font-size: 0.78em;
+      color: #9E9A94;
+    }
+
+    .course-item-arrow {
+      color: #E8834A;
+      font-size: 1.1em;
+      flex-shrink: 0;
+    }
+
+    .coming-soon {
+      opacity: 0.5;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .badge-soon {
+      font-size: 0.7em;
+      background: #3D3835;
+      color: #9E9A94;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
   </style>
 </head>
 <body>
@@ -105,8 +173,33 @@
     <div class="profile-branch">CSE (AI &amp; ML)</div>
     <div class="profile-org">ANITS Engineering College</div>
     <div class="divider"></div>
-    <a class="course-btn" href="courses.html">View Java Programming Course</a>
-    <div class="course-label">11 Topics &nbsp;·&nbsp; Quizzes Included</div>
+    <div class="courses-grid">
+      <a class="course-item" href="courses.html">
+        <div class="course-item-icon">☕</div>
+        <div class="course-item-info">
+          <div class="course-item-name">Java Programming Practices</div>
+          <div class="course-item-code">23CM9201 · R23 Regulation · CSE (AI &amp; ML)</div>
+        </div>
+        <div class="course-item-arrow">→</div>
+      </a>
+      <a class="course-item coming-soon" href="#">
+        <div class="course-item-icon">🐍</div>
+        <div class="course-item-info">
+          <div class="course-item-name">Python Programming <span class="badge-soon">Coming Soon</span></div>
+          <div class="course-item-code">23CM9202 · R23 Regulation · CSE (AI &amp; ML)</div>
+        </div>
+        <div class="course-item-arrow">→</div>
+      </a>
+      <a class="course-item coming-soon" href="#">
+        <div class="course-item-icon">🛠️</div>
+        <div class="course-item-info">
+          <div class="course-item-name">DevOps <span class="badge-soon">Coming Soon</span></div>
+          <div class="course-item-code">23CM9205 · R23 Regulation · CSE (AI &amp; ML)</div>
+        </div>
+        <div class="course-item-arrow">→</div>
+      </a>
+    </div>
+
   </div>
 
 </body>
