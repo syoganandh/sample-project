@@ -716,6 +716,9 @@
       .co-grid { grid-template-columns: 1fr; }
       .modal { border-radius: 14px; }
     }
+    .qtype-btn{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px 12px;cursor:pointer;text-align:center;transition:.15s;width:100%}
+    .qtype-btn:hover{border-color:var(--accent);background:rgba(240,124,62,.06)}
+    .code-q{background:#1a1f2e;border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-family:'Cascadia Code','Fira Code',Consolas,monospace;font-size:.82em;white-space:pre-wrap;word-break:break-all;color:#C8CAD8;margin-bottom:14px;line-height:1.55}
     @media print {
       nav, .hero, .tabs-bar, .panel:not(.active), .modal-overlay { display: none !important; }
       body { background: #fff; color: #111; }
@@ -754,6 +757,9 @@
       <button class="tab-btn active" onclick="switchTab('syllabus', this)">
         <span class="tab-icon">📋</span> Syllabus
       </button>
+      <button class="tab-btn" onclick="switchTab('marks', this)">
+        <span class="tab-icon">📊</span> Marks &amp; Evaluation
+      </button>
       <button class="tab-btn" onclick="switchTab('topics', this)">
         <span class="tab-icon">📖</span> Topics &amp; Quizzes
       </button>
@@ -782,7 +788,7 @@
           </div>
           <div class="card-actions">
             <a class="btn-notes" href="java_w01.html"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Notes</a>
-            <button class="btn-quiz" onclick="openQuiz(3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
+            <button class="btn-quiz" onclick="openQuiz(0)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
           </div>
         </div>
 
@@ -794,7 +800,7 @@
           </div>
           <div class="card-actions">
             <a class="btn-notes" href="java_w03.html"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Notes</a>
-            <button class="btn-quiz" onclick="openQuiz(2)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
+            <button class="btn-quiz" onclick="openQuiz(1)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
           </div>
         </div>
 
@@ -806,7 +812,7 @@
           </div>
           <div class="card-actions">
             <a class="btn-notes" href="java_w04.html"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Notes</a>
-            <button class="btn-quiz" onclick="openQuiz(3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
+            <button class="btn-quiz" onclick="openQuiz(2)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
           </div>
         </div>
 
@@ -818,7 +824,7 @@
           </div>
           <div class="card-actions">
             <a class="btn-notes" href="java_w06.html"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Notes</a>
-            <button class="btn-quiz" onclick="openQuiz(6)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
+            <button class="btn-quiz" onclick="openQuiz(3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
           </div>
         </div>
 
@@ -830,7 +836,7 @@
           </div>
           <div class="card-actions">
             <a class="btn-notes" href="java_w07.html"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Notes</a>
-            <button class="btn-quiz" onclick="openQuiz(3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
+            <button class="btn-quiz" onclick="openQuiz(4)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
           </div>
         </div>
 
@@ -842,7 +848,7 @@
           </div>
           <div class="card-actions">
             <a class="btn-notes" href="java_w08.html"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Notes</a>
-            <button class="btn-quiz" onclick="openQuiz(3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
+            <button class="btn-quiz" onclick="openQuiz(5)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
           </div>
         </div>
 
@@ -854,7 +860,7 @@
           </div>
           <div class="card-actions">
             <a class="btn-notes" href="java_w09.html"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Notes</a>
-            <button class="btn-quiz" onclick="openQuiz(5)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
+            <button class="btn-quiz" onclick="openQuiz(6)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
           </div>
         </div>
 
@@ -866,7 +872,7 @@
           </div>
           <div class="card-actions">
             <a class="btn-notes" href="java_w10.html"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Notes</a>
-            <button class="btn-quiz" onclick="openQuiz(9)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
+            <button class="btn-quiz" onclick="openQuiz(7)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
           </div>
         </div>
 
@@ -878,7 +884,7 @@
           </div>
           <div class="card-actions">
             <a class="btn-notes" href="java_w11.html"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Notes</a>
-            <button class="btn-quiz" onclick="openQuiz(7)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
+            <button class="btn-quiz" onclick="openQuiz(8)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
           </div>
         </div>
 
@@ -890,7 +896,7 @@
           </div>
           <div class="card-actions">
             <a class="btn-notes" href="java_w12.html"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Notes</a>
-            <button class="btn-quiz" onclick="openQuiz(8)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
+            <button class="btn-quiz" onclick="openQuiz(9)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
           </div>
         </div>
 
@@ -914,7 +920,7 @@
           </div>
           <div class="card-actions">
             <a class="btn-notes" href="java_w14.html"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Notes</a>
-            <button class="btn-quiz" onclick="openQuiz(10)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
+            <button class="btn-quiz" onclick="openQuiz(11)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Take Quiz</button>
           </div>
         </div>
 
@@ -1190,6 +1196,291 @@
     </div>
   </div>
 
+  <!-- PANEL: MARKS -->
+  <div id="panel-marks" class="panel">
+    <div class="panel-inner">
+
+      <div class="section-title">📊 Marks &amp; Evaluation</div>
+      <p class="section-sub">Java Programming Practices · 23CM9201 · R23 Regulation</p>
+
+      <!-- Total bar -->
+      <div style="display:flex;border-radius:10px;overflow:hidden;height:40px;margin:24px 0 10px;">
+        <div style="background:#e8834a;flex:60;display:flex;align-items:center;justify-content:center;color:#1a1816;font-weight:700;font-size:.9em;">Internal (Sessional) — 60 Marks</div>
+        <div style="background:#4ab8e8;flex:40;display:flex;align-items:center;justify-content:center;color:#1a1816;font-weight:700;font-size:.9em;">External (End Exam) — 40 Marks</div>
+      </div>
+      <p style="text-align:center;font-size:.75em;color:var(--muted);margin-bottom:28px;">Grand Total = 100 Marks</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+
+        <!-- INTERNAL -->
+        <div style="background:#1e1b18;border:1px solid #3d3835;border-radius:12px;padding:18px;">
+          <div style="font-size:.72em;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#e8834a;margin-bottom:16px;">Internal / Sessional — 60 M</div>
+
+          <!-- Mid Average -->
+          <div style="margin-bottom:14px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+              <span style="font-size:.84em;color:#e8c9a0;font-weight:600;">Mid Average</span>
+              <span style="font-size:.9em;font-weight:700;color:#f0ede8;background:#3d3835;border-radius:6px;padding:1px 9px;">15</span>
+            </div>
+            <div style="background:#1a1816;border-radius:4px;height:6px;"><div style="width:25%;height:6px;border-radius:4px;background:#e8834a;"></div></div>
+            <div style="margin-top:6px;padding-left:10px;border-left:2px solid #3d3835;display:flex;flex-direction:column;gap:4px;">
+              <div style="display:flex;justify-content:space-between;font-size:.75em;color:#9e9a94;"><span>Mid-1 Exam</span><span style="color:#c8c4be;font-weight:600;">15 M</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:.75em;color:#9e9a94;"><span>Mid-2 Exam</span><span style="color:#c8c4be;font-weight:600;">15 M</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:.75em;color:#e8834a;font-style:italic;"><span>Average of both is counted</span><span>= 15</span></div>
+            </div>
+          </div>
+
+          <!-- Daily Evaluation -->
+          <div style="margin-bottom:14px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+              <span style="font-size:.84em;color:#e8c9a0;font-weight:600;">Daily Evaluation <span style="font-size:.78em;color:#aaa;font-weight:400;">(Weekly Assessment)</span></span>
+              <span style="font-size:.9em;font-weight:700;color:#f0ede8;background:#3d3835;border-radius:6px;padding:1px 9px;">20</span>
+            </div>
+            <div style="background:#1a1816;border-radius:4px;height:6px;"><div style="width:33%;height:6px;border-radius:4px;background:#e8c94a;"></div></div>
+            <div style="margin-top:6px;padding-left:10px;border-left:2px solid #3d3835;display:flex;flex-direction:column;gap:4px;">
+              <div style="display:flex;justify-content:space-between;font-size:.75em;color:#9e9a94;"><span>📝 Record (Lab Notebook)</span><span style="color:#c8c4be;font-weight:600;">10 M</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:.75em;color:#9e9a94;"><span>📊 Regular Performance</span><span style="color:#c8c4be;font-weight:600;">10 M</span></div>
+            </div>
+            <button onclick="document.getElementById('weeklyAssessModal').style.display='flex';this.blur();"
+              style="margin-top:8px;width:100%;background:transparent;border:1px solid #4a6cf7;border-radius:8px;padding:6px 0;color:#4a6cf7;font-size:.75em;cursor:pointer;letter-spacing:.04em;transition:background .2s;"
+              onmouseover="this.style.background='#1a1e3a'" onmouseout="this.style.background='transparent'">
+              📋 How is this scored? View Breakdown
+            </button>
+          </div>
+
+          <!-- Attendance -->
+          <div style="margin-bottom:14px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+              <span style="font-size:.84em;color:#e8c9a0;font-weight:600;">Attendance <span style="font-size:.78em;color:#aaa;font-weight:400;">(this subject only)</span></span>
+              <span style="font-size:.9em;font-weight:700;color:#f0ede8;background:#3d3835;border-radius:6px;padding:1px 9px;">5</span>
+            </div>
+            <div style="background:#1a1816;border-radius:4px;height:6px;margin-bottom:10px;"><div style="width:8%;height:6px;border-radius:4px;background:#4ae89a;"></div></div>
+            <!-- Attendance slab table -->
+            <div style="border-radius:10px;overflow:hidden;border:1px solid #2e2b27;font-size:.75em;">
+              <div style="display:grid;grid-template-columns:1fr 1fr;background:#2a2724;padding:6px 10px;font-weight:700;color:#c8c4be;letter-spacing:.05em;">
+                <span>Your Attendance %</span><span style="text-align:right;">Marks You Get</span>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;padding:7px 10px;background:#1e1b18;align-items:center;">
+                <span style="color:#4ae89a;font-weight:600;">Above 90%</span>
+                <span style="text-align:right;"><span style="background:#1a3a28;color:#4ae89a;font-weight:700;border-radius:6px;padding:2px 10px;">5 / 5</span></span>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;padding:7px 10px;background:#1a1816;align-items:center;">
+                <span style="color:#a8e87a;font-weight:600;">80% – 90%</span>
+                <span style="text-align:right;"><span style="background:#1e3010;color:#a8e87a;font-weight:700;border-radius:6px;padding:2px 10px;">4 / 5</span></span>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;padding:7px 10px;background:#1e1b18;align-items:center;">
+                <span style="color:#e8c94a;font-weight:600;">75% – 80%</span>
+                <span style="text-align:right;"><span style="background:#3a3010;color:#e8c94a;font-weight:700;border-radius:6px;padding:2px 10px;">3 / 5</span></span>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;padding:7px 10px;background:#1a1816;align-items:center;">
+                <span style="color:#e8944a;font-weight:600;">66% – 75%</span>
+                <span style="text-align:right;"><span style="background:#3a1e08;color:#e8944a;font-weight:700;border-radius:6px;padding:2px 10px;">2 / 5</span></span>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;padding:7px 10px;background:#1e1b18;align-items:center;">
+                <span style="color:#e85a5a;font-weight:600;">Below 66%</span>
+                <span style="text-align:right;"><span style="background:#3a1010;color:#e85a5a;font-weight:700;border-radius:6px;padding:2px 10px;">0 / 5</span></span>
+              </div>
+            </div>
+            <div style="margin-top:7px;font-size:.72em;color:#9e9a94;padding-left:4px;">⚠️ Only <strong style="color:#e8c9a0;">this subject's lab attendance</strong> is counted — not your overall attendance.</div>
+          </div>
+
+          <!-- Internal Lab Exam -->
+          <div style="margin-bottom:14px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+              <span style="font-size:.84em;color:#e8c9a0;font-weight:600;">Internal Lab Exam</span>
+              <span style="font-size:.9em;font-weight:700;color:#f0ede8;background:#3d3835;border-radius:6px;padding:1px 9px;">20</span>
+            </div>
+            <div style="background:#1a1816;border-radius:4px;height:6px;"><div style="width:33%;height:6px;border-radius:4px;background:#e8834a;"></div></div>
+            <div style="margin-top:6px;padding-left:10px;border-left:2px solid #3d3835;display:flex;flex-direction:column;gap:4px;">
+              <div style="display:flex;justify-content:space-between;font-size:.75em;color:#9e9a94;"><span>📄 Description</span><span style="color:#c8c4be;font-weight:600;">10 M</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:.75em;color:#9e9a94;"><span>💻 Execution</span><span style="color:#c8c4be;font-weight:600;">5 M</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:.75em;color:#9e9a94;"><span>🗣️ Viva</span><span style="color:#c8c4be;font-weight:600;">5 M</span></div>
+            </div>
+          </div>
+
+          <div style="border-top:1px solid #3d3835;margin-top:10px;padding-top:10px;display:flex;justify-content:space-between;font-size:.85em;font-weight:700;color:#f0ede8;">
+            <span>Total Internal</span><span style="color:#e8834a;">60 / 60</span>
+          </div>
+        </div>
+
+        <!-- EXTERNAL + TIPS -->
+        <div style="display:flex;flex-direction:column;gap:14px;">
+
+          <div style="background:#1e1b18;border:1px solid #3d3835;border-radius:12px;padding:18px;">
+            <div style="font-size:.72em;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#4ab8e8;margin-bottom:16px;">External / End Exam — 40 M</div>
+
+            <div style="margin-bottom:14px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+                <span style="font-size:.84em;color:#e8c9a0;font-weight:600;">📝 Writeup</span>
+                <span style="font-size:.9em;font-weight:700;color:#f0ede8;background:#3d3835;border-radius:6px;padding:1px 9px;">20</span>
+              </div>
+              <div style="background:#1a1816;border-radius:4px;height:6px;"><div style="width:50%;height:6px;border-radius:4px;background:#4ab8e8;"></div></div>
+            </div>
+
+            <div style="margin-bottom:14px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+                <span style="font-size:.84em;color:#e8c9a0;font-weight:600;">💻 Execution</span>
+                <span style="font-size:.9em;font-weight:700;color:#f0ede8;background:#3d3835;border-radius:6px;padding:1px 9px;">10</span>
+              </div>
+              <div style="background:#1a1816;border-radius:4px;height:6px;"><div style="width:25%;height:6px;border-radius:4px;background:#4ab8e8;"></div></div>
+            </div>
+
+            <div style="margin-bottom:14px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+                <span style="font-size:.84em;color:#e8c9a0;font-weight:600;">🗣️ Viva</span>
+                <span style="font-size:.9em;font-weight:700;color:#f0ede8;background:#3d3835;border-radius:6px;padding:1px 9px;">10</span>
+              </div>
+              <div style="background:#1a1816;border-radius:4px;height:6px;"><div style="width:25%;height:6px;border-radius:4px;background:#4ab8e8;"></div></div>
+            </div>
+
+            <div style="border-top:1px solid #3d3835;margin-top:10px;padding-top:10px;display:flex;justify-content:space-between;font-size:.85em;font-weight:700;color:#f0ede8;">
+              <span>Total External</span><span style="color:#4ab8e8;">40 / 40</span>
+            </div>
+          </div>
+
+          <!-- Tips -->
+          <div style="background:#1e1b18;border:1px solid #3d3835;border-radius:12px;padding:16px;font-size:.8em;color:#9e9a94;line-height:1.75;">
+            <div style="color:#e8c9a0;font-weight:700;margin-bottom:8px;">💡 Tips to Score Well</div>
+            <div>✅ Submit writeups <strong style="color:#c8c4be;">before</strong> each lab session</div>
+            <div>✅ Run programs without errors — execution marks are easy</div>
+            <div>✅ Prepare viva answers for every experiment</div>
+            <div>✅ Keep your lab record neat and up-to-date</div>
+            <div>✅ Don't miss this subject's lab sessions — attendance here (not total) gives you 5 marks</div>
+          </div>
+
+          <!-- Mid note -->
+          <div style="background:#1e1b18;border:1px solid #3d3835;border-radius:12px;padding:16px;font-size:.8em;color:#9e9a94;line-height:1.75;">
+            <div style="color:#e8c9a0;font-weight:700;margin-bottom:8px;">📌 About Mid Exams</div>
+            Both Mid-1 and Mid-2 are out of <strong style="color:#c8c4be;">15 marks each</strong>. Your final mid score is calculated as:<br><br>
+            <span style="display:block;background:#1a1816;border-radius:8px;padding:10px 14px;margin:6px 0;font-size:.82em;line-height:1.9;">
+              🏆 <strong style="color:#4ae89a;">Better mid score</strong> — <strong style="color:#4ae89a;">¾ (75%)</strong> of those marks are counted<br>
+              📉 <strong style="color:#e8834a;">Lower mid score</strong> — <strong style="color:#e8834a;">⅓ (33%)</strong> of those marks are counted
+            </span>
+            So always aim to do well in <strong style="color:#c8c4be;">both</strong> mids — but even if one goes badly, a strong performance in the other limits the damage.
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── WEEKLY ASSESSMENT MODAL ── -->
+      <div id="weeklyAssessModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;align-items:center;justify-content:center;padding:20px;" onclick="if(event.target===this)this.style.display='none';">
+        <div style="background:#18150f;border:1px solid #3d3835;border-radius:16px;width:100%;max-width:820px;max-height:90vh;overflow-y:auto;padding:28px 28px 24px;">
+
+          <!-- Header -->
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+            <div>
+              <div style="font-size:1em;font-weight:700;color:#f0ede8;">📋 Weekly Assessment Breakdown</div>
+              <div style="font-size:.76em;color:#9e9a94;margin-top:3px;">Every lab session is assessed out of 20 marks</div>
+            </div>
+            <button onclick="document.getElementById('weeklyAssessModal').style.display='none';" style="background:#2a2724;border:1px solid #3d3835;border-radius:8px;color:#c8c4be;font-size:1em;padding:4px 12px;cursor:pointer;">✕ Close</button>
+          </div>
+
+          <!-- Total bar -->
+          <div style="display:flex;border-radius:10px;overflow:hidden;height:38px;margin-bottom:6px;">
+            <div style="background:#4a6cf7;flex:10;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:.85em;">Regular Performance — 10 Marks</div>
+            <div style="background:#0f6e56;flex:10;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:.85em;">Record Book — 10 Marks</div>
+          </div>
+          <p style="text-align:center;font-size:.73em;color:#9e9a94;margin-bottom:20px;">Weekly Assessment Total = 20 Marks</p>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+
+            <!-- Regular Performance -->
+            <div style="background:#1e1b18;border:1px solid #3d3835;border-radius:12px;padding:16px;">
+              <div style="font-size:.7em;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#4a6cf7;margin-bottom:14px;">Regular Performance — 10 M</div>
+
+              <div style="margin-bottom:12px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                  <span style="font-size:.82em;color:#e8c9a0;font-weight:600;">Theoretical Knowledge</span>
+                  <span style="font-size:.82em;font-weight:700;color:#fff;background:#3d3835;border-radius:6px;padding:1px 8px;">3 M</span>
+                </div>
+                <div style="background:#1a1816;border-radius:4px;height:4px;margin-bottom:6px;"><div style="width:30%;height:4px;border-radius:4px;background:#4a6cf7;"></div></div>
+                <div style="padding-left:8px;border-left:2px solid #3d3835;display:flex;flex-direction:column;gap:2px;">
+                  <div style="display:flex;gap:6px;font-size:.73em;color:#9e9a94;"><span style="color:#c8c4be;font-weight:600;min-width:12px;">3</span><span>Clear understanding of Java concepts, accurate explanation</span></div>
+                  <div style="display:flex;gap:6px;font-size:.73em;color:#9e9a94;"><span style="color:#c8c4be;font-weight:600;min-width:12px;">2</span><span>Understands topic but with minor gaps</span></div>
+                  <div style="display:flex;gap:6px;font-size:.73em;color:#9e9a94;"><span style="color:#c8c4be;font-weight:600;min-width:12px;">1</span><span>Partial understanding, noticeable errors</span></div>
+                  <div style="display:flex;gap:6px;font-size:.73em;color:#9e9a94;"><span style="color:#c8c4be;font-weight:600;min-width:12px;">0</span><span>No attempt or irrelevant response</span></div>
+                </div>
+              </div>
+
+              <div style="margin-bottom:12px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                  <span style="font-size:.82em;color:#e8c9a0;font-weight:600;">Programming Knowledge</span>
+                  <span style="font-size:.82em;font-weight:700;color:#fff;background:#3d3835;border-radius:6px;padding:1px 8px;">3 M</span>
+                </div>
+                <div style="background:#1a1816;border-radius:4px;height:4px;margin-bottom:6px;"><div style="width:30%;height:4px;border-radius:4px;background:#d85a30;"></div></div>
+                <div style="padding-left:8px;border-left:2px solid #3d3835;display:flex;flex-direction:column;gap:2px;">
+                  <div style="display:flex;gap:6px;font-size:.73em;color:#9e9a94;"><span style="color:#c8c4be;font-weight:600;min-width:12px;">3</span><span>Code correct, well-structured, follows OOP standards</span></div>
+                  <div style="display:flex;gap:6px;font-size:.73em;color:#9e9a94;"><span style="color:#c8c4be;font-weight:600;min-width:12px;">2</span><span>Minor syntax / logic errors, overall correct</span></div>
+                  <div style="display:flex;gap:6px;font-size:.73em;color:#9e9a94;"><span style="color:#c8c4be;font-weight:600;min-width:12px;">1</span><span>Incomplete or requires significant guidance</span></div>
+                  <div style="display:flex;gap:6px;font-size:.73em;color:#9e9a94;"><span style="color:#c8c4be;font-weight:600;min-width:12px;">0</span><span>No program or copied without understanding</span></div>
+                </div>
+              </div>
+
+              <div style="margin-bottom:12px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                  <span style="font-size:.82em;color:#e8c9a0;font-weight:600;">Results / Output</span>
+                  <span style="font-size:.82em;font-weight:700;color:#fff;background:#3d3835;border-radius:6px;padding:1px 8px;">2 M</span>
+                </div>
+                <div style="background:#1a1816;border-radius:4px;height:4px;margin-bottom:6px;"><div style="width:20%;height:4px;border-radius:4px;background:#ba7517;"></div></div>
+                <div style="padding-left:8px;border-left:2px solid #3d3835;display:flex;flex-direction:column;gap:2px;">
+                  <div style="display:flex;gap:6px;font-size:.73em;color:#9e9a94;"><span style="color:#c8c4be;font-weight:600;min-width:12px;">2</span><span>Compiles &amp; runs; output fully correct and verified</span></div>
+                  <div style="display:flex;gap:6px;font-size:.73em;color:#9e9a94;"><span style="color:#c8c4be;font-weight:600;min-width:12px;">1</span><span>Runs but output partially correct</span></div>
+                  <div style="display:flex;gap:6px;font-size:.73em;color:#9e9a94;"><span style="color:#c8c4be;font-weight:600;min-width:12px;">0</span><span>Does not compile or no output</span></div>
+                </div>
+              </div>
+
+              <div style="margin-bottom:12px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                  <span style="font-size:.82em;color:#e8c9a0;font-weight:600;">Viva-Voce</span>
+                  <span style="font-size:.82em;font-weight:700;color:#fff;background:#3d3835;border-radius:6px;padding:1px 8px;">2 M</span>
+                </div>
+                <div style="background:#1a1816;border-radius:4px;height:4px;margin-bottom:6px;"><div style="width:20%;height:4px;border-radius:4px;background:#1d9e75;"></div></div>
+                <div style="padding-left:8px;border-left:2px solid #3d3835;display:flex;flex-direction:column;gap:2px;">
+                  <div style="display:flex;gap:6px;font-size:.73em;color:#9e9a94;"><span style="color:#c8c4be;font-weight:600;min-width:12px;">2</span><span>Confident answers, full understanding</span></div>
+                  <div style="display:flex;gap:6px;font-size:.73em;color:#9e9a94;"><span style="color:#c8c4be;font-weight:600;min-width:12px;">1</span><span>Hesitant or partially correct answers</span></div>
+                  <div style="display:flex;gap:6px;font-size:.73em;color:#9e9a94;"><span style="color:#c8c4be;font-weight:600;min-width:12px;">0</span><span>Unable to answer</span></div>
+                </div>
+              </div>
+
+              <div style="border-top:1px solid #3d3835;padding-top:8px;display:flex;justify-content:space-between;font-size:.83em;font-weight:700;color:#f0ede8;">
+                <span>Regular Performance total</span><span style="color:#4a6cf7;">10 / 10</span>
+              </div>
+            </div>
+
+            <!-- Record Book + Tips -->
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div style="background:#1e1b18;border:1px solid #3d3835;border-radius:12px;padding:16px;">
+                <div style="font-size:.7em;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#0f6e56;margin-bottom:12px;">Record Book — 10 M</div>
+                <div style="padding-left:8px;border-left:2px solid #3d3835;display:flex;flex-direction:column;gap:4px;">
+                  <div style="display:flex;gap:6px;font-size:.73em;color:#9e9a94;"><span style="color:#c8c4be;font-weight:600;min-width:26px;">10</span><span>Submitted on time; neat &amp; complete — aim, algorithm, code, output, result</span></div>
+                  <div style="display:flex;gap:6px;font-size:.73em;color:#9e9a94;"><span style="color:#c8c4be;font-weight:600;min-width:26px;">8–9</span><span>Mostly complete, minor improvements needed</span></div>
+                  <div style="display:flex;gap:6px;font-size:.73em;color:#9e9a94;"><span style="color:#c8c4be;font-weight:600;min-width:26px;">6–7</span><span>Incomplete or contains mistakes in some sections</span></div>
+                  <div style="display:flex;gap:6px;font-size:.73em;color:#9e9a94;"><span style="color:#c8c4be;font-weight:600;min-width:26px;">4–5</span><span>Major missing sections or unclear presentation</span></div>
+                  <div style="display:flex;gap:6px;font-size:.73em;color:#9e9a94;"><span style="color:#c8c4be;font-weight:600;min-width:26px;">1–3</span><span>Bare minimum written</span></div>
+                  <div style="display:flex;gap:6px;font-size:.73em;color:#9e9a94;"><span style="color:#c8c4be;font-weight:600;min-width:26px;">0</span><span>Not submitted</span></div>
+                </div>
+                <div style="border-top:1px solid #3d3835;margin-top:10px;padding-top:8px;display:flex;justify-content:space-between;font-size:.83em;font-weight:700;color:#f0ede8;">
+                  <span>Record total</span><span style="color:#0f6e56;">10 / 10</span>
+                </div>
+              </div>
+
+              <div style="background:#1e1b18;border:1px solid #3d3835;border-radius:12px;padding:14px;font-size:.78em;color:#9e9a94;line-height:1.8;">
+                <div style="color:#e8c9a0;font-weight:700;margin-bottom:8px;">💡 Tips to Score Full Marks</div>
+                <div>✅ Study the concept <strong style="color:#c8c4be;">before</strong> the lab session</div>
+                <div>✅ Write neat, well-indented Java code</div>
+                <div>✅ Run and verify output before showing the faculty</div>
+                <div>✅ Know what every line of your code does — viva is easy then</div>
+                <div>✅ Write record with aim, algorithm, code, output &amp; result — submit on time</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- QUIZ MODAL -->
   <div class="modal-overlay" id="quizModal" onclick="handleOverlayClick(event)">
     <div class="modal">
@@ -1197,9 +1488,36 @@
         <div class="modal-header-icon">🎯</div>
         <div class="modal-header-text">
           <h2 id="quiz-title"></h2>
-          <p>10 questions · Select the best answer</p>
+          <p id="quiz-subtitle">Select a quiz type below</p>
         </div>
         <button class="close-btn" onclick="closeQuiz()">✕</button>
+      </div>
+
+      <!-- Quiz Type Selector -->
+      <div id="quizTypeScreen" style="padding:20px 24px 28px;">
+        <p style="color:var(--muted);font-size:.85em;margin-bottom:18px;">Choose the type of practice you want:</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <button onclick="startQuizType('mcq')" class="qtype-btn">
+            <div style="font-size:1.6em;margin-bottom:6px">🎯</div>
+            <div style="font-weight:700;color:var(--text)">MCQ Quiz</div>
+            <div style="font-size:.75em;color:var(--muted);margin-top:3px">10 questions · L1/L2</div>
+          </button>
+          <button onclick="startQuizType('trace')" class="qtype-btn">
+            <div style="font-size:1.6em;margin-bottom:6px">🔍</div>
+            <div style="font-weight:700;color:var(--text)">Trace the Output</div>
+            <div style="font-size:.75em;color:var(--muted);margin-top:3px">15 questions · L2</div>
+          </button>
+          <button onclick="startQuizType('usecase')" class="qtype-btn">
+            <div style="font-size:1.6em;margin-bottom:6px">💼</div>
+            <div style="font-weight:700;color:var(--text)">Use-Case</div>
+            <div style="font-size:.75em;color:var(--muted);margin-top:3px">15 questions · L4</div>
+          </button>
+          <button onclick="startQuizType('debug')" class="qtype-btn">
+            <div style="font-size:1.6em;margin-bottom:6px">🐛</div>
+            <div style="font-weight:700;color:var(--text)">Debug Questions</div>
+            <div style="font-size:.75em;color:var(--muted);margin-top:3px">15 questions · L3</div>
+          </button>
+        </div>
       </div>
 
       <!-- Progress -->
@@ -1403,53 +1721,100 @@
       ]}
     ];
 
+
     /* ── QUIZ STATE ── */
+    let currentTopicIndex = 0;
+    let currentQuizType  = 'mcq';
     let currentQuizIndex = 0;
     let currentQ = 0;
+    let currentQset = [];
     let userAnswers = [];
     let quizSubmitted = false;
-
     const ALPHA = ['A','B','C','D'];
 
+    /* MCQ index mapping: topic card index → quizData index */
+    const mcqMap = [3,2,3,6,3,3,5,9,7,8,10,10];
+
+    /* topic titles */
+    const topicTitles = [
+      "OOP Fundamentals","Java Language Basics","Classes, Objects & Constructors",
+      "Static, this, final & Strings","Inheritance & Polymorphism","Interfaces",
+      "Packages","I/O Streams","Exception Handling","Multithreading",
+      "Collection Framework Interfaces","Collection Classes"
+    ];
+
+    function showTypeScreen() {
+      document.getElementById('quizTypeScreen').style.display = '';
+      document.getElementById('quizProgress').style.display = 'none';
+      document.getElementById('qNav').style.display = 'none';
+      document.getElementById('quizBody').style.display = 'none';
+      document.getElementById('quizFooter').style.display = 'none';
+      document.getElementById('quizResultScreen').style.display = 'none';
+      document.getElementById('quiz-subtitle').textContent = 'Select a quiz type below';
+    }
+
     function openQuiz(index) {
-      currentQuizIndex = index;
+      currentTopicIndex = index;
+      document.getElementById('quiz-title').textContent = topicTitles[index] || 'Quiz';
+      showTypeScreen();
+      document.getElementById('quizModal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function startQuizType(type) {
+      currentQuizType = type;
+      let qset;
+      if (type === 'mcq') {
+        currentQuizIndex = mcqMap[currentTopicIndex];
+        qset = quizData[currentQuizIndex].questions;
+        document.getElementById('quiz-subtitle').textContent = '10 questions · MCQ · L1/L2';
+      } else if (type === 'trace') {
+        qset = traceData[currentTopicIndex];
+        document.getElementById('quiz-subtitle').textContent = '15 questions · Trace the Output · L2';
+      } else if (type === 'usecase') {
+        qset = usecaseData[currentTopicIndex];
+        document.getElementById('quiz-subtitle').textContent = '15 questions · Use-Case · L4';
+      } else {
+        qset = debugData[currentTopicIndex];
+        document.getElementById('quiz-subtitle').textContent = '15 questions · Debug Questions · L3';
+      }
+      currentQset = qset;
       currentQ = 0;
       quizSubmitted = false;
-      userAnswers = new Array(10).fill(null);
+      userAnswers = new Array(qset.length).fill(null);
 
-      const data = quizData[index];
-      document.getElementById('quiz-title').textContent = data.title;
+      document.getElementById('quizTypeScreen').style.display = 'none';
 
-      // Build question nav dots
-      const navEl = document.getElementById('qNav');
-      navEl.innerHTML = data.questions.map((_, i) =>
+      /* Build nav dots */
+      document.getElementById('qNav').innerHTML = qset.map((_,i) =>
         `<div class="q-dot" id="qdot-${i}" onclick="jumpTo(${i})">${i+1}</div>`
       ).join('');
 
-      // Build question blocks
-      const bodyEl = document.getElementById('quizBody');
-      bodyEl.innerHTML = data.questions.map((q, qi) => `
-        <div class="q-block" id="qb-${qi}">
-          <div class="q-text">${qi+1}. ${q.q}</div>
+      /* Build question blocks */
+      document.getElementById('quizBody').innerHTML = qset.map((q, qi) => {
+        const isCode = q.q.includes('\n');
+        const qText = isCode
+          ? `<div class="code-q">${q.q.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>`
+          : `<div class="q-text">${qi+1}. ${q.q}</div>`;
+        return `<div class="q-block" id="qb-${qi}">
+          ${isCode ? `<div class="q-text" style="margin-bottom:8px">${qi+1}. What is the output / issue?</div>` : ''}
+          ${qText}
           <div class="options-list">
-            ${q.options.map((opt, oi) => `
+            ${q.options.map((opt,oi) => `
               <label class="option-label" id="opt-${qi}-${oi}" onclick="selectOption(${qi},${oi})">
                 <input type="radio" name="q${qi}" value="${oi}">
                 <span class="option-bullet">${ALPHA[oi]}</span>
-                ${opt}
-              </label>
-            `).join('')}
+                ${opt.replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+              </label>`).join('')}
           </div>
-        </div>
-      `).join('');
+        </div>`;
+      }).join('');
 
-      document.getElementById('quizResultScreen').style.display = 'none';
       document.getElementById('quizProgress').style.display = '';
       document.getElementById('qNav').style.display = '';
       document.getElementById('quizBody').style.display = '';
       document.getElementById('quizFooter').style.display = '';
-      document.getElementById('quizModal').style.display = 'block';
-      document.body.style.overflow = 'hidden';
+      document.getElementById('quizResultScreen').style.display = 'none';
 
       renderQuestion(0);
     }
@@ -1457,138 +1822,111 @@
     function renderQuestion(qi) {
       document.querySelectorAll('.q-block').forEach(b => b.classList.remove('active'));
       document.getElementById('qb-' + qi).classList.add('active');
-
-      // Update nav dots
+      const n = currentQset.length;
       document.querySelectorAll('.q-dot').forEach((d, i) => {
-        d.className = 'q-dot' + (i === qi ? ' current' : (userAnswers[i] !== null ? ' answered' : ''));
+        d.className = 'q-dot' + (i===qi ? ' current' : (userAnswers[i]!==null ? ' answered' : ''));
       });
-
-      // Update progress
-      const answered = userAnswers.filter(a => a !== null).length;
-      document.getElementById('prog-label').textContent = `Question ${qi+1} of 10`;
+      const answered = userAnswers.filter(a=>a!==null).length;
+      document.getElementById('prog-label').textContent = `Question ${qi+1} of ${n}`;
       document.getElementById('prog-answered').textContent = `${answered} answered`;
-      document.getElementById('progressFill').style.width = (answered / 10 * 100) + '%';
-
-      // Buttons
-      document.getElementById('btnPrev').disabled = (qi === 0);
-      const isLast = (qi === 9);
+      document.getElementById('progressFill').style.width = (answered/n*100)+'%';
+      document.getElementById('btnPrev').disabled = (qi===0);
+      const isLast = (qi===n-1);
       document.getElementById('btnNext').style.display = isLast ? 'none' : '';
       document.getElementById('btnSubmit').style.display = isLast ? '' : 'none';
-
       currentQ = qi;
     }
 
     function selectOption(qi, oi) {
       if (quizSubmitted) return;
       userAnswers[qi] = oi;
-      // Update visual
-      for (let i = 0; i < 4; i++) {
-        const el = document.getElementById(`opt-${qi}-${i}`);
-        el.classList.toggle('selected', i === oi);
-      }
-      // Update dot
-      const dot = document.getElementById('qdot-' + qi);
+      for (let i=0;i<4;i++) document.getElementById(`opt-${qi}-${i}`).classList.toggle('selected',i===oi);
+      const dot = document.getElementById('qdot-'+qi);
       if (dot && !dot.classList.contains('current')) dot.classList.add('answered');
-      // Update progress
-      const answered = userAnswers.filter(a => a !== null).length;
+      const answered = userAnswers.filter(a=>a!==null).length;
+      const n = currentQset.length;
       document.getElementById('prog-answered').textContent = `${answered} answered`;
-      document.getElementById('progressFill').style.width = (answered / 10 * 100) + '%';
+      document.getElementById('progressFill').style.width = (answered/n*100)+'%';
     }
 
     function goQuestion(dir) {
-      const next = currentQ + dir;
-      if (next >= 0 && next < 10) renderQuestion(next);
+      const next = currentQ+dir;
+      if (next>=0 && next<currentQset.length) renderQuestion(next);
     }
 
     function jumpTo(qi) { renderQuestion(qi); }
 
     function submitQuiz() {
-      const data = quizData[currentQuizIndex];
-      let score = 0, skipped = 0;
-      userAnswers.forEach((ans, qi) => {
-        if (ans === null) { skipped++; return; }
-        if (ans === data.questions[qi].answer) score++;
+      const qset = currentQset;
+      const n = qset.length;
+      let score=0, skipped=0;
+      userAnswers.forEach((ans,qi) => {
+        if (ans===null){skipped++;return;}
+        if (ans===qset[qi].answer) score++;
       });
-      const wrong = 10 - score - skipped;
-      const pct = Math.round(score / 10 * 100);
-
+      const wrong = n-score-skipped;
+      const pct = Math.round(score/n*100);
       quizSubmitted = true;
-
-      // Hide quiz UI
-      document.getElementById('quizProgress').style.display = 'none';
-      document.getElementById('qNav').style.display = 'none';
-      document.getElementById('quizBody').style.display = 'none';
-      document.getElementById('quizFooter').style.display = 'none';
-
-      // Show result
-      const rs = document.getElementById('quizResultScreen');
-      rs.style.display = 'block';
-
-      const ring = document.getElementById('resultRing');
-      ring.style.borderColor = pct >= 70 ? 'var(--green)' : pct >= 40 ? 'var(--gold)' : 'var(--red)';
+      document.getElementById('quizProgress').style.display='none';
+      document.getElementById('qNav').style.display='none';
+      document.getElementById('quizBody').style.display='none';
+      document.getElementById('quizFooter').style.display='none';
+      const rs=document.getElementById('quizResultScreen');
+      rs.style.display='block';
+      const ring=document.getElementById('resultRing');
+      ring.style.borderColor = pct>=70?'var(--green)':pct>=40?'var(--gold)':'var(--red)';
       document.getElementById('scoreNum').textContent = score;
-      document.getElementById('scoreOf').textContent = '/ 10';
-      document.getElementById('resultMsg').textContent = pct >= 80 ? '🎉 Excellent!' : pct >= 60 ? '👍 Good job!' : pct >= 40 ? '📚 Keep practicing!' : '💪 Try again!';
-      document.getElementById('resultMsg').style.color = pct >= 70 ? 'var(--green)' : pct >= 40 ? 'var(--gold)' : 'var(--red)';
-      document.getElementById('resultPct').textContent = `You scored ${pct}% on this quiz`;
+      document.getElementById('scoreOf').textContent = '/ '+n;
+      document.getElementById('resultMsg').textContent = pct>=80?'🎉 Excellent!':pct>=60?'👍 Good job!':pct>=40?'📚 Keep practicing!':'💪 Try again!';
+      document.getElementById('resultMsg').style.color = pct>=70?'var(--green)':pct>=40?'var(--gold)':'var(--red)';
+      document.getElementById('resultPct').textContent = `You scored ${pct}% (${score}/${n})`;
       document.getElementById('rbCorrect').textContent = score;
       document.getElementById('rbWrong').textContent = wrong;
       document.getElementById('rbSkipped').textContent = skipped;
     }
 
     function reviewAnswers() {
-      const data = quizData[currentQuizIndex];
-      // Show quiz body again with answers revealed
-      document.getElementById('quizResultScreen').style.display = 'none';
-      document.getElementById('quizProgress').style.display = '';
-      document.getElementById('qNav').style.display = '';
-      document.getElementById('quizBody').style.display = '';
-      document.getElementById('quizFooter').style.display = '';
-
-      // Color all options
-      data.questions.forEach((q, qi) => {
-        for (let oi = 0; oi < 4; oi++) {
-          const el = document.getElementById(`opt-${qi}-${oi}`);
+      document.getElementById('quizResultScreen').style.display='none';
+      document.getElementById('quizProgress').style.display='';
+      document.getElementById('qNav').style.display='';
+      document.getElementById('quizBody').style.display='';
+      document.getElementById('quizFooter').style.display='';
+      currentQset.forEach((q,qi) => {
+        for(let oi=0;oi<4;oi++){
+          const el=document.getElementById(`opt-${qi}-${oi}`);
           el.classList.remove('selected');
-          if (oi === q.answer) {
-            el.classList.add('correct-ans');
-          } else if (userAnswers[qi] === oi) {
-            el.classList.add('wrong-ans');
-          }
+          if(oi===q.answer) el.classList.add('correct-ans');
+          else if(userAnswers[qi]===oi) el.classList.add('wrong-ans');
         }
-        // Update dots
-        const dot = document.getElementById('qdot-' + qi);
-        dot.classList.remove('answered', 'current');
-        if (userAnswers[qi] === q.answer) dot.classList.add('correct');
+        const dot=document.getElementById('qdot-'+qi);
+        dot.classList.remove('answered','current');
+        if(userAnswers[qi]===q.answer) dot.classList.add('correct');
         else dot.classList.add('wrong');
       });
-
-      document.getElementById('btnPrev').disabled = false;
-      document.getElementById('btnNext').style.display = '';
-      document.getElementById('btnSubmit').style.display = 'none';
+      document.getElementById('btnPrev').disabled=false;
+      document.getElementById('btnNext').style.display='';
+      document.getElementById('btnSubmit').style.display='none';
       renderQuestion(0);
-      // Prevent re-selection
     }
 
-    function retakeQuiz() {
-      openQuiz(currentQuizIndex);
-    }
+    function retakeQuiz() { startQuizType(currentQuizType); }
 
     function closeQuiz() {
-      document.getElementById('quizModal').style.display = 'none';
-      document.body.style.overflow = '';
+      document.getElementById('quizModal').style.display='none';
+      document.body.style.overflow='';
     }
 
     function handleOverlayClick(e) {
-      if (e.target === document.getElementById('quizModal')) closeQuiz();
+      if(e.target===document.getElementById('quizModal')) closeQuiz();
     }
 
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeQuiz();
-      if (!document.getElementById('quizModal').style.display || document.getElementById('quizModal').style.display === 'none') return;
-      if (e.key === 'ArrowRight') goQuestion(1);
-      if (e.key === 'ArrowLeft') goQuestion(-1);
+      if(e.key==='Escape') closeQuiz();
+      if(!document.getElementById('quizModal').style.display||document.getElementById('quizModal').style.display==='none') return;
+      if(e.key==='ArrowRight') goQuestion(1);
+      if(e.key==='ArrowLeft') goQuestion(-1);
     });
   </script>
+  <script src="q_arrays.js"></script>
 </body>
 </html>
