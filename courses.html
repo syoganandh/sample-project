@@ -954,10 +954,10 @@
 
       <div style="margin-bottom: 14px; color: var(--text); font-weight: 600; font-size: 0.9em;">Course Outcomes</div>
       <div class="co-grid">
-        <div class="co-card"><div class="co-id co1">CO-1</div><div class="co-text">Develop classes for real-time applications and establish connectivity among classes using inheritance and strings.</div></div>
-        <div class="co-card"><div class="co-id co2">CO-2</div><div class="co-text">Modularize the application using packages, interfaces and file concepts.</div></div>
-        <div class="co-card"><div class="co-id co3">CO-3</div><div class="co-text">Apply threads on classes to achieve parallelism through synchronization and develop test cases using exception handling.</div></div>
-        <div class="co-card"><div class="co-id co4">CO-4</div><div class="co-text">Solve complex problems using the collection framework.</div></div>
+        <div class="co-card"><div class="co-id co1">CO-1</div><div class="co-text">Develop classes for real time applications and establish the connectivity among the classes using inheritance and usage of strings.</div></div>
+        <div class="co-card"><div class="co-id co2">CO-2</div><div class="co-text">Modularize the application using packages, Interfaces and use of file concepts.</div></div>
+        <div class="co-card"><div class="co-id co3">CO-3</div><div class="co-text">Apply threads on classes to achieve parallelism through synchronization and develop test cases by including the runtime errors using exceptions handling mechanism.</div></div>
+        <div class="co-card"><div class="co-id co4">CO-4</div><div class="co-text">Solve the complex problems using collection framework.</div></div>
       </div>
 
       <div style="margin-bottom: 14px; color: var(--text); font-weight: 600; font-size: 0.9em;">Week-wise Schedule</div>
@@ -986,7 +986,14 @@
           <tr>
             <td><span class="week-label">Week 4 &amp; 5</span></td>
             <td>Classes, Objects, Constructors, Methods, Parameter Passing, Method &amp; Constructor Overloading</td>
-            <td>Farm Animals application; Class Diagram (Customer, Order, SpecialOrder, NormalOrder); Employee data by cadre</td>
+            <td>
+              Farm Animals application; Employee data by cadre
+              <div style="margin-top:10px;">
+                <div style="font-size:.75em;color:#4a6cf7;font-weight:600;margin-bottom:6px;">📐 Class Diagram — Program 4</div>
+                <img src="class_diagram.png" alt="UML Class Diagram: Customer, Order, SpecialOrder, NormalOrder"
+                  style="width:100%;max-width:220px;border-radius:8px;border:1px solid #3d3835;"/>
+              </div>
+            </td>
             <td><span class="co-tag co1">CO1</span></td>
           </tr>
           <tr>
@@ -1034,7 +1041,16 @@
           <tr>
             <td><span class="week-label">Week 13</span></td>
             <td>Collection Framework – Collection, List, Set, Queue interfaces</td>
-            <td>Letter Combinations of a Phone Number</td>
+            <td>
+              Letter Combinations of a Phone Number
+              <div style="margin-top:8px;">
+                <img src="syllabus_image3.png" alt="Phone Keypad Mapping"
+                  style="width:80px;border-radius:8px;border:1px solid #3d3835;background:#fff;padding:4px;cursor:pointer;"
+                  onclick="this.style.width=this.style.width==='80px'?'180px':'80px'"
+                  title="Click to expand"/>
+                <div style="font-size:.7em;color:#9e9a94;margin-top:3px;">Click to expand</div>
+              </div>
+            </td>
             <td><span class="co-tag co4">CO4</span></td>
           </tr>
           <tr>
@@ -1359,6 +1375,94 @@
             So always aim to do well in <strong style="color:#c8c4be;">both</strong> mids — but even if one goes badly, a strong performance in the other limits the damage.
           </div>
 
+        </div>
+      </div>
+
+      <!-- ── CLASS DIAGRAM MODAL ── -->
+      <div id="classDiagramModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;align-items:center;justify-content:center;padding:16px;" onclick="if(event.target===this)this.style.display='none';">
+        <div style="background:#0f0d0a;border:1px solid #3d3835;border-radius:16px;width:100%;max-width:900px;max-height:95vh;overflow-y:auto;padding:20px 24px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+            <div style="font-size:1em;font-weight:700;color:#f0ede8;">📐 UML Class Diagram — Program 4</div>
+            <button onclick="document.getElementById('classDiagramModal').style.display='none';" style="background:#2a2724;border:1px solid #3d3835;border-radius:8px;color:#c8c4be;font-size:1em;padding:4px 12px;cursor:pointer;">✕ Close</button>
+          </div>
+          <svg viewBox="0 0 860 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:10px;background:#ffffff;display:block;">
+            <defs>
+              <marker id="cd-arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#555"/>
+              </marker>
+              <marker id="cd-inherit" markerWidth="14" markerHeight="12" refX="1" refY="6" orient="auto">
+                <polygon points="13 0, 13 12, 0 6" fill="white" stroke="#333" stroke-width="1.5"/>
+              </marker>
+            </defs>
+
+            <!-- Customer class -->
+            <rect x="30" y="50" width="190" height="160" fill="#dbe9f4" stroke="#2c3e50" stroke-width="1.5"/>
+            <rect x="30" y="50" width="190" height="36" fill="#aac8e4" stroke="#2c3e50" stroke-width="1.5"/>
+            <text x="125" y="65" text-anchor="middle" font-family="monospace" font-size="11" font-style="italic" fill="#333">«class»</text>
+            <text x="125" y="81" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#1a252f">Customer</text>
+            <line x1="30" y1="86" x2="220" y2="86" stroke="#2c3e50" stroke-width="1"/>
+            <text x="42" y="108" font-family="monospace" font-size="12" fill="#1a252f">+name : String</text>
+            <text x="42" y="128" font-family="monospace" font-size="12" fill="#1a252f">+location : String</text>
+            <line x1="30" y1="140" x2="220" y2="140" stroke="#2c3e50" stroke-width="1"/>
+            <text x="42" y="160" font-family="monospace" font-size="12" fill="#155a2a">+randomize()</text>
+            <text x="42" y="180" font-family="monospace" font-size="12" fill="#155a2a">+reconnect()</text>
+
+            <!-- Order class -->
+            <rect x="490" y="50" width="220" height="170" fill="#dbe9f4" stroke="#2c3e50" stroke-width="1.5"/>
+            <rect x="490" y="50" width="220" height="36" fill="#aac8e4" stroke="#2c3e50" stroke-width="1.5"/>
+            <text x="600" y="65" text-anchor="middle" font-family="monospace" font-size="11" font-style="italic" fill="#333">«class»</text>
+            <text x="600" y="81" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#1a252f">Order</text>
+            <line x1="490" y1="86" x2="710" y2="86" stroke="#2c3e50" stroke-width="1"/>
+            <text x="504" y="108" font-family="monospace" font-size="12" fill="#1a252f">+date</text>
+            <text x="504" y="128" font-family="monospace" font-size="12" fill="#1a252f">+number : String</text>
+            <line x1="490" y1="140" x2="710" y2="140" stroke="#2c3e50" stroke-width="1"/>
+            <text x="504" y="160" font-family="monospace" font-size="12" fill="#155a2a">+confirm()</text>
+            <text x="504" y="180" font-family="monospace" font-size="12" fill="#155a2a">+close()</text>
+
+            <!-- Association arrow Customer → Order (1 to *) -->
+            <line x1="220" y1="130" x2="488" y2="130" stroke="#555" stroke-width="1.5" marker-end="url(#cd-arrow)"/>
+            <text x="250" y="120" font-family="monospace" font-size="13" font-weight="bold" fill="#c0392b">1</text>
+            <text x="455" y="120" font-family="monospace" font-size="16" font-weight="bold" fill="#c0392b">*</text>
+
+            <!-- SpecialOrder class -->
+            <rect x="60" y="340" width="220" height="160" fill="#dbe9f4" stroke="#2c3e50" stroke-width="1.5"/>
+            <rect x="60" y="340" width="220" height="36" fill="#aac8e4" stroke="#2c3e50" stroke-width="1.5"/>
+            <text x="170" y="355" text-anchor="middle" font-family="monospace" font-size="11" font-style="italic" fill="#333">«class»</text>
+            <text x="170" y="371" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#1a252f">SpecialOrder</text>
+            <line x1="60" y1="376" x2="280" y2="376" stroke="#2c3e50" stroke-width="1"/>
+            <text x="74" y="398" font-family="monospace" font-size="12" fill="#1a252f">+date</text>
+            <text x="74" y="418" font-family="monospace" font-size="12" fill="#1a252f">+number : String</text>
+            <line x1="60" y1="428" x2="280" y2="428" stroke="#2c3e50" stroke-width="1"/>
+            <text x="74" y="448" font-family="monospace" font-size="12" fill="#155a2a">+confirm()</text>
+            <text x="74" y="468" font-family="monospace" font-size="12" fill="#155a2a">+close()   +dispatch()</text>
+
+            <!-- NormalOrder class -->
+            <rect x="530" y="340" width="220" height="160" fill="#dbe9f4" stroke="#2c3e50" stroke-width="1.5"/>
+            <rect x="530" y="340" width="220" height="36" fill="#aac8e4" stroke="#2c3e50" stroke-width="1.5"/>
+            <text x="640" y="355" text-anchor="middle" font-family="monospace" font-size="11" font-style="italic" fill="#333">«class»</text>
+            <text x="640" y="371" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#1a252f">NormalOrder</text>
+            <line x1="530" y1="376" x2="750" y2="376" stroke="#2c3e50" stroke-width="1"/>
+            <text x="544" y="398" font-family="monospace" font-size="12" fill="#1a252f">+number : String</text>
+            <line x1="530" y1="410" x2="750" y2="410" stroke="#2c3e50" stroke-width="1"/>
+            <text x="544" y="430" font-family="monospace" font-size="12" fill="#155a2a">+confirm()</text>
+            <text x="544" y="450" font-family="monospace" font-size="12" fill="#155a2a">+close()</text>
+            <text x="544" y="470" font-family="monospace" font-size="12" fill="#155a2a">+dispatch()   +receive()</text>
+
+            <!-- Inheritance: SpecialOrder → Order -->
+            <line x1="170" y1="340" x2="555" y2="222" stroke="#333" stroke-width="1.5" marker-end="url(#cd-inherit)"/>
+
+            <!-- Inheritance: NormalOrder → Order -->
+            <line x1="640" y1="340" x2="630" y2="222" stroke="#333" stroke-width="1.5" marker-end="url(#cd-inherit)"/>
+
+            <!-- Legend -->
+            <line x1="30" y1="505" x2="70" y2="505" stroke="#555" stroke-width="1.5" marker-end="url(#cd-arrow)"/>
+            <text x="78" y="509" font-family="monospace" font-size="11" fill="#555">Association (1 to *)</text>
+            <line x1="260" y1="505" x2="300" y2="505" stroke="#333" stroke-width="1.5" marker-end="url(#cd-inherit)"/>
+            <text x="308" y="509" font-family="monospace" font-size="11" fill="#555">Inheritance (extends)</text>
+          </svg>
+          <div style="margin-top:10px;font-size:.78em;color:#9e9a94;text-align:center;">
+            Customer places Orders (1 to *) · SpecialOrder and NormalOrder extend Order
+          </div>
         </div>
       </div>
 
